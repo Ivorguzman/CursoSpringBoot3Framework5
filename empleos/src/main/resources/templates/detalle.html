@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html  xmlns:th ="http://www.thymeleaf.org ">
+<head>
+<meta charset="UTF-8">
+<title>Detalle</title>
+
+
+</head>
+<body>
+<h1>Detalle de la oferta</h1>
+<h2>    </h2>
+<h3 th:text="'Nombre : ' + ${vacanteA.nombre}"> </h3>
+<h3 th:text="'Descripcion del Puesto : ' + ${vacanteA.descripcion}"> </h3>
+<h3 th:text="'Fecha de Publicacion : ' + ${vacanteA.fecha}"> </h3>
+<h3 th:text="'Salario : ' + ${vacanteA.salario} + ' $ COP'"> </h3>
+<br>
+<h3 th:text="'Nombre : ' + ${vacanteB.nombre}"> </h3>
+<h3 th:text="'Descripcion del Puesto : ' + ${vacanteB.descripcion}"> </h3>
+<h3 th:text="'Fecha de Publicacion : ' + ${vacanteB.fecha}"> </h3>
+<h3 th:text="'Salario : ' + ${vacanteB.salario} + ' $ COP'"> </h3>
+
+
+</body>
+</html>

@@ -5,9 +5,12 @@
 <title>Listado de oferta de Trabajos (renderiazando datos tipos referencia)</title>
 </head>
 <body>
-  <h1>Vacantes disponibles</h1>
+  <h1>Listado de oferta de Trabajos (renderiazando datos tipos referencia</h1>
   <ol>
-    <li th:each="variabeTemporal:${empleos}" th:text=${variabeTemporal}>
+    <li  th:text=${empleos}>
+    <li th:each="variableAtributo:${empleos}" th:text=${variableAtributo}>
+   
+    
   </ol>
 </body
     >
