@@ -189,6 +189,7 @@ public class HomeController {
 
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
+
 		List<Vacante> lista = new LinkedList<>();
 
 
@@ -200,6 +201,7 @@ public class HomeController {
 			vacante1.setDescripcion("Solicitamos Ing. Civil  con experiencia en vialidades");
 			vacante1.setFecha(sdf.parse("06-12-2024"));
 			vacante1.setSalario(3999.0);
+			vacante1.setDestacado(1);
 
 
 
@@ -210,6 +212,7 @@ public class HomeController {
 			vacante2.setDescripcion("Solicitamos Contador Fiscal  con experiencia  en IMPORTACIONES");
 			vacante2.setFecha(sdf.parse("06-12-2024"));
 			vacante2.setSalario(2999.0);
+			vacante2.setDestacado(0);
 
 
 
@@ -220,6 +223,7 @@ public class HomeController {
 			vacante3.setDescripcion("Solicitamos Ing. Electrico  con experiencia Sistemas de ferrocarriles");
 			vacante3.setFecha(sdf.parse("06-12-2024"));
 			vacante3.setSalario(5999.0);
+			vacante3.setDestacado(0);
 
 
 
@@ -230,6 +234,7 @@ public class HomeController {
 			vacante4.setDescripcion("Solicitamos Diseñador con experiencia diseño editorial e Ipresión OffSet");
 			vacante4.setFecha(sdf.parse("06-12-2024"));
 			vacante4.setSalario(3999.0);
+			vacante4.setDestacado(1);
 
 
 			lista.add(vacante1);

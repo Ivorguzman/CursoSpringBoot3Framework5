@@ -8,17 +8,23 @@ public class Vacante {
 	private String descripcion;
 	private Date fecha;
 	private Double salario;
+	private Integer destacado;
 
 
+
+
+
+
+	// Getters
+	public Integer getDestacado() {
+		return this.destacado;
+	}
 
 
 	public Date getFecha() {
 		return this.fecha;
 	}
 
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
 
 	public Integer getId() {
 		return this.id;
@@ -39,6 +45,16 @@ public class Vacante {
 
 
 
+
+	// Setters
+	public void setDestacado(Integer destacado) {
+		this.destacado = destacado;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -54,6 +70,8 @@ public class Vacante {
 	public void setSalario(Double salario) {
 		this.salario = salario;
 	}
+
+
 
 
 
