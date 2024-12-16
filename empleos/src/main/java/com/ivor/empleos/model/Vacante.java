@@ -9,6 +9,7 @@ public class Vacante {
 	private Date fecha;
 	private Double salario;
 	private Integer destacado;
+	private String images = "no-image.png";
 
 
 
@@ -43,6 +44,11 @@ public class Vacante {
 	}
 
 
+	public String getImages() {
+		return this.images;
+	}
+
+
 
 
 
@@ -73,12 +79,17 @@ public class Vacante {
 
 
 
+	public void setImages(String images) {
+		this.images = images;
+	}
+
 
 
 	@Override
 	public String toString() {
 		return "Vacante [id=" + this.id + ", nombre=" + this.nombre + ", descripcion=" + this.descripcion + ", salario=" + this.salario + "]";
 	}
+
 
 
 }

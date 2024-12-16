@@ -92,9 +92,9 @@ public class HomeController {
 
 	/*
 	 * 
-	 * // ********************************** /tabla (Sin Metodo getVacante()) ************************
+	 * // ********************************** /tablaBootstrap (Sin Metodo getVacante()) ************************
 	 * 
-	 * @GetMapping("/tabla")
+	 * @GetMapping("/tablaBootstrap")
 	 * public String mostrarTabla(Model modelo) throws ParseException {
 	 * 
 	 * //List<Vacante> lista = this.getVacante();
@@ -167,8 +167,8 @@ public class HomeController {
 
 
 
-	// ********************************** /tabla (Con Metodo getVacante()) ************************
-	@GetMapping("/tabla")
+	// ********************************** /tablaBootstrap (Con Metodo getVacante()) ************************
+	@GetMapping("/tablaBootstrap")
 	public String mostrarTabla(Model modelo) {
 
 		List<Vacante> lista = this.getVacante();
@@ -202,6 +202,7 @@ public class HomeController {
 			vacante1.setFecha(sdf.parse("06-12-2024"));
 			vacante1.setSalario(3999.0);
 			vacante1.setDestacado(1);
+			vacante1.setImages("empresa1.png");
 
 
 
@@ -212,8 +213,8 @@ public class HomeController {
 			vacante2.setDescripcion("Solicitamos Contador Fiscal  con experiencia  en IMPORTACIONES");
 			vacante2.setFecha(sdf.parse("06-12-2024"));
 			vacante2.setSalario(2999.0);
-			vacante2.setDestacado(0);
-
+			vacante2.setDestacado(1);
+			vacante2.setImages("empresa2.png");
 
 
 			// Crear oferta de trabajo 3
@@ -224,8 +225,8 @@ public class HomeController {
 			vacante3.setFecha(sdf.parse("06-12-2024"));
 			vacante3.setSalario(5999.0);
 			vacante3.setDestacado(0);
-
-
+			// vacante3.setImages(null);
+			// vacante3.setImages("empresa3.png");
 
 			// Crear oferta de trabajo 4
 			Vacante vacante4 = new Vacante();
@@ -235,7 +236,7 @@ public class HomeController {
 			vacante4.setFecha(sdf.parse("06-12-2024"));
 			vacante4.setSalario(3999.0);
 			vacante4.setDestacado(1);
-
+			vacante4.setImages("empresa4.png");
 
 			lista.add(vacante1);
 			lista.add(vacante2);
