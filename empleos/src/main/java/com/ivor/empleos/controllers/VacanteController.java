@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class VacanteController {
 
 
-	// **************** /vacantes/view/int X ******************************
+	// **************** /vacantes/view/X ******************************
 	@GetMapping("/view/{id}")
 	public String verDetalle(@PathVariable("id") int idVacante, Model modelo) {
 		modelo.addAttribute("idVacante", idVacante);
@@ -25,12 +25,12 @@ public class VacanteController {
 
 
 
-	// **************** /vacantes/delete/ ******************************
+	// **************** /vacantes/delete?id=X ******************************
 	@GetMapping("/delete")
 	public String eliminar(@RequestParam("id") int idVacante, Model modelo) {
-		modelo.addAttribute("idVacante", idVacante);
-		System.out.println();
-		return "/vacante/detalle";
+		modelo.addAttribute("id", idVacante);
+		System.out.println("Borrando vacantes con id: " + idVacante);
+		return "/mensaje";
 	}
 
 

@@ -13,6 +13,7 @@ public class CategoriaController {
 
 
 	// ********************** /categorias/index *****************************
+	// @GetMapping("/index")
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String mostrarIndex(Model model) {
 
@@ -22,7 +23,9 @@ public class CategoriaController {
 
 
 	// ********************** /categorias/create *****************************
+	// @GetMapping("/create")
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
+
 	public String crear() {
 
 		return "categorias/formCategoria";
@@ -31,6 +34,7 @@ public class CategoriaController {
 
 
 	// ********************** /categorias /save *****************************
+	// @GetMapping("/save")
 	@RequestMapping(value = "/save", method = RequestMethod.GET)
 	public String guardar() {
 
