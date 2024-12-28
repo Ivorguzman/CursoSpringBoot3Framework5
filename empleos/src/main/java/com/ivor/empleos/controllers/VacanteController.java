@@ -15,17 +15,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class VacanteController {
 
 
-	// **************** /vacantes/view/X ******************************
+	// **************** /vacantes/view/X (parametro enviadado via http con @PathVariable("id")) ******************************
 	@GetMapping("/view/{id}")
 	public String verDetalle(@PathVariable("id") int idVacante, Model modelo) {
 		modelo.addAttribute("idVacante", idVacante);
 		System.out.println();
-		return "/vacante/detalle";
+		return "/vacante/detalleVacante";
 	}
 
 
 
-	// **************** /vacantes/delete?id=X ******************************
+	// **************** /vacantes/delete?id=X (parametro enviadado via http con @RequestParam("id")) ******************************
 	@GetMapping("/delete")
 	public String eliminar(@RequestParam("id") int idVacante, Model modelo) {
 		modelo.addAttribute("id", idVacante);

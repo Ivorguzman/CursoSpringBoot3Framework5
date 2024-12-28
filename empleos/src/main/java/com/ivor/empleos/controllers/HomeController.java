@@ -17,7 +17,7 @@ public class HomeController {
 
 
 
-	// ****************************** (/)_home **************************
+	// ****************************** (/) **************************
 	@GetMapping("/")
 	public String mostrarHome(Model modelo) {
 		String nombre = "Auxiliar contable";
@@ -46,6 +46,7 @@ public class HomeController {
 		Vacante vacanteB = new Vacante();
 
 
+		// *********** Instancia(Objeto) vacanteA
 		vacanteA.setNombre("Ing. de  Comunicaciones");
 		vacanteA.setDescripcion("Ing. para dar soporte a Intranet");
 		vacanteA.setFecha(new Date());
@@ -53,7 +54,7 @@ public class HomeController {
 		modelo.addAttribute("vacanteA", vacanteA);
 
 
-
+		// *********** Instancia(Objeto) vacanteB
 		vacanteB.setNombre("Ing. de SoftWare");
 		vacanteB.setDescripcion("Ing. para dar soporte a sistema Bancario");
 		vacanteB.setFecha(new Date());
@@ -89,94 +90,16 @@ public class HomeController {
 
 
 
-
-	/*
-	 * 
-	 * // ********************************** /tablaBootstrap (Sin Metodo getVacante()) ************************
-	 * 
-	 * @GetMapping("/tablaBootstrap")
-	 * public String mostrarTabla(Model modelo) throws ParseException {
-	 * 
-	 * //List<Vacante> lista = this.getVacante();
-	 * SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
-	 * 
-	 * List<Vacante> lista = new LinkedList<>();
-	 * 
-	 * modelo.addAttribute("vacantes", lista);
-	 * // Crear oferta de trabajo 1
-	 * Vacante vacante1 = new Vacante();
-	 * vacante1.setId(1);
-	 * vacante1.setNombre("Ingeniero Civil");
-	 * vacante1.setDescripcion("Solicitamos Ing. Civil  con experiencia en vialidades");
-	 * vacante1.setFecha(new Date());
-	 * // vacante1.setFecha(sdf.parse("06-12-2024"));
-	 * vacante1.setSalario(3999.0);
-	 * 
-	 * 
-	 * 
-	 * // Crear oferta de trabajo 2
-	 * Vacante vacante2 = new Vacante();
-	 * vacante2.setId(2);
-	 * vacante2.setNombre("Contador Publico");
-	 * vacante2.setDescripcion("Solicitamos Contador Fiscal  con experiencia  en IMPORTACIONES");
-	 * vacante2.setFecha(sdf.parse("06-12-2024"));
-	 * vacante2.setSalario(2999.0);
-	 * 
-	 * 
-	 * 
-	 * // Crear oferta de trabajo 3
-	 * Vacante vacante3 = new Vacante();
-	 * vacante3.setId(3);
-	 * vacante3.setNombre("Ingeniero Electrico");
-	 * vacante3.setDescripcion("Solicitamos Ing. Electrico  con experiencia Sistemas de ferrocarriles");
-	 * vacante3.setFecha(sdf.parse("06-12-2024"));
-	 * vacante3.setSalario(5999.0);
-	 * 
-	 * 
-	 * 
-	 * // Crear oferta de trabajo 4
-	 * Vacante vacante4 = new Vacante();
-	 * vacante4.setId(4);
-	 * vacante4.setNombre("Diseñador Gráfico");
-	 * vacante4.setDescripcion("Solicitamos Diseñador con experiencia diseño editorial e Impresión OffSet");
-	 * vacante4.setFecha(sdf.parse("06-12-2024"));
-	 * vacante4.setSalario(3999.0);
-	 * 
-	 * 
-	 * lista.add(vacante1);
-	 * lista.add(vacante2);
-	 * lista.add(vacante3);
-	 * lista.add(vacante4);
-	 * 
-	 * modelo.addAttribute("vacantes", lista);
-	 * 
-	 * // System.out.println(lista);
-	 * return "tabla";
-	 * 
-	 * }
-	 * 
-	 */
-
-
-
-
-
-
-
-
-
-
-
-	// ********************************** /tablaBootstrap (Con Metodo getVacante()) ************************
+	// ********************************** /tablaBootstrap (Metodo getVacante()) ************************
 	@GetMapping("/tablaBootstrap")
 	public String mostrarTabla(Model modelo) {
 
 		List<Vacante> lista = this.getVacante();
+		System.out.println("lista = " + lista);
 
 		modelo.addAttribute("vacantes", lista);
 
 
-		System.out.println("lista = "+lista);
 		// return "tabla";
 		return "tablaBootstrap";
 
@@ -203,6 +126,7 @@ public class HomeController {
 			vacante1.setSalario(3999.0);
 			vacante1.setDestacado(1);
 			vacante1.setImages("empresa1.png");
+			lista.add(vacante1);
 
 
 
@@ -215,6 +139,8 @@ public class HomeController {
 			vacante2.setSalario(2999.0);
 			vacante2.setDestacado(1);
 			vacante2.setImages("empresa2.png");
+			lista.add(vacante2);
+
 
 
 			// Crear oferta de trabajo 3
@@ -227,6 +153,9 @@ public class HomeController {
 			vacante3.setDestacado(0);
 			// vacante3.setImages(null);
 			// vacante3.setImages("empresa3.png");
+			lista.add(vacante3);
+
+
 
 			// Crear oferta de trabajo 4
 			Vacante vacante4 = new Vacante();
@@ -237,10 +166,6 @@ public class HomeController {
 			vacante4.setSalario(3999.0);
 			vacante4.setDestacado(1);
 			vacante4.setImages("empresa4.png");
-
-			lista.add(vacante1);
-			lista.add(vacante2);
-			lista.add(vacante3);
 			lista.add(vacante4);
 
 		} catch(ParseException ex){

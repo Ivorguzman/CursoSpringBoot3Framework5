@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tabla con Encabezados</title>
+<title>Listado de columnas</title>
 <link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.min.css">
 <style></style>
 </head>
@@ -21,36 +21,76 @@
         <th>Fecha Publicación</th>
         <th>Salario</th>
         <th>Destacado</th>
-       
+        <th>Detalle</th>
+        <th>Borrar</th>
       </tr>
     </thead>
     <tbody>
       <tr th:each="vacante : ${vacantes}">
+      
         <td>
-        <img th:src ="@{/images/{var_img}(var_img=${vacante.images})}" width=100 height=100>
+         <img th:src ="@{/images/{var_img}(var_img=${vacante.images})}" width=100 height=100>
         </td>
+        
         <td th:text="${vacante.id}"></td>
         <td th:text="${vacante.nombre}"></td>
         <td th:text="${vacante.descripcion}"></td>
         <td th:text="${vacante.fecha}"></td>
         <td th:text="${vacante.salario}"></td>
-       
         
-                   <!--   Aplicando el Operador Elvis (?:) -->
+        <td>
+        
+                    <!--   Aplicando el Operador Elvis (?:) -->
        <!--  <td th:text="${vacante.destacado}"></td> -->
        <!--  <td th:text="${vacante.destacado == 1 ? 'Si' : 'No'}"></td> -->
        
-       
-       
-        
                     <!--   Aplicando la Experision if- unless -->
-        <td>
          <span th:if="${vacante.destacado == 1}" class="badge  badge-success">Si</span>
          <span th:unless="${vacante.destacado == 1}" class="badge  badge-danger">No</span>
         </td>
+        
+        
+        <td>
+          <a th:href="@{/vacante/view/{id}  (id=${vacante.id} )}" class=" btn btn-success">Detalle</a> 
+        </td>
+        
+        
+        <td>
+          <a th:href="@{/vacantes/delete(id=${vacante.id} )}" class=" btn btn-danger">Borrar</a> 
+        </td>
+        
       </tr>
     </tbody>
   </table>
   <script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

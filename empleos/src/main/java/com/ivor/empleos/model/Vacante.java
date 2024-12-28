@@ -11,7 +11,9 @@ public class Vacante {
 	private Integer destacado;
 	private String images = "no-image.png";
 
+	public Vacante( ) {
 
+	}
 
 
 
