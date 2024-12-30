@@ -23,7 +23,7 @@ public class VacanteController {
 		return "/vacante/detalleVacante";
 	}
 
-
+	// "id") int idVacante, Model modelo
 
 	// **************** /vacantes/delete?id=X (parametro enviadado via http con @RequestParam("id")) ******************************
 	@GetMapping("/delete")

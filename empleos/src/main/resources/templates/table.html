@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tabla con Encabezados</title>
+<link rel="stylesheet" type="text/css" href="/css/tabla.css">
+<style></style>
+</head>
+<body>
+  <h1>Tabla con Encabezados</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Fecha Publicación</th>
+        <th>Salario</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="vacante : ${vacantes}">
+        <td th:text="${vacante.id}"></td>
+        <td th:text="${vacante.nombre}"></td>
+        <td th:text="${vacante.descripcion}"></td>
+        <td th:text="${vacante.fecha}"></td>
+        <td th:text="${vacante.salario}"></td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

@@ -3,19 +3,17 @@ package com.ivor.empleos.model;
 import java.util.Date;
 
 public class Vacante {
+	private String images = "no-image.png";
 	private Integer id;
 	private String nombre;
 	private String descripcion;
 	private Date fecha;
 	private Double salario;
 	private Integer destacado;
-	private String images = "no-image.png";
 
 	public Vacante( ) {
 
 	}
-
-
 
 
 	// Getters

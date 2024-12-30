@@ -1,210 +1,93 @@
 package com.ivor.empleos.controllers;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Date; // Importa la clase Date para manejar fechas
+import java.util.LinkedList; // Importa la clase LinkedList para crear listas enlazadas
+import java.util.List; // Importa la interfaz List para manejar listas
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller; // Importa la anotación @Controller para marcar la clase como un controlador
+import org.springframework.ui.Model; // Importa la interfaz Model para pasar datos a la vista
+import org.springframework.web.bind.annotation.GetMapping; // Importa la anotación @GetMapping para manejar solicitudes GET
 
-import com.ivor.empleos.model.Vacante;
+import com.ivor.empleos.model.Vacante; // Importa la clase Vacante desde el paquete com.ivor.empleos.model
+import com.ivor.empleos.service.I_Vacanteservice;
 
-@Controller
+@Controller // Marca esta clase como un controlador de Spring MVC indica que Spring debe inyectar automáticamente un bean de tipo I_Vacanteservice en este campo.
 public class HomeController {
 
 
+	// Sin Spring, esto sería equivalente a:
+	@Autowired // this.serviceVacantes = new VacanteServiceImpl();
+	private I_Vacanteservice serviceVacantes;
 
 	// ****************************** (/) **************************
-	@GetMapping("/")
+	@GetMapping("/") // Mapea las solicitudes HTTP GET en la URL raíz "/"
 	public String mostrarHome(Model modelo) {
+		// Datos para mostrar en la vista de inicio
 		String nombre = "Auxiliar contable";
-		Date fechaPublicacion = new Date();
+		Date fechaPublicacion = new Date(); // Fecha actual
 		double salario = 9000.0;
-		boolean vigente = true;
+		boolean vigente = true; // Estado de la vacante
 
+		// Añade los datos al modelo para ser accedidos en la vista
 		modelo.addAttribute("nombre", nombre);
 		modelo.addAttribute("fechaPublicacion", fechaPublicacion);
 		modelo.addAttribute("salario", salario);
 		modelo.addAttribute("vigente", vigente);
 
-		return "home";
+		return "home"; // Retorna el nombre de la vista (home.html o home.jsp)
 	}
-
-
-
 
 
 
 	// ****************************** /detalle *******************************
-	@GetMapping("/detalle")
+	@GetMapping("/detalle") // Mapea las solicitudes HTTP GET en la URL "/detalle"
 	public String mostrarDetalle(Model modelo) {
+		Vacante vacanteA = new Vacante(); // Instancia de Vacante A
+		Vacante vacanteB = new Vacante(); // Instancia de Vacante B
 
-		Vacante vacanteA = new Vacante();
-		Vacante vacanteB = new Vacante();
-
-
-		// *********** Instancia(Objeto) vacanteA
-		vacanteA.setNombre("Ing. de  Comunicaciones");
+		// Configura vacante A
+		vacanteA.setNombre("Ing. de Comunicaciones");
 		vacanteA.setDescripcion("Ing. para dar soporte a Intranet");
-		vacanteA.setFecha(new Date());
+		vacanteA.setFecha(new Date()); // Fecha actual
 		vacanteA.setSalario(9700000.0);
-		modelo.addAttribute("vacanteA", vacanteA);
+		modelo.addAttribute("vacanteA", vacanteA); // Añade vacante A al modelo
 
-
-		// *********** Instancia(Objeto) vacanteB
+		// Configura vacante B
 		vacanteB.setNombre("Ing. de SoftWare");
 		vacanteB.setDescripcion("Ing. para dar soporte a sistema Bancario");
-		vacanteB.setFecha(new Date());
+		vacanteB.setFecha(new Date()); // Fecha actual
 		vacanteB.setSalario(9999999.0);
-		modelo.addAttribute("vacanteB", vacanteB);
+		modelo.addAttribute("vacanteB", vacanteB); // Añade vacante B al modelo
 
-		return "detalle";
+		return "detalle"; // Retorna el nombre de la vista (detalle.html o detalle.jsp)
 	}
 
 
-
-
-
-
-
-
 	// ************************ /listado ******************************
-	@GetMapping("/listado")
+	@GetMapping("/listado") // Mapea las solicitudes HTTP GET en la URL "/listado"
 	public String mostrarListado(Model modelo) {
-
+		// Lista de empleos
 		List<String> lista = new LinkedList<>();
-
 		lista.add("Ingeniero de SoftWare");
 		lista.add("Auxiliar Contable");
 		lista.add("Técnico en PCs");
 		lista.add("Arquitecto");
 
-		modelo.addAttribute("empleos", lista);
-		return "listado";
+		modelo.addAttribute("empleos", lista); // Añade la lista de empleos al modelo
+		return "listado"; // Retorna el nombre de la vista (listado.html o listado.jsp)
 	}
 
 
 
-
-
-	// ********************************** /tablaBootstrap (Metodo getVacante()) ************************
-	@GetMapping("/tablaBootstrap")
+	// **************** /tabla *****************
+	@GetMapping("/tabla") // Mapea las solicitudes HTTP GET en la URL "/tablaBootstrap"
 	public String mostrarTabla(Model modelo) {
+		List<Vacante> lista = this.serviceVacantes.buscarTodas(); // Obtiene la lista de vacantes
+		System.out.println();
+		System.out.println("lista_VariableLocal = " + lista); // Imprime la lista para depuración
 
-		List<Vacante> lista = this.getVacante();
-		System.out.println("lista = " + lista);
-
-		modelo.addAttribute("vacantes", lista);
-
-
-		// return "tabla";
-		return "tablaBootstrap";
-
-	}
-
-
-
-
-	private List<Vacante> getVacante() {
-
-
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
-
-		List<Vacante> lista = new LinkedList<>();
-
-
-		try{
-			// Crear oferta de trabajo 1
-			Vacante vacante1 = new Vacante();
-			vacante1.setId(1);
-			vacante1.setNombre("Ingeniero Civil");
-			vacante1.setDescripcion("Solicitamos Ing. Civil  con experiencia en vialidades");
-			vacante1.setFecha(sdf.parse("06-12-2024"));
-			vacante1.setSalario(3999.0);
-			vacante1.setDestacado(1);
-			vacante1.setImages("empresa1.png");
-			lista.add(vacante1);
-
-
-
-			// Crear oferta de trabajo 2
-			Vacante vacante2 = new Vacante();
-			vacante2.setId(2);
-			vacante2.setNombre("Contador Publico");
-			vacante2.setDescripcion("Solicitamos Contador Fiscal  con experiencia  en IMPORTACIONES");
-			vacante2.setFecha(sdf.parse("06-12-2024"));
-			vacante2.setSalario(2999.0);
-			vacante2.setDestacado(1);
-			vacante2.setImages("empresa2.png");
-			lista.add(vacante2);
-
-
-
-			// Crear oferta de trabajo 3
-			Vacante vacante3 = new Vacante();
-			vacante3.setId(3);
-			vacante3.setNombre("Ingeniero Electrico");
-			vacante3.setDescripcion("Solicitamos Ing. Electrico  con experiencia Sistemas de ferrocarriles");
-			vacante3.setFecha(sdf.parse("06-12-2024"));
-			vacante3.setSalario(5999.0);
-			vacante3.setDestacado(0);
-			// vacante3.setImages(null);
-			// vacante3.setImages("empresa3.png");
-			lista.add(vacante3);
-
-
-
-			// Crear oferta de trabajo 4
-			Vacante vacante4 = new Vacante();
-			vacante4.setId(4);
-			vacante4.setNombre("Diseñador Gráfico");
-			vacante4.setDescripcion("Solicitamos Diseñador con experiencia diseño editorial e Ipresión OffSet");
-			vacante4.setFecha(sdf.parse("06-12-2024"));
-			vacante4.setSalario(3999.0);
-			vacante4.setDestacado(1);
-			vacante4.setImages("empresa4.png");
-			lista.add(vacante4);
-
-		} catch(ParseException ex){
-
-			System.out.println("ERROR => : " + ex.getMessage());
-		}
-		return lista;
+		modelo.addAttribute("vacantes", lista); // Añade la lista de vacantes al modelo
+		return "tabla"; // Retorna el nombre de la vista (tablaBootstrap.html)
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
