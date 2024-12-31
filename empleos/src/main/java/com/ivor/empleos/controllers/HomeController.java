@@ -40,9 +40,10 @@ public class HomeController {
 
 
 
-	// ****************************** /detalle *******************************
-	@GetMapping("/detalle") // Mapea las solicitudes HTTP GET en la URL "/detalle"
-	public String mostrarDetalle(Model modelo) {
+	// ****************************** /detalleAyB
+	// *******************************
+	@GetMapping("/detalleAyB") // Mapea las solicitudes HTTP GET en la URL "/detalle"
+	public String mostrarDetalleAyB(Model modelo) {
 		Vacante vacanteA = new Vacante(); // Instancia de Vacante A
 		Vacante vacanteB = new Vacante(); // Instancia de Vacante B
 
@@ -60,9 +61,26 @@ public class HomeController {
 		vacanteB.setSalario(9999999.0);
 		modelo.addAttribute("vacanteB", vacanteB); // Añade vacante B al modelo
 
-		return "detalle"; // Retorna el nombre de la vista (detalle.html o detalle.jsp)
+		return "detalleAyB"; // Retorna el nombre de la vista (detalle.html o detalle.jsp)
 	}
 
+
+	// ****************************** /detalle *******************************
+	@GetMapping("/detalle")
+	public String mostrarDetalle(Model modelo) {
+
+		String vacante= "Vacante entrando directamente por directorio raiz (/). Sin un @RequestMapping()"; // Instancia de Vacante
+		/*
+		 * List<String> lista = new LinkedList<>();
+		 * lista.add("Ingeniero de SoftWare");
+		 * lista.add("Auxiliar Contable");
+		 * lista.add("Técnico en PCs");
+		 * lista.add("Arquitecto");
+		 */
+		modelo.addAttribute ("vacante", vacante);
+
+		return "detalleBorrar"; // Retorna el nombre de la vista (detalle.html o detalle.jsp)
+	}
 
 	// ************************ /listado ******************************
 	@GetMapping("/listado") // Mapea las solicitudes HTTP GET en la URL "/listado"
@@ -80,12 +98,12 @@ public class HomeController {
 
 
 
-	// **************** /tabla *****************
-	@GetMapping("/tabla") // Mapea las solicitudes HTTP GET en la URL "/tablaBootstrap"
+	// ************************************** /tabla **************************************
+	@GetMapping("/tabla") // Mapea las solicitudes HTTP GET en la URL "/tabla
 	public String mostrarTabla(Model modelo) {
-		List<Vacante> lista = this.serviceVacantes.buscarTodas(); // Obtiene la lista de vacantes
-		System.out.println();
-		System.out.println("lista_VariableLocal = " + lista); // Imprime la lista para depuración
+		List<Vacante> lista = this.serviceVacantes.buscarTodasVacante(); // Obtiene la lista de vacantes
+		// System.out.println();
+		// System.out.println("lista_VariableLocal = " + lista); // Imprime la lista para depuración
 
 		modelo.addAttribute("vacantes", lista); // Añade la lista de vacantes al modelo
 		return "tabla"; // Retorna el nombre de la vista (tablaBootstrap.html)

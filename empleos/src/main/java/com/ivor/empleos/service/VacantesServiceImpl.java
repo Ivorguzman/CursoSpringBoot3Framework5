@@ -14,6 +14,8 @@ public class VacantesServiceImpl implements I_Vacanteservice {
 
 	private List<Vacante> lista = null; // Atributo a nivel de la clase
 
+
+
 	// ******************* Contructor ********************************
 	public VacantesServiceImpl( ) {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy"); // Formato de fecha
@@ -24,9 +26,8 @@ public class VacantesServiceImpl implements I_Vacanteservice {
 		 * La asignación funciona debido al principio del polimorfismo,
 		 * que permite que una variable de tipo interfaz pueda referirse
 		 * a cualquier objeto cuya clase implemente esa interfaz.
-		 * Esto significa que lista puede contener cualquier objeto
-		 * que implemente la interfaz List y almacene objetos de tipo Vacante.
 		 * 
+		 *
 		 * new LinkedList<>():
 		 * Crea una nueva instancia de LinkedList<Vacante> y la asigna a la variable lista.
 		 * LinkedList es una implementación concreta de la interfaz List.
@@ -44,7 +45,7 @@ public class VacantesServiceImpl implements I_Vacanteservice {
 			vacante1.setSalario(3999.0);
 			vacante1.setDestacado(1); // Vacante destacada
 			vacante1.setImages("empresa1.png");
-			this.lista.add(vacante1);
+			
 
 			// Crear vacante 2
 			Vacante vacante2 = new Vacante();
@@ -55,7 +56,6 @@ public class VacantesServiceImpl implements I_Vacanteservice {
 			vacante2.setSalario(2999.0);
 			vacante2.setDestacado(1); // Vacante destacada
 			vacante2.setImages("empresa2.png");
-			this.lista.add(vacante2);
 
 			// Crear vacante 3
 			Vacante vacante3 = new Vacante();
@@ -65,7 +65,6 @@ public class VacantesServiceImpl implements I_Vacanteservice {
 			vacante3.setFecha(sdf.parse("06-12-2024"));
 			vacante3.setSalario(5999.0);
 			vacante3.setDestacado(0); // Vacante no destacada
-			this.lista.add(vacante3);
 
 			// Crear vacante 4
 			Vacante vacante4 = new Vacante();
@@ -76,7 +75,15 @@ public class VacantesServiceImpl implements I_Vacanteservice {
 			vacante4.setSalario(3999.0);
 			vacante4.setDestacado(1); // Vacante destacada
 			vacante4.setImages("empresa4.png");
+
+
+
+			this.lista.add(vacante1);
+			this.lista.add(vacante2);
+			this.lista.add(vacante3);
 			this.lista.add(vacante4);
+
+
 
 		} catch(ParseException ex){
 			System.out.println("ERROR => : " + ex.getMessage()); // Maneja la excepción de parseo de fecha
@@ -85,11 +92,24 @@ public class VacantesServiceImpl implements I_Vacanteservice {
 
 
 
+	@Override
+	public List<Vacante> buscarTodasVacante() {
+		// System.out.println("lista_VariableInstancias = " + this.lista);
+		// System.out.println();
+		return this.lista;
+	}
+
+
 
 	@Override
-	public List<Vacante> buscarTodas() {
-		System.out.println("lista_VariableInstancias = " + this.lista);
-		return this.lista;
+	public Vacante buscarVarPorIdVacante(Integer idVacante) {
+		for (Vacante v_Vacante : this.lista){
+			System.out.println("v_Vacante = " + v_Vacante);
+			if (v_Vacante.getId() == idVacante){
+				return v_Vacante;
+			}
+		}
+		return null;
 	}
 
 }

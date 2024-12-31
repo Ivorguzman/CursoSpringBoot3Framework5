@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prueba html</title>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.min.css">
+<style></style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">EmpleosApp</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active"><a class="nav-link" href="#">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Menu 1</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Menu 2</a></li>
+      </ul>
+      <form class="form-inline">
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="button">Ingresar</button>
+        <button class="btn btn-primary my-2 my-sm-0 ml-2" type="button">Registrarse</button>
+      </form>
+    </div>
+  </nav>
+  <div class="container mt-5">
+    <div class="card">
+      <div class="card-header">
+        <h4>Formulario de registro</h4>
+      </div>
+      <div class="card-body">
+        <form>
+          <div class="form-row">
+            <div class="form-group col-md-3">
+              <label for="nombre">Nombre</label> <input type="text" class="form-control" id="nombre"
+                placeholder="Escriba su nombre"
+              >
+            </div>
+            <div class="form-group col-md-3">
+              <label for="correo">Correo electrónico</label> <input type="email" class="form-control" id="correo"
+                placeholder="Escriba su correo electrónico"
+              >
+            </div>
+            <div class="form-group col-md-3">
+              <label for="username">Username</label> <input type="text" class="form-control" id="username"
+                placeholder="Escriba su nombre de usuario"
+              >
+            </div>
+            <div class="form-group col-md-3">
+              <label for="password">Password</label> <input type="password" class="form-control" id="password"
+                placeholder="Escriba su clave de acceso"
+              >
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Registrarse</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="/static/js/bootstrap/bootstrap.bundle.min.js"></script>
+</body>
+</html>

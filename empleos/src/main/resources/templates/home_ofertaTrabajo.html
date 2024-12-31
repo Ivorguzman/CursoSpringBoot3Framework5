@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html  xmlns:th ="http://www.thymeleaf.org ">
+<head>
+    <meta charset="UTF-8">
+    <title>Concatenado texto estático y texto Dinamico</title>
+</head>
+<body>
+
+<!-- <h1 th:text="${mensaje}">Bienvenido a Empleos</h1>
+  <h2>Hoy es [[${fecha}]]</h2> -->
+  
+  
+<h1>Concatenado texto estático y texto Dinamicos</h1>
+<h2>Oferta de Trabajo (renderiazando datos Primitivos)</h2>
+<h3 th:text="'Nombre: ' + ${nombre}"></h3>
+<h3 th:text="'Fecha de Publicación: ' + ${fechaPublicacion}"></h3>
+<h3 th:text="'Salario Mensual: ' + ${salario}"></h3>
+<h3 th:text="'Vigente: ' + ${vigente}"></h3>
+</body>
+</html>
