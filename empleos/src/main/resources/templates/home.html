@@ -3,52 +3,150 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Prueba html</title>
+<title>EmpleosApp | Apliicaccón para publicar Oferta de Trabajo.</title>
 <link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.min.css">
-<style></style>
+<style>
+.navbar-brand {
+	font-weight: bold;
+}
+
+.search-bar {
+	margin: 2rem 0;
+}
+
+.card-featured {
+	margin-top: 2rem;
+}
+
+.card-featured img {
+	max-width: 100%;
+}
+</style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">EmpleosApp</a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Ingresar</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Registrarse</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
 
-    <div class="container mt-5">
-        <div class="text-center">
-            <h2>Encuentra el trabajo que andas buscando.</h2>
-            <p>Puedes buscar por descripción, categoría y ubicación.</p>
-            <form class="form-inline justify-content-center">
-                <input class="form-control mr-2" type="search" placeholder="Escriba una búsqueda" aria-label="Search">
-                <select class="form-control mr-2">
-                    <option>Seleccione una categoría</option>
-                </select>
-                <button class="btn btn-primary" type="submit">Buscar</button>
-            </form>
-        </div>
 
-        <div class="mt-5">
-            <h3 class="text-center">DESTACADOS</h3>
-            <div class="card mt-3">
-                <div class="card-body">
-                    <h5 class="card-title">Ingeniero electrónico</h5>
-                    <p class="card-text"><strong>Categoría:</strong> Ingeniería electrónica</p>
-                    <p class="card-text"><strong>Publicado:</strong> 15-03-2019</p>
-                    <p class="card-text">Estamos reclutando Ing. Electrónico para diseñar equipos y sistemas electrónicos (circuitos), tanto analógicos como digitales y para dirigir la operación de equipos y sistemas electrónicos en las áreas de comunicación, control, instrumentación y potencia.</p>
-                    <a href="#" class="btn btn-primary">Ver detalles</a>
-                </div>
-            </div>
-        </div>
+  <nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">EmpleosApp</a>
+    <div class="ml-auto">
+      <button class="btn btn-primary mr-2">Ingresar</button>
+      <button class="btn btn-primary">Registrarse</button>
     </div>
+  </nav>
+  <div class="container mt-5">
+    <div class="text-center search-bar bg-light py-4 card-header ">
+      <h2>Encuentra el trabajo que andas buscando.</h2>
+      <p>Puedes buscar por descripción, categoría y ubicación.</p>
+      <div class="form-inline justify-content-center">
+        <input type="text" class="form-control mr-2" placeholder="Escriba una búsqueda"> <select
+          class="form-control mr-2"
+        >
+          <option>Seleccione una categoría</option>
+        </select>
+        <button class="btn btn-primary">Buscar</button>
+      </div>
+    </div>
+    
+    
+    
+    
+    <div class="text-center">
+      <h3>DESTACADOS</h3>
+    </div>
+    
+    
+    
+    
+    <div class="card card-featured">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-2">
+            <img class="rounded mx-auto d-block"  th:src="@{/images/logo1.png}"  width="120" height="120" alt="Generic placeholder image">
+          </div>
+          <div class="col-md-10">
+            <h4>Ingeniero electrónico</h4>
+            <p>
+              <strong>Categoría:</strong> Ingeniería electrónica
+            </p>
+            <p>
+              <strong>Publicado:</strong> 15-03-2024
+            </p>
+            <p>Estamos reclutando Ing. Electrónico para diseñar equipos y sistemas electrónicos (circuitos), tanto
+              analógicos como digitales y para dirigir la operación de equipos y sistemas electrónicos en las áreas de
+              comunicación, control, instrumentación y potencia.</p>
+            <button class="btn btn-primary">Ver detalles »</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+   
+   
+   
+    
+    
+    
+    <div class="card card-featured">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-2">
+            <img class="rounded mx-auto d-block"  th:src="@{/images/logo2.png}"  width="120" height="120" alt="Generic placeholder image">
+          </div>
+          <div class="col-md-10">
+            <h4>Ingeniero de software</h4>
+            <p>
+              <strong>Categoría:</strong> ingeniería de software 
+            <p>
+              <strong>Publicado:</strong> 15-03-2024
+            </p>
+            <p>Estamos reclutando Ing. Electrónico para diseñar Apis y  mantener sistemas , tanto propios como 
+              de clientes y para dirigir la operación de equipos de APIsen las áreas de
+              comunicación, control, instrumentación y potencia.</p>
+            <button class="btn btn-primary">Ver detalles »</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="card card-featured">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-2">
+            <img class="rounded mx-auto d-block"  th:src="@{/images/logo3.png}"  width="120" height="120" alt="Generic placeholder image">
+          </div>
+          <div class="col-md-10">
+            <h4>Ingeniero  en informática</h4>
+            <p>
+              <strong>Categoría:</strong> Ingeniería informática
+            </p>
+            <p>
+              <strong>Publicado:</strong> 15-03-2024
+            </p>
+            <p>Estamos reclutando Ing. informática para diseñar sistemas ,tanto
+              analógicos como digitales y para dirigir la operación de equipos y sistemas electrónicos en las áreas de
+              comunicación y control.</p>
+            <button class="btn btn-primary">Ver detalles »</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  
 
+ 
+    
+    
+    
+    
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="/static/js/bootstrap/bootstrap.bundle.min.js"></script>
 </body>
 </html>

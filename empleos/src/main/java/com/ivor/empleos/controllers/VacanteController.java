@@ -42,7 +42,7 @@ public class VacanteController {
 	public String pruebaHtml(Model modelo) {
 
 		modelo.addAttribute ("hola");
-		return "/home";
+		return "/home_ofertaTrabajo";
 	}
 
 
@@ -61,6 +61,8 @@ public class VacanteController {
 		modelo.addAttribute ("vacante", vacante);
 		return "detalle";
 	}
+
+
 
 
 
