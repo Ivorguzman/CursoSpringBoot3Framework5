@@ -59,94 +59,28 @@
     
     <div class="card card-featured">
       <div class="card-body">
-        <div class="row">
-          <div class="col-md-2">
-            <img class="rounded mx-auto d-block"  th:src="@{/images/logo1.png}"  width="120" height="120" alt="Generic placeholder image">
+        <div class="row" th:each="vacante : ${vacantes}">
+          <div class="col-md-3">
+             <img class="rounded mx-auto d-block" th:src ="@{/images/{img} (img=${vacante.images})}" width="150" height="150" alt="Generic placeholder image">
+         <!--    <img class="rounded mx-auto d-block"  th:src="@{/images/logo01.png}"  width="120" height="120" alt="Generic placeholder image"> -->
           </div>
-          <div class="col-md-10">
-            <h4>Ingeniero electrónico</h4>
-            <p>
-              <strong>Categoría:</strong> Ingeniería electrónica
-            </p>
-            <p>
-              <strong>Publicado:</strong> 15-03-2024
-            </p>
-            <p>Estamos reclutando Ing. Electrónico para diseñar equipos y sistemas electrónicos (circuitos), tanto
-              analógicos como digitales y para dirigir la operación de equipos y sistemas electrónicos en las áreas de
-              comunicación, control, instrumentación y potencia.</p>
-            <button class="btn btn-primary">Ver detalles »</button>
+          <div class="col-md-9">
+           <h2 th:text="${vacante.nombre}"></h2>
+           <h6  class="card-title"> <strong>Categoría</strong>  <span></span> </h6>
+           <h6  class="card-title"> <strong>Publicado</strong>  <span th:text="${vacante.fecha}"></span> </h6>
+           <p th:text="${vacante.descripcion}"  >
+           <p><a class="btn btn-secondary"  href="#" role="button" > Ver Detalles &raquo; </a>
           </div>
         </div>
       </div>
     </div>
-    
-   
-   
-   
-    
-    
-    
-    <div class="card card-featured">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-2">
-            <img class="rounded mx-auto d-block"  th:src="@{/images/logo2.png}"  width="120" height="120" alt="Generic placeholder image">
-          </div>
-          <div class="col-md-10">
-            <h4>Ingeniero de software</h4>
-            <p>
-              <strong>Categoría:</strong> ingeniería de software 
-            <p>
-              <strong>Publicado:</strong> 15-03-2024
-            </p>
-            <p>Estamos reclutando Ing. Electrónico para diseñar Apis y  mantener sistemas , tanto propios como 
-              de clientes y para dirigir la operación de equipos de APIsen las áreas de
-              comunicación, control, instrumentación y potencia.</p>
-            <button class="btn btn-primary">Ver detalles »</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    <div class="card card-featured">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-2">
-            <img class="rounded mx-auto d-block"  th:src="@{/images/logo3.png}"  width="120" height="120" alt="Generic placeholder image">
-          </div>
-          <div class="col-md-10">
-            <h4>Ingeniero  en informática</h4>
-            <p>
-              <strong>Categoría:</strong> Ingeniería informática
-            </p>
-            <p>
-              <strong>Publicado:</strong> 15-03-2024
-            </p>
-            <p>Estamos reclutando Ing. informática para diseñar sistemas ,tanto
-              analógicos como digitales y para dirigir la operación de equipos y sistemas electrónicos en las áreas de
-              comunicación y control.</p>
-            <button class="btn btn-primary">Ver detalles »</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-  
 
- 
     
     
     
     
   </div>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="/static/js/bootstrap/bootstrap.bundle.min.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> -->
+  <script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
 </body>
 </html>

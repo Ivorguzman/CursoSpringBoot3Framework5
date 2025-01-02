@@ -14,27 +14,23 @@ import com.ivor.empleos.service.I_Vacanteservice;
 
 @Controller // Marca esta clase como un controlador de Spring MVC indica que Spring debe inyectar automáticamente un bean de tipo I_Vacanteservice en este campo.
 public class HomeController {
-
-
-	// Sin Spring, esto sería equivalente a:
-	@Autowired // this.serviceVacantes = new VacanteServiceImpl();
+	/*
+	 * 1- Crear instancia del servicio manualmente:
+	 * VacantesServiceImpl vacantesService = new VacantesServiceImpl();
+	 * 
+	 * 2- Asignar la instancia a la variable de tipo interfaz:
+	 * I_Vacanteservice serviceVacantes = vacantesService;
+	 * 
+	 * 3- Y otros paso màs.
+	 */
+	@Autowired
 	private I_Vacanteservice serviceVacantes;
 
 	// ****************************** (/) **************************
 	@GetMapping("/") // Mapea las solicitudes HTTP GET en la URL raíz "/"
 	public String mostrarHome(Model modelo) {
-		// Datos para mostrar en la vista de inicio
-		String nombre = "Auxiliar contable";
-		Date fechaPublicacion = new Date(); // Fecha actual
-		double salario = 9000.0;
-		boolean vigente = true; // Estado de la vacante
-
-		// Añade los datos al modelo para ser accedidos en la vista
-		modelo.addAttribute("nombre", nombre);
-		modelo.addAttribute("fechaPublicacion", fechaPublicacion);
-		modelo.addAttribute("salario", salario);
-		modelo.addAttribute("vigente", vigente);
-
+		List<Vacante> lista= this.serviceVacantes.buscarTodasVacante ();// Obtiene la lista de vacantes
+		modelo.addAttribute ("vacantes", lista);// Añade la lista de vacantes al modelo
 		return "home"; // Retorna el nombre de la vista (home.html o home.jsp)
 	}
 
