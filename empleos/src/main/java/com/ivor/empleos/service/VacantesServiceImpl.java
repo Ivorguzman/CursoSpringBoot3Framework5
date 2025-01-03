@@ -66,7 +66,7 @@ public class VacantesServiceImpl implements I_Vacanteservice {
 			vacante3.setFecha(sdf.parse("06-12-2024"));
 			vacante3.setSalario(5999.0);
 			vacante3.setDestacado(0); // Vacante no destacada
-			// vacante3.setImages ("logo03.png");
+			vacante3.setImages ("logo03.png");
 
 
 			// Crear vacante 4

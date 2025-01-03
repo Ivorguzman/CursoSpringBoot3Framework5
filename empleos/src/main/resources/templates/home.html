@@ -63,6 +63,7 @@
     
     <div class="card card-featured">
       <div class="card-body">
+     <!--  Inicio  Bloque de iteracion  Thymeleaf -->
         <div class="row" th:each="vacante : ${vacantes}">
           <div class="col-md-3">
              <img class="rounded mx-auto d-block" th:src ="@{/images/{img} (img=${vacante.images})}" width="150" height="150" alt="Imagen logo ">
@@ -77,6 +78,7 @@
            <p><a th:href="@{/detalle/view/{id}(id=${vacante.id})}"  class=" btn btn-primary"> Ver Detalles &raquo; </a>
           </div>
         </div>
+         <!--  Fin Bloque de iteracion  Thymeleaf -->
       </div>
     </div>
     
