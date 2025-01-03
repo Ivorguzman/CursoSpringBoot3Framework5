@@ -94,7 +94,7 @@
  * lista.add("Técnico en PCs");
  * lista.add("Arquitecto");
  * 
- * modelo.addAttribute ("vacante", vacante);
+ * modelo.addAttribute ("vacante", lista);
  * 
  * return "detalleBorrar"; // Retorna el nombre de la vista (detalle.html o
  * detalle.jsp)

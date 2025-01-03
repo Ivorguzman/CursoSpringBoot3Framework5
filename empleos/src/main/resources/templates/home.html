@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EmpleosApp | Apliicaccón para publicar Oferta de Trabajo.</title>
 <link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <style>
 .navbar-brand {
 	font-weight: bold;
@@ -18,9 +19,15 @@
 	margin-top: 2rem;
 }
 
-.card-featured img {
-	max-width: 100%;
+
+.btn-success {
+  color: white !important; /* Forza el color del texto a blanco */
 }
+
+
+
+
+
 </style>
 </head>
 <body>
@@ -28,10 +35,10 @@
 
   <nav class="navbar navbar-dark bg-dark">
     <a class="navbar-brand" href="#">EmpleosApp</a>
-    <div class="ml-auto">
+     <div class="my-2 my-lg-0">
       <button class="btn btn-primary mr-2">Ingresar</button>
       <button class="btn btn-primary">Registrarse</button>
-    </div>
+     </div>
   </nav>
   <div class="container mt-5">
     <div class="text-center search-bar bg-light py-4 card-header ">
@@ -43,7 +50,7 @@
         >
           <option>Seleccione una categoría</option>
         </select>
-        <button class="btn btn-primary">Buscar</button>
+        <button class="btn btn-success">Buscar</button>
       </div>
     </div>
     
@@ -61,7 +68,7 @@
       <div class="card-body">
         <div class="row" th:each="vacante : ${vacantes}">
           <div class="col-md-3">
-             <img class="rounded mx-auto d-block" th:src ="@{/images/{img} (img=${vacante.images})}" width="150" height="150" alt="Generic placeholder image">
+             <img class="rounded mx-auto d-block" th:src ="@{/images/{img} (img=${vacante.images})}" width="150" height="150" alt="Imagen logo ">
          <!--    <img class="rounded mx-auto d-block"  th:src="@{/images/logo01.png}"  width="120" height="120" alt="Generic placeholder image"> -->
           </div>
           <div class="col-md-9">
@@ -69,7 +76,8 @@
            <h6  class="card-title"> <strong>Categoría</strong>  <span></span> </h6>
            <h6  class="card-title"> <strong>Publicado</strong>  <span th:text="${vacante.fecha}"></span> </h6>
            <p th:text="${vacante.descripcion}"  >
-           <p><a class="btn btn-secondary"  href="#" role="button" > Ver Detalles &raquo; </a>
+           <!-- <p><a th:href="@{/vacantes/view/{id}(id=${vacante.id})}"  class=" btn btn-success"> Ver Detalles &raquo; </a> -->
+           <p><a th:href="@{/detalle/view/{id}(id=${vacante.id})}"  class=" btn btn-success"> Ver Detalles &raquo; </a>
           </div>
         </div>
       </div>
@@ -80,7 +88,9 @@
     
     
   </div>
-  <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> -->
-  <script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
 </body>
 </html>

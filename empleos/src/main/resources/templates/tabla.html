@@ -5,7 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Listado de columnas</title>
 <link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.min.css">
-<style></style>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<style>
+
+.btn-success {
+  color: white !important; /* Forza el color del texto a blanco */
+}
+
+.btn-danger {
+  color: white !important; /* Forza el color del texto a blanco */
+}
+
+
+
+</style>
 </head>
 <body> 
 
@@ -61,7 +74,8 @@
         </td>
         <td>
                                   <!-- Cuando se utiliza  @PathVariable() -->
-          <a th:href="@{/vacantes/view/{id}  (id=${vacante.id})}"  class=" btn btn-success">Detalle</a> 
+         <!--  <a th:href="@{/vacantes/view/{id}(id=${vacante.id})}"  class=" btn btn-success">Detalle</a>  -->
+          <a th:href="@{/detalle/view/{id}(id=${vacante.id})}"  class=" btn btn-success">Detalle</a> 
         </td>
         <td>
                                   <!-- Cuando se utiliza  @RequestParam() -->
@@ -70,7 +84,10 @@
       </tr>
     </tbody>
   </table>
-  <script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 

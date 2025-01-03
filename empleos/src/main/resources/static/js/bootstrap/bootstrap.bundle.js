@@ -1599,7 +1599,6 @@
     if (element.nodeType !== 1) {
       return [];
     }
-    // NOTE: 1 DOM access here
     var window = element.ownerDocument.defaultView;
     var css = window.getComputedStyle(element, null);
     return property ? css[property] : css;
@@ -1688,7 +1687,6 @@
 
     var noOffsetParent = isIE(10) ? document.body : null;
 
-    // NOTE: 1 DOM access here
     var offsetParent = element.offsetParent || null;
     // Skip hidden elements which don't have an offsetParent
     while (offsetParent === noOffsetParent && element.nextElementSibling) {
@@ -2112,7 +2110,7 @@
   function getBoundaries(popper, reference, padding, boundariesElement) {
     var fixedPosition = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
 
-    // NOTE: 1 DOM access here
+   
 
     var boundaries = { top: 0, left: 0 };
     var offsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, reference);
@@ -3353,7 +3351,6 @@
       boundariesElement = getOffsetParent(boundariesElement);
     }
 
-    // NOTE: DOM access here
     // resets the popper's position so that the document size can be calculated excluding
     // the size of the popper element itself
     var transformProp = getSupportedPropertyName('transform');
@@ -3368,7 +3365,6 @@
 
     var boundaries = getBoundaries(data.instance.popper, data.instance.reference, options.padding, boundariesElement, data.positionFixed);
 
-    // NOTE: DOM access here
     // restores the original style properties after the offsets have been computed
     popperStyles.top = top;
     popperStyles.left = left;
@@ -3684,7 +3680,6 @@
      *
      * Requires the `preventOverflow` modifier before it in order to work.
      *
-     * **NOTE:** this modifier will interrupt the current update cycle and will
      * restart it if it detects the need to flip the placement.
      * @memberof modifiers
      * @inner

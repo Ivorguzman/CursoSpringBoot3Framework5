@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping; // Importa la anotaci
 import com.ivor.empleos.model.Vacante; // Importa la clase Vacante desde el paquete com.ivor.empleos.model
 import com.ivor.empleos.service.I_Vacanteservice;
 
-@Controller // Marca esta clase como un controlador de Spring MVC indica que Spring debe inyectar automáticamente un bean de tipo I_Vacanteservice en este campo.
+@Controller // Marca esta clase como un controlador de Spring MVC indica que Spring debe
+			// inyectar automáticamente un bean de tipo I_Vacanteservice en este campo.
 public class HomeController {
 	/*
 	 * 1- Crear instancia del servicio manualmente:
@@ -40,22 +41,22 @@ public class HomeController {
 	// *******************************
 	@GetMapping("/detalleAyB") // Mapea las solicitudes HTTP GET en la URL "/detalle"
 	public String mostrarDetalleAyB(Model modelo) {
-		Vacante vacanteA = new Vacante(); // Instancia de Vacante A
-		Vacante vacanteB = new Vacante(); // Instancia de Vacante B
+		Vacante vacanteA= new Vacante (); // Instancia de Vacante A
+		Vacante vacanteB= new Vacante (); // Instancia de Vacante B
 
 		// Configura vacante A
-		vacanteA.setNombre("Ing. de Comunicaciones");
+		vacanteA.setNombre ("Ing. de Comunicaciones");
 		vacanteA.setDescripcion("Ing. para dar soporte a Intranet");
-		vacanteA.setFecha(new Date()); // Fecha actual
+		vacanteA.setFecha (new Date ()); // Fecha actual
 		vacanteA.setSalario(9700000.0);
-		modelo.addAttribute("vacanteA", vacanteA); // Añade vacante A al modelo
+		modelo.addAttribute ("vacanteA", vacanteA); // Añade vacante A al modelo
 
 		// Configura vacante B
 		vacanteB.setNombre("Ing. de SoftWare");
 		vacanteB.setDescripcion("Ing. para dar soporte a sistema Bancario");
-		vacanteB.setFecha(new Date()); // Fecha actual
+		vacanteB.setFecha (new Date ()); // Fecha actual
 		vacanteB.setSalario(9999999.0);
-		modelo.addAttribute("vacanteB", vacanteB); // Añade vacante B al modelo
+		modelo.addAttribute ("vacanteB", vacanteB); // Añade vacante B al modelo
 
 		return "detalleAyB"; // Retorna el nombre de la vista (detalle.html o detalle.jsp)
 	}
@@ -88,20 +89,22 @@ public class HomeController {
 		lista.add("Técnico en PCs");
 		lista.add("Arquitecto");
 
-		modelo.addAttribute("empleos", lista); // Añade la lista de empleos al modelo
+		modelo.addAttribute ("empleos", lista); // Añade la lista de empleos al modelo
 		return "listado"; // Retorna el nombre de la vista (listado.html o listado.jsp)
 	}
 
 
 
-	// ************************************** /tabla **************************************
+	// ************************************** /tabla
+	// **************************************
 	@GetMapping("/tabla") // Mapea las solicitudes HTTP GET en la URL "/tabla
 	public String mostrarTabla(Model modelo) {
-		List<Vacante> lista = this.serviceVacantes.buscarTodasVacante(); // Obtiene la lista de vacantes
+		List<Vacante> lista= this.serviceVacantes.buscarTodasVacante (); // Obtiene la lista de vacantes
 		// System.out.println();
-		// System.out.println("lista_VariableLocal = " + lista); // Imprime la lista para depuración
+		// System.out.println("lista_VariableLocal = " + lista); // Imprime la lista
+		// para depuración
 
-		modelo.addAttribute("vacantes", lista); // Añade la lista de vacantes al modelo
+		modelo.addAttribute ("vacantes", lista); // Añade la lista de vacantes al modelo
 		return "tabla"; // Retorna el nombre de la vista (tablaBootstrap.html)
 	}
 }

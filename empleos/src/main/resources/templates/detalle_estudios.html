@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org ">
+<head>
+<meta charset="UTF-8">
+<title>Detalle</title>
+</head>
+<body>
+
+
+  <!-- ******* Valores dentro de una List (String) List<String> lista = new LinkedList<>()-->
+  <!-- <h1>******* Valores dentro de una List (String) List  String  lista = new LinkedList ();; ********</h1>
+<h2>Detalle de la oferta</h2>
+<h3 th:text="'Valores de la List<Vacante> lista : ' + ${vacante}"> </h3>
+<h2 th:text="'Valor[0] => ' + ${vacante[0]}"> </h2>
+<h2 th:text="'Valor[1] => ' + ${vacante[1]}"> </h2>
+<h2 th:text="'Valor[2] => ' + ${vacante[2]}"> </h2>
+<h2 th:text="'Valor[3] => ' + ${vacante[3]}"> </h2>
+ -->
+ 
+ 
+ 
+  <!-- ******* Valores dentro de una List (Vacante) List<Vacante> lista = new LinkedList<>()-->
+  <h1>***** Valores dentro de un modelo.addAttribute ("vacante", lista) ******</h1>
+  <div th:each="vacante : ${vacante}">
+    <h3 th:text="'Nombre : ' + ${vacante.nombre}"></h3>
+    <h3 th:text="'Descripcion del Puesto : ' + ${vacante.descripcion}"></h3>
+    <h3 th:text="'Fecha de Publicacion : ' + ${vacante.fecha}"></h3>
+    <h3 th:text="'Salario : ' + ${vacante.salario} + ' $ COP'"></h3>
+  </div>
+</body>
+</html>
