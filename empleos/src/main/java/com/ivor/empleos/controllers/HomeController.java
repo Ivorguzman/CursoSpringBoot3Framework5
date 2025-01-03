@@ -93,7 +93,7 @@ public class HomeController {
 		 */
 
 		List<Vacante> lista= this.serviceVacantes.buscarTodasVacante ();// Obtiene la lista de vacantes
-
+		System.out.println ();
 		modelo.addAttribute ("vacante", lista);
 
 		return "detalle"; // Retorna el nombre de la vista (detalle.html o detalle.jsp)
