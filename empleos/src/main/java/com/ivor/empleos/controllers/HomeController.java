@@ -30,8 +30,11 @@ public class HomeController {
 	// ****************************** (/) **************************
 	@GetMapping("/") // Mapea las solicitudes HTTP GET en la URL raíz "/"
 	public String mostrarHome(Model modelo) {
+
 		List<Vacante> lista= this.serviceVacantes.buscarTodasVacante ();// Obtiene la lista de vacantes
+
 		modelo.addAttribute ("vacantes", lista);// Añade la lista de vacantes al modelo
+
 		return "home"; // Retorna el nombre de la vista (home.html o home.jsp)
 	}
 
@@ -62,22 +65,44 @@ public class HomeController {
 	}
 
 
+
+
+
+
 	// ****************************** /detalle *******************************
 	@GetMapping("/detalle")
 	public String mostrarDetalle(Model modelo) {
 
-		String vacante= "Vacante entrando directamente por directorio raiz (/). Sin un @RequestMapping()"; // Instancia de Vacante
+
+		/*
+		 * String vacante=
+		 * "Vacante entrando directamente por directorio raiz (/). Sin un @RequestMapping()"
+		 * ; // Instancia de Vacante
+		 * modelo.addAttribute ("vacante", vacante);
+		 */
+
+
+
 		/*
 		 * List<String> lista = new LinkedList<>();
 		 * lista.add("Ingeniero de SoftWare");
 		 * lista.add("Auxiliar Contable");
 		 * lista.add("Técnico en PCs");
 		 * lista.add("Arquitecto");
+		 * modelo.addAttribute ("vacante", lista);
 		 */
-		modelo.addAttribute ("vacante", vacante);
 
-		return "detalleBorrar"; // Retorna el nombre de la vista (detalle.html o detalle.jsp)
+		List<Vacante> lista= this.serviceVacantes.buscarTodasVacante ();// Obtiene la lista de vacantes
+
+		modelo.addAttribute ("vacante", lista);
+
+		return "detalle"; // Retorna el nombre de la vista (detalle.html o detalle.jsp)
 	}
+
+
+
+
+
 
 	// ************************ /listado ******************************
 	@GetMapping("/listado") // Mapea las solicitudes HTTP GET en la URL "/listado"
