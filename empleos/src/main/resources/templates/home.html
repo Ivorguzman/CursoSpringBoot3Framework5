@@ -27,8 +27,9 @@
 }
 
 
-
-
+.btn-primary  {
+  color: white !important; /* Forza el color del texto a blanco */
+}
 
 </style>
 </head>
@@ -56,15 +57,9 @@
       </div>
     </div>
     
-    
-    
-    
     <div class="text-center">
       <h3>DESTACADOS</h3>
     </div>
-    
-    
-    
     
     <div class="card card-featured">
       <div class="card-body">
@@ -79,14 +74,11 @@
            <h6  class="card-title"> <strong>Publicado</strong>  <span th:text="${vacante.fecha}"></span> </h6>
            <p th:text="${vacante.descripcion}"  >
            <!-- <p><a th:href="@{/vacantes/view/{id}(id=${vacante.id})}"  class=" btn btn-success"> Ver Detalles &raquo; </a> -->
-           <p><a th:href="@{/detalle/view/{id}(id=${vacante.id})}"  class=" btn btn-success"> Ver Detalles &raquo; </a>
+           <p><a th:href="@{/detalle/view/{id}(id=${vacante.id})}"  class=" btn btn-primary"> Ver Detalles &raquo; </a>
           </div>
         </div>
       </div>
     </div>
-
-    
-    
     
     
   </div>
