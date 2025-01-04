@@ -10,62 +10,66 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">EmpleosApp</a>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Menu 1</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Menu 2</a>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="button">Ingresar</button>
-                <button class="btn btn-outline-primary my-2 my-sm-0 ml-2" type="button">Registrarse</button>
-            </form>
-        </div>
-    </nav>
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-4 text-center">
-                <img src="https://via.placeholder.com/150" alt="Travels ProWorld Logo" class="img-fluid">
-                <h3>Travels ProWorld</h3>
-            </div>
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header bg-primary text-white">
-                        Aplicar para <strong>Ingeniero Civil</strong>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Categoría: Nombre de la categoría</h5>
-                        <p class="card-text"><strong>Publicado:</strong> 2019-01-01</p>
-                        <p class="card-text"><strong>Salario Ofrecido:</strong> $9000</p>
-                        <p class="card-text">La descripción corta de la oferta de trabajo</p>
-                        <h6>Detalles de la oferta de trabajo</h6>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                        <a href="#" class="btn btn-primary">Aplicar</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">EmpleosApp</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Menu 1</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Menu 2</a></li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="button">Ingresar</button>
+        <button class="btn btn-outline-primary my-2 my-sm-0 ml-2" type="button">Registrarse</button>
+      </form>
     </div>
-    <footer class="footer mt-auto py-3 bg-light">
-        <div class="container text-center">
-            <span class="text-muted">© 2024 EmpleosApp, Inc. | WebApp Desarrollada con Spring Boot 2.1.2 |Realizado por : Ivor A.Guzmán Zambrano | <a href="#">Privacy</a> · <a href="#">Terms</a></span>
+  </nav>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-4 text-center">
+        <img th:src="@{/images/{img} (img=${vacante.images})}" alt="Travels ProWorld Logo" class="img-fluid">
+        <h6>Crago: [[${vacante.nombre}]] | Salario: [[${vacante.salario}]]</h6>
+      </div>
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header bg-primary text-white">
+            Aplicar para <strong>[[${vacante.nombre}]]</strong>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Categoría: Nombre de la categoría</h5>
+            <p>
+              <strong>Nombre: [[${vacante.nombre}]]</strong>
+            </p>
+  
+            <p class="card-text">
+              <strong>Salario Ofrecido: [[${vacante.salario}]]</strong>
+            </p>
+            <p class="card-text">La descripción corta de la oferta de trabajo : [[${vacante.descripcion}]]</p>
+            <h6>Detalles de la oferta de trabajo</h6>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+              industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+              scrambled it to make a type specimen book.</p>
+            <div class="text-right">
+              <a href="#" class="btn btn-primary">Aplicar</a>
+            </div>
+          </div>
         </div>
-    </footer>
- <!-- Enlace a archivos de la CDN -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    
-    <!-- Enlace a archivos local -->
-    <script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
+      </div>
+    </div>
+  </div>
+  <footer class="footer mt-auto py-3 bg-light">
+    <div class="container text-center">
+      <span class="text-muted">© 2024 EmpleosApp, Inc. | WebApp Desarrollada con Spring Boot 2.1.2 |Realizado por
+        : Ivor A.Guzmán Zambrano | <a href="#">Privacy</a> · <a href="#">Terms</a>
+      </span>
+    </div>
+  </footer>
+  <!-- Enlace a archivos de la CDN -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- Enlace a archivos local -->
+  <script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
 </body>
 </body>
 </html>

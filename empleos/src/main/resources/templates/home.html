@@ -66,6 +66,7 @@
      <!--  Inicio  Bloque de iteracion  Thymeleaf -->
         <div class="row" th:each="vacante : ${vacantes}">
           <div class="col-md-3">
+                       <!--  /empleos/src/main/resources/static/images/empresa1.png -->
              <img class="rounded mx-auto d-block" th:src ="@{/images/{img} (img=${vacante.images})}" width="150" height="150" alt="Imagen logo ">
          <!--    <img class="rounded mx-auto d-block"  th:src="@{/images/logo01.png}"  width="120" height="120" alt="Generic placeholder image"> -->
           </div>

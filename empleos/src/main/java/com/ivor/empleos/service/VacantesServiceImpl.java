@@ -45,7 +45,7 @@ public class VacantesServiceImpl implements I_Vacanteservice {
 			vacante1.setFecha(sdf.parse("06-12-2024"));
 			vacante1.setSalario(3999.0);
 			vacante1.setDestacado(1); // Vacante destacada
-			vacante1.setImages ("logo01.png");
+			vacante1.setImages ("logo1.png");
 			
 
 			// Crear vacante 2
@@ -56,7 +56,7 @@ public class VacantesServiceImpl implements I_Vacanteservice {
 			vacante2.setFecha(sdf.parse("06-12-2024"));
 			vacante2.setSalario(2999.0);
 			vacante2.setDestacado(1); // Vacante destacada
-			vacante2.setImages ("logo02.png");
+			vacante2.setImages ("logo2.png");
 
 			// Crear vacante 3
 			Vacante vacante3 = new Vacante();
@@ -66,7 +66,7 @@ public class VacantesServiceImpl implements I_Vacanteservice {
 			vacante3.setFecha(sdf.parse("06-12-2024"));
 			vacante3.setSalario(5999.0);
 			vacante3.setDestacado(0); // Vacante no destacada
-			vacante3.setImages ("logo03.png");
+			vacante3.setImages ("logo3.png");
 
 
 			// Crear vacante 4
@@ -77,7 +77,7 @@ public class VacantesServiceImpl implements I_Vacanteservice {
 			vacante4.setFecha(sdf.parse("06-12-2024"));
 			vacante4.setSalario(3999.0);
 			vacante4.setDestacado(1); // Vacante destacada
-			vacante4.setImages ("logo04.png");
+			vacante4.setImages ("logo4.png");
 
 
 
