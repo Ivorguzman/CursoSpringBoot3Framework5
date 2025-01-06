@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tabla con Encabezados</title>
+<!-- Enlace al CSS local -->
+<link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.min.css">
+<!-- Enlace al CSS de la CDN -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<style></style>
+</head>
+<body>
+<!-- Navegación -->
+<header th:insert="/fragments/menu :: menu-principal "></header>
+
+  
+   <div class="container mt-5" style="width: 60%;"> <!-- Ancho del 60% -->
+        <div class="card">
+            <div class="card-body p-4"> <!-- Añadido padding interno a card-body -->
+                <div class="card-header">
+                    <h2>Para construir la Vista listVacantes</h2>
+                </div>
+                <form>
+                
+                    <div class="form-row">
+                 
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+  
+  
+       <!-- Footer -->
+  <footer th:insert="/fragments/footer :: pie-pagina" ></footer>
+    <!-- Enlace a archivos de la CDN -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- Enlace a archivos local -->
+  <script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
+</body>
+</html>
