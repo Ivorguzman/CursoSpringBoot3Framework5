@@ -26,8 +26,7 @@ public class HomeController {
 	 */
 	@Autowired
 	private I_Vacanteservice serviceVacantes;
-
-	// ****************************** (/) **************************
+	// ****************** (/) **********************
 	@GetMapping("/") // Mapea las solicitudes HTTP GET en la URL raíz "/"
 	public String mostrarHome(Model modelo) {
 
@@ -40,8 +39,7 @@ public class HomeController {
 
 
 
-	// ****************************** /detalleAyB
-	// *******************************
+	// ************* /detalleAyB ******************
 	@GetMapping("/detalleAyB") // Mapea las solicitudes HTTP GET en la URL "/detalle"
 	public String mostrarDetalleAyB(Model modelo) {
 		Vacante vacanteA= new Vacante (); // Instancia de Vacante A
@@ -66,21 +64,15 @@ public class HomeController {
 
 
 
-
-
-
-	// ****************************** /detalle *******************************
+	// ********************** /detalle ************************
 	@GetMapping("/detalle")
 	public String mostrarDetalle(Model modelo) {
-
-
 		/*
 		 * String vacante=
 		 * "Vacante entrando directamente por directorio raiz (/). Sin un @RequestMapping()"
 		 * ; // Instancia de Vacante
 		 * modelo.addAttribute ("vacante", vacante);
 		 */
-
 
 
 		/*
@@ -91,7 +83,6 @@ public class HomeController {
 		 * lista.add("Arquitecto");
 		 * modelo.addAttribute ("vacante", lista);
 		 */
-
 		List<Vacante> lista= this.serviceVacantes.buscarTodasVacante ();// Obtiene la lista de vacantes
 		System.out.println ();
 		modelo.addAttribute ("vacante", lista);
@@ -103,8 +94,7 @@ public class HomeController {
 
 
 
-
-	// ************************ /listado ******************************
+	// ****************** /listado ******************
 	@GetMapping("/listado") // Mapea las solicitudes HTTP GET en la URL "/listado"
 	public String mostrarListado(Model modelo) {
 		// Lista de empleos
@@ -120,8 +110,8 @@ public class HomeController {
 
 
 
-	// ************************************** /tabla
-	// **************************************
+
+	// ******************** /tabla ******************
 	@GetMapping("/tabla") // Mapea las solicitudes HTTP GET en la URL "/tabla
 	public String mostrarTabla(Model modelo) {
 		List<Vacante> lista= this.serviceVacantes.buscarTodasVacante (); // Obtiene la lista de vacantes
