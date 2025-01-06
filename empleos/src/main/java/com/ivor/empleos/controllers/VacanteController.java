@@ -21,6 +21,15 @@ public class VacanteController {
 	private I_Vacanteservice serviceVacantes;
 
 
+	// **************** /vacantes/formVacantes **********
+	@GetMapping("/create")
+	public String crear() {
+
+		return "/vacante/formVacante";
+
+	};
+
+
 	// **************** /vacantes/viewdetalles/X (parametro enviadado via
 	// http
 	// con @PathVariable("id")) ******************************
@@ -36,7 +45,7 @@ public class VacanteController {
 
 
 
-	// **************** /vacantes/prueba **********p
+	// **************** /vacantes/prueba **********
 	// con @PathVariable("id")) ******************************
 	@GetMapping("/prueba")
 	public String pruebaHtml(Model modelo) {

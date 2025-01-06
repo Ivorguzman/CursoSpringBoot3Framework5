@@ -34,6 +34,7 @@
 </style>
 </head>
 <body class="d-flex flex-column min-vh-100">
+<!-- Navegación -->
 <header th:insert="fragments/menu :: menu-principal"></header>
  
   
@@ -77,15 +78,19 @@
       </div>
     </div>
   </div>
-    
+     
+     
   <!-- Footer -->
   <footer th:insert="fragments/footer :: pie-pagina" ></footer>
+  
   
   
   <!-- Enlace a archivos de la CDN -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+   
     
     <!-- Enlace a archivos local -->
     <script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
