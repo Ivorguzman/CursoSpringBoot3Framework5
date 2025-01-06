@@ -38,7 +38,8 @@
 <header th:insert="fragments/menu :: menu-principal"></header>
  
   
-  <div class="container mt-5">
+  <div class="container mt-5" style="width: 60%;"> <!-- Ancho del 60% -->
+   <div class="card">
     <div class="text-center search-bar bg-light py-4 card-header ">
       <h2>Encuentra el trabajo que andas buscando.</h2>
       <p>Puedes buscar por descripción, categoría y ubicación.</p>
@@ -57,7 +58,7 @@
     </div>
     
     <div class="card card-featured">
-      <div class="card-body">
+        <div class="card-body p-4"> <!-- Añadido padding interno a card-body -->
      <!--  Inicio  Bloque de iteracion  Thymeleaf -->
         <div class="row" th:each="vacante : ${vacantes}">
           <div class="col-md-3">
@@ -76,6 +77,7 @@
         </div>
          <!--  Fin Bloque de iteracion  Thymeleaf -->
       </div>
+    </div>
     </div>
   </div>
      
