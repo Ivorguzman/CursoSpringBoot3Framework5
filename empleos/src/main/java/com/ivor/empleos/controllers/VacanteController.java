@@ -31,7 +31,7 @@ public class VacanteController {
 
 
 
-	// **************** /vacantes/save **********
+	// **** /vacantes/save (Usando la Anotación @RequestParam()) ******
 	@PostMapping("/save") // La anotacion Real
 	// @GetMapping("/save") // Solo para pruebas
 	public String guardar(@RequestParam("nombre") String nombre,
@@ -86,7 +86,8 @@ public class VacanteController {
 
 
 
-	// **************** /vacantes/view/X (parametro enviadado via http con @PathVariable("id")) ******************************
+	// **************** /vacantes/view/X (parametro enviadado via http con
+	// @PathVariable("id")) ******************************
 	@GetMapping("/view/{id}")
 	public String verDetalle(@PathVariable("id") int idVacante, Model modelo) {
 
@@ -102,11 +103,12 @@ public class VacanteController {
 
 
 
-	// **************** /vacantes/delete?id=X (parametro enviadado via http con @RequestParam("id")) ******************************
+	// **************** /vacantes/delete?id=X (parametro enviadado via http con
+	// @RequestParam("id")) ******************************
 	@GetMapping("/delete")
 	public String eliminar(@RequestParam("id") int idVacante, Model modelo) {
-		modelo.addAttribute("id", idVacante);
-		System.out.println("Borrando vacantes con id: " + idVacante);
+		modelo.addAttribute ("id", idVacante);
+		System.out.println ("Borrando vacantes con id: " + idVacante);
 		return "/mensaje";
 	}
 
