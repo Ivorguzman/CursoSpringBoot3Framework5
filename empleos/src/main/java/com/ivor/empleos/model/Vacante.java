@@ -3,13 +3,21 @@ package com.ivor.empleos.model;
 import java.util.Date;
 
 public class Vacante {
-	private String images = "no-image.png";
-	private Integer id;
+
+
+
+
+
 	private String nombre;
 	private String descripcion;
+	private Integer id;
 	private Date fecha;
 	private Double salario;
+	private String images= "no-image.png";
 	private Integer destacado;
+	private String status;
+	private String detalles;
+
 
 	public Vacante( ) {
 
@@ -17,6 +25,17 @@ public class Vacante {
 
 
 	// Getters
+	public String getStatus() {
+		return this.status;
+	}
+
+
+	public String getDetalles() {
+		return this.detalles;
+	}
+
+
+
 	public Integer getDestacado() {
 		return this.destacado;
 	}
@@ -53,6 +72,18 @@ public class Vacante {
 
 
 	// Setters
+	public void setStatus(String status) {
+		this.status= status;
+	}
+
+
+	public void setDetalles(String detalles) {
+		this.detalles= detalles;
+	}
+
+
+
+
 	public void setDestacado(Integer destacado) {
 		this.destacado = destacado;
 	}
@@ -84,11 +115,14 @@ public class Vacante {
 	}
 
 
-
 	@Override
 	public String toString() {
-		return "Vacante [id=" + this.id + ", nombre=" + this.nombre + ", descripcion=" + this.descripcion + ", salario=" + this.salario + "]";
+		return "Vacante [images=" + this.images + ", id=" + this.id + ", nombre=" + this.nombre + ", descripcion=" + this.descripcion + ", fecha=" + this.fecha + ", salario="
+				+ this.salario + ", destacado=" + this.destacado + ", status=" + this.status + ", detalles=" + this.detalles + "]";
 	}
+
+
+
 
 
 

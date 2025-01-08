@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -25,15 +26,29 @@ public class VacanteController {
 	@GetMapping("/create")
 	public String crear() {
 
-		return "/vacante/formVacante";
+		return "vacante/formVacante";
 	};
 
 
 
 	// **************** /vacantes/save **********
-	// @PostMapping("/save") // La anotacion Real
-	@GetMapping("/save") // Solo para pruebas
-	public String Guardar() {
+	@PostMapping("/save") // La anotacion Real
+	// @GetMapping("/save") // Solo para pruebas
+	public String guardar(@RequestParam("nombre") String nombre,
+			@RequestParam("descripcion") String descripcion,
+			@RequestParam("fecha") String fecha,
+			@RequestParam("salario") Double salario,
+			@RequestParam("destacado") int destacado,
+			@RequestParam("status") String status,
+			@RequestParam("detalles") String detalles) {
+
+		System.out.println ("Nombre Vacante :" + nombre);
+		System.out.println ("Nombre descripcion :" + descripcion);
+		System.out.println ("Nombre fecha :" + fecha);
+		System.out.println ("Nombre salario :" + salario);
+		System.out.println ("Nombre destacado :" + destacado);
+		System.out.println ("Nombre status :" + status);
+		System.out.println ("Nombre detalles :" + detalles);
 
 		return "vacante/listVacantes";
 
