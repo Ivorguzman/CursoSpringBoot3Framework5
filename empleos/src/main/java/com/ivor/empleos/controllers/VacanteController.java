@@ -30,14 +30,18 @@ public class VacanteController {
 	};
 
 
-
 	// **** /vacantes/save (Usando como parametro un bjeto tipo Vacante) ******
 	@PostMapping("/save") // La anotacion Real
 	public String guardar(Vacante vacante) {
 
-		System.out.println ("Nombre Vacante :" + vacante);
+		// Aquí se realiza el data binding:
+		// Spring MVC automáticamente vincula los datos del formulario HTML a los
+		// campos del objeto 'Vacante'.
+		// Esto se logra porque los nombres de los campos del formulario coinciden
+		// con los nombres de los atributos en la clase 'Vacante'.
+		System.out.println ("Nombre Vacante :" + vacante); // Imprime la información del objeto 'Vacante' en la consola
 
-		return "vacante/listVacantes";
+		return "vacante/listVacantes"; // Devuelve la vista 'listVacantes' después de guardar la información
 	}
 
 
@@ -73,6 +77,20 @@ public class VacanteController {
 	 * 
 	 * return "vacante/listVacantes";
 	 * }
+	 * 
+	 * Diferencias Clave
+	 * Enfoque de Captura de Datos:
+	 * 
+	 * Primer Código (Usando Objeto Vacante): <<El formulario completo>> se
+	 * vincula a un objeto Vacante. Los datos del formulario se asignan
+	 * automáticamente a los campos correspondientes del objeto Vacante gracias
+	 * al data binding de Spring MVC.
+	 * 
+	 * 
+	 * Segundo Código (Usando @RequestParam): Cada campo del formulario se
+	 * captura individualmente a través de los parámetros del método usando la
+	 * anotación @RequestParam. Esto significa que cada valor del formulario se
+	 * asigna a una variable individual.
 	 * 
 	 */
 

@@ -13,7 +13,6 @@
 </head>
 <body>
 
-
 <!-- Navegación -->
 <!-- <header th:insert="/fragments/menu :: menu-principal "></header>  (sintaxis de fragmento desactualizada) se eliminará en futuras versiones de Thymeleaf -->
 <header th:insert="~{/fragments/menu :: menu-principal}"></header>
@@ -24,36 +23,38 @@
                 <div class="card-header">
                     <h2>Datos de la oferta de trabajo</h2>
                 </div>
-                <form th:action="@{/vacantes/save}" method="post">
+                <form th:action="@{/vacantes/save}" method="post"> <!-- Aquí se define la acción del formulario que envía los datos a la URL /vacantes/save -->
                 
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="nombre">Nombre</label>
+                            <!-- Data binding: este campo se vincula con la propiedad 'nombre' del objeto 'Vacante' -->
                             <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Título de la oferta de trabajo">
                         </div>
                         
                         <div class="form-group col-md-6">
                             <label for="categoria">Categoría</label>
+                            <!-- Data binding: este campo se vincula con la propiedad 'categoria' del objeto 'Vacante' -->
                             <select class="form-control" id="categoria" name="categoria">
                                 <option value="1">Ventas</option>
                                 <option value="2">Contabilidad</option>
                                 <option value="3">Transporte</option>
-                                <option value="4">Informatica</option>
+                                <option value="4">Informática</option>
                                 <option value="">Construcción</option>
                             </select>
                         </div>
                     </div>
                     
-                    
-                    
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="descripcion">Descripción</label>
+                            <!-- Data binding: este campo se vincula con la propiedad 'descripcion' del objeto 'Vacante' -->
                             <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Breve descripción de la oferta de trabajo">
                         </div>
                         
                         <div class="form-group col-md-6">
                             <label for="estatus">Estatus</label>
+                            <!-- Data binding: este campo se vincula con la propiedad 'status' del objeto 'Vacante' -->
                             <select class="form-control" id="status" name="status">
                                 <option>Creada</option>
                                 <!-- Añade más opciones según sea necesario -->
@@ -61,32 +62,31 @@
                         </div>
                     </div>
                     
-                    
-                    
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="fecha-publicacion">Fecha de Publicación</label>
+                            <!-- Data binding: este campo se vincula con la propiedad 'fecha' del objeto 'Vacante' -->
                             <input type="date" class="form-control" id="fecha-publicacion" name="fecha">
                         </div>
                         
                         <div class="form-group col-md-6">
                             <label for="salario">Salario Ofrecido (Aprox)</label>
-                            <input type="text" class="form-control" id="salario" name="salario" placeholder="Salario aproximado" >
+                            <!-- Data binding: este campo se vincula con la propiedad 'salario' del objeto 'Vacante' -->
+                            <input type="text" class="form-control" id="salario" name="salario" placeholder="Salario aproximado">
                         </div>
                     </div>
                     
-                    
-                    
                     <div class="form-group">
                         <label for="imagen">Imagen</label>
+                        <!-- Data binding: este campo se vincula con la propiedad 'images' del objeto 'Vacante' -->
                         <input type="file" class="form-control-file" id="imagen" name="images">
                     </div>
-                    
                     
                     <div class="form-group">
                         <label>Destacado</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="destacado" id="destacado"  value="1" checked>
+                            <!-- Data binding: estos campos de radio se vinculan con la propiedad 'destacado' del objeto 'Vacante' -->
+                            <input class="form-check-input" type="radio" name="destacado" id="destacado" value="1" checked>
                             <label class="form-check-label" for="destacado1">Destacado</label>
                         </div>
                         
@@ -96,12 +96,12 @@
                         </div>
                     </div>
                     
-                    
                     <!-- Modificación comienza aquí -->
                     <div class="form-row d-flex align-items-stretch">
                         <div class="form-group col-md-9 d-flex flex-column">
                             <label for="detalles">Detalles</label>
-                            <textarea class="form-control flex-grow-1" id="detalles"  name="detalles" rows="3"></textarea>
+                            <!-- Data binding: este campo se vincula con la propiedad 'detalles' del objeto 'Vacante' -->
+                            <textarea class="form-control flex-grow-1" id="detalles" name="detalles" rows="3"></textarea>
                         </div>
                         
                         <div class="form-group col-md-3 d-flex flex-column align-items-center justify-content-center">
@@ -113,10 +113,15 @@
                     </div>
                     <!-- Modificación termina aquí -->
                     <button type="submit" class="btn btn-primary">Guardar</button>
-                </form>
+                </form> <!-- Fin del formulario con data binding -->
             </div>
         </div>
     </div>
+    
+    
+<!-- Cada campo del formulario tiene un atributo name: que coincide con los nombres de los campos en 
+     la clase Vacante en el backend. Esto permite que Spring MVC haga el data binding automáticamente.
+ -->
     
     
   <!-- Footer -->
