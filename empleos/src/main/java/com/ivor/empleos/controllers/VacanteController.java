@@ -1,10 +1,16 @@
 package com.ivor.empleos.controllers;
 
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,9 +49,6 @@ public class VacanteController {
 
 		return "vacante/listVacantes"; // Devuelve la vista 'listVacantes' después de guardar la información
 	}
-
-
-
 
 
 	/*
@@ -94,7 +97,112 @@ public class VacanteController {
 	 * 
 	 */
 
+	@InitBinder
+	public void initBinder(WebDataBinder _WebDataBinder) {
+		SimpleDateFormat dateFormat= new SimpleDateFormat ("dd-mm-yyy");
+		_WebDataBinder.registerCustomEditor (Date.class, new CustomDateEditor (dateFormat, false));
 
+	};
+
+	/*
+	 * Explicación de public void initBinder(WebDataBinder _WebDataBinder):
+	 * 
+	 * @InitBinder:
+	 * 
+	 * @InitBinder es una anotación en Spring MVC que se usa para inicializar
+	 * datos relacionados con la web. Permite personalizar la forma en que los
+	 * datos de los formularios web son vinculados a objetos de la aplicación.
+	 * 
+	 * En otras palabras, sirve para configurar cómo se procesan los datos
+	 * recibidos en las solicitudes web antes de que se vinculen a los objetos
+	 * del controlador.
+	 * 
+	 * public void initBinder(WebDataBinder _WebDataBinder):
+	 * 
+	 * public: Indica que este método es accesible desde cualquier parte del
+	 * programa.
+	 * 
+	 * void: Significa que este método no devuelve ningún valor.
+	 * 
+	 * initBinder: Es el nombre del método. Podrías llamarlo como quieras, pero
+	 * "initBinder" es comúnmente utilizado para indicar que se está
+	 * inicializando un Binder.
+	 * 
+	 * WebDataBinder _WebDataBinder: El parámetro WebDataBinder es un objeto
+	 * proporcionado por Spring MVC que ayuda a gestionar la conversión y
+	 * validación de datos de las solicitudes web.
+	 * 
+	 * SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");:
+	 * 
+	 * SimpleDateFormat: Es una clase en Java que se utiliza para formatear y
+	 * analizar fechas.
+	 * 
+	 * dateFormat: Es el nombre de la variable. Aquí estamos creando una
+	 * instancia de SimpleDateFormat.
+	 * 
+	 * new SimpleDateFormat("dd-MM-yyyy"): Estamos creando un nuevo objeto
+	 * SimpleDateFormat con el patrón de fecha "dd-MM-yyyy", lo que significa
+	 * que la fecha se espera en el formato día-mes-año.
+	 * 
+	 * _WebDataBinder.registerCustomEditor(Date.class, new
+	 * CustomDateEditor(dateFormat, false));:
+	 * 
+	 * _WebDataBinder.registerCustomEditor: Este método se utiliza para
+	 * registrar un editor personalizado para un tipo específico de datos.
+	 * 
+	 * Date.class: Especifica que queremos registrar un editor personalizado
+	 * para el tipo de datos Date.
+	 * 
+	 * new CustomDateEditor(dateFormat, false): Aquí estamos creando una nueva
+	 * instancia de CustomDateEditor.
+	 * 
+	 * dateFormat: Pasamos nuestro objeto SimpleDateFormat que define el formato
+	 * de fecha.
+	 * 
+	 * false: Este parámetro booleano indica si la propiedad de fecha es
+	 * obligatoria o no. false significa que no es obligatorio.
+	 * 
+	 * Resumen del Funcionamiento
+	 * La anotación @InitBinder se usa para personalizar la forma en que los
+	 * datos del formulario web son procesados y convertidos.
+	 * 
+	 * El método initBinder se utiliza para configurar el WebDataBinder y
+	 * registrar un editor personalizado para el tipo Date.
+	 * 
+	 * Se crea un formato de fecha específico usando SimpleDateFormat.
+	 * 
+	 * Se registra el CustomDateEditor para manejar la conversión de cadenas de
+	 * texto en objetos Date utilizando el formato de fecha especificado.
+	 * 
+	 * Ejemplo de Uso
+	 * Imagina que tienes un formulario web donde el usuario ingresa una fecha
+	 * en el formato "dd-MM-yyyy". Cuando este formulario se envía, Spring MVC
+	 * usará el método initBinder para asegurarse de que la cadena de texto de
+	 * la fecha se convierta correctamente en un objeto Date de acuerdo con el
+	 * formato especificado.
+	 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	// ------<<EJEMPLOS DE CLASES QUE NO QUIERO BORRAR>>-----
 
 	// **** /vacantes/viewdetalles/X (parametro enviadado via http con
 	// @PathVariable("id")) ****
