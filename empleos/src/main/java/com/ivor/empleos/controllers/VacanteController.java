@@ -36,25 +36,18 @@ public class VacanteController {
 	};
 
 
-	// **** /vacantes/save (Usando como parametro un bjeto tipo Vacante) ******
-	@PostMapping("/save") // La anotacion Real
-	public String guardar(Vacante vacante) {
 
-		// Aquí se realiza el data binding:
-		// Spring MVC automáticamente vincula los datos del formulario HTML a los
-		// campos del objeto 'Vacante'.
-		// Esto se logra porque los nombres de los campos del formulario coinciden
-		// con los nombres de los atributos en la clase 'Vacante'.
-		System.out.println ("Nombre Vacante :" + vacante); // Imprime la información del objeto 'Vacante' en la consola
-
-		return "vacante/listVacantes"; // Devuelve la vista 'listVacantes' después de guardar la información
-	}
 
 
 	/*
 	 * 
 	 * // **** /vacantes/save (Usando la Anotación @RequestParam()) ******
 	 * 
+	 * Aqui (Usando @RequestParam): Cada campo del formulario se
+	 * captura individualmente a través de los parámetros del método usando la
+	 * anotación @RequestParam. Esto significa que cada valor del formulario se
+	 * asigna a una variable individual.
+	 *
 	 * @PostMapping("/save") // La anotacion Real
 	 * public String guardar(@RequestParam("nombre") String nombre,
 	 * 
@@ -81,107 +74,42 @@ public class VacanteController {
 	 * return "vacante/listVacantes";
 	 * }
 	 * 
-	 * Diferencias Clave
-	 * Enfoque de Captura de Datos:
 	 * 
-	 * Primer Código (Usando Objeto Vacante): <<El formulario completo>> se
+	 * 
+	 * Aqui (Usando Objeto Vacante): <<El formulario completo>> se
 	 * vincula a un objeto Vacante. Los datos del formulario se asignan
 	 * automáticamente a los campos correspondientes del objeto Vacante gracias
 	 * al data binding de Spring MVC.
+	 * <<Diferencias Clave en el Enfoque de Captura de Datos.>>
 	 * 
-	 * 
-	 * Segundo Código (Usando @RequestParam): Cada campo del formulario se
-	 * captura individualmente a través de los parámetros del método usando la
-	 * anotación @RequestParam. Esto significa que cada valor del formulario se
-	 * asigna a una variable individual.
-	 * 
+	 * //<< /vacantes/save (Usando como parametro un Objeto tipo Vacante) >>
 	 */
+	@PostMapping("/save") // La anotacion Real
+	public String guardar(Vacante vacante) {
+
+		// Aquí se realiza el data binding:
+		// Spring MVC automáticamente vincula los datos del formulario HTML a los
+		// campos del objeto 'Vacante'.
+		// Esto se logra porque los nombres de los campos del formulario coinciden
+		// con los nombres de los atributos en la clase 'Vacante'.
+		System.out.println ("Nombre Vacante :" + vacante); // Imprime la información del objeto 'Vacante' en la consola
+
+		return "vacante/listVacantes"; // Devuelve la vista 'listVacantes' después de guardar la información
+	}
+
+
+
+
+
+
 
 	@InitBinder
 	public void initBinder(WebDataBinder _WebDataBinder) {
 		SimpleDateFormat dateFormat= new SimpleDateFormat ("dd-mm-yyy");
 		_WebDataBinder.registerCustomEditor (Date.class, new CustomDateEditor (dateFormat, false));
-
 	};
 
-	/*
-	 * Explicación de public void initBinder(WebDataBinder _WebDataBinder):
-	 * 
-	 * @InitBinder:
-	 * 
-	 * @InitBinder es una anotación en Spring MVC que se usa para inicializar
-	 * datos relacionados con la web. Permite personalizar la forma en que los
-	 * datos de los formularios web son vinculados a objetos de la aplicación.
-	 * 
-	 * En otras palabras, sirve para configurar cómo se procesan los datos
-	 * recibidos en las solicitudes web antes de que se vinculen a los objetos
-	 * del controlador.
-	 * 
-	 * public void initBinder(WebDataBinder _WebDataBinder):
-	 * 
-	 * public: Indica que este método es accesible desde cualquier parte del
-	 * programa.
-	 * 
-	 * void: Significa que este método no devuelve ningún valor.
-	 * 
-	 * initBinder: Es el nombre del método. Podrías llamarlo como quieras, pero
-	 * "initBinder" es comúnmente utilizado para indicar que se está
-	 * inicializando un Binder.
-	 * 
-	 * WebDataBinder _WebDataBinder: El parámetro WebDataBinder es un objeto
-	 * proporcionado por Spring MVC que ayuda a gestionar la conversión y
-	 * validación de datos de las solicitudes web.
-	 * 
-	 * SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");:
-	 * 
-	 * SimpleDateFormat: Es una clase en Java que se utiliza para formatear y
-	 * analizar fechas.
-	 * 
-	 * dateFormat: Es el nombre de la variable. Aquí estamos creando una
-	 * instancia de SimpleDateFormat.
-	 * 
-	 * new SimpleDateFormat("dd-MM-yyyy"): Estamos creando un nuevo objeto
-	 * SimpleDateFormat con el patrón de fecha "dd-MM-yyyy", lo que significa
-	 * que la fecha se espera en el formato día-mes-año.
-	 * 
-	 * _WebDataBinder.registerCustomEditor(Date.class, new
-	 * CustomDateEditor(dateFormat, false));:
-	 * 
-	 * _WebDataBinder.registerCustomEditor: Este método se utiliza para
-	 * registrar un editor personalizado para un tipo específico de datos.
-	 * 
-	 * Date.class: Especifica que queremos registrar un editor personalizado
-	 * para el tipo de datos Date.
-	 * 
-	 * new CustomDateEditor(dateFormat, false): Aquí estamos creando una nueva
-	 * instancia de CustomDateEditor.
-	 * 
-	 * dateFormat: Pasamos nuestro objeto SimpleDateFormat que define el formato
-	 * de fecha.
-	 * 
-	 * false: Este parámetro booleano indica si la propiedad de fecha es
-	 * obligatoria o no. false significa que no es obligatorio.
-	 * 
-	 * Resumen del Funcionamiento
-	 * La anotación @InitBinder se usa para personalizar la forma en que los
-	 * datos del formulario web son procesados y convertidos.
-	 * 
-	 * El método initBinder se utiliza para configurar el WebDataBinder y
-	 * registrar un editor personalizado para el tipo Date.
-	 * 
-	 * Se crea un formato de fecha específico usando SimpleDateFormat.
-	 * 
-	 * Se registra el CustomDateEditor para manejar la conversión de cadenas de
-	 * texto en objetos Date utilizando el formato de fecha especificado.
-	 * 
-	 * Ejemplo de Uso
-	 * Imagina que tienes un formulario web donde el usuario ingresa una fecha
-	 * en el formato "dd-MM-yyyy". Cuando este formulario se envía, Spring MVC
-	 * usará el método initBinder para asegurarse de que la cadena de texto de
-	 * la fecha se convierta correctamente en un objeto Date de acuerdo con el
-	 * formato especificado.
-	 */
-
+	
 
 
 
