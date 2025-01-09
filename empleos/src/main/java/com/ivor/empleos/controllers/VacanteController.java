@@ -31,34 +31,55 @@ public class VacanteController {
 
 
 
-	// **** /vacantes/save (Usando la Anotación @RequestParam()) ******
+	// **** /vacantes/save (Usando como parametro un bjeto tipo Vacante) ******
 	@PostMapping("/save") // La anotacion Real
-	// @GetMapping("/save") // Solo para pruebas
-	public String guardar(@RequestParam("nombre") String nombre,
-			@RequestParam("descripcion") String descripcion,
-			@RequestParam("fecha") String fecha,
-			@RequestParam("salario") Double salario,
-			@RequestParam("destacado") int destacado,
-			@RequestParam("status") String status,
-			@RequestParam("detalles") String detalles) {
+	public String guardar(Vacante vacante) {
 
-		System.out.println ("Nombre Vacante :" + nombre);
-		System.out.println ("Nombre descripcion :" + descripcion);
-		System.out.println ("Nombre fecha :" + fecha);
-		System.out.println ("Nombre salario :" + salario);
-		System.out.println ("Nombre destacado :" + destacado);
-		System.out.println ("Nombre status :" + status);
-		System.out.println ("Nombre detalles :" + detalles);
+		System.out.println ("Nombre Vacante :" + vacante);
 
 		return "vacante/listVacantes";
-
-
 	}
 
 
-	// **************** /vacantes/viewdetalles/X (parametro enviadado via
-	// http
-	// con @PathVariable("id")) ******************************
+
+
+
+	/*
+	 * 
+	 * // **** /vacantes/save (Usando la Anotación @RequestParam()) ******
+	 * 
+	 * @PostMapping("/save") // La anotacion Real
+	 * public String guardar(@RequestParam("nombre") String nombre,
+	 * 
+	 * @RequestParam("descripcion") String descripcion,
+	 * 
+	 * @RequestParam("fecha") String fecha,
+	 * 
+	 * @RequestParam("salario") Double salario,
+	 * 
+	 * @RequestParam("destacado") int destacado,
+	 * 
+	 * @RequestParam("status") String status,
+	 * 
+	 * @RequestParam("detalles") String detalles) {
+	 * 
+	 * System.out.println ("Nombre Vacante :" + nombre);
+	 * System.out.println ("Nombre descripcion :" + descripcion);
+	 * System.out.println ("Nombre fecha :" + fecha);
+	 * System.out.println ("Nombre salario :" + salario);
+	 * System.out.println ("Nombre destacado :" + destacado);
+	 * System.out.println ("Nombre status :" + status);
+	 * System.out.println ("Nombre detalles :" + detalles);
+	 * 
+	 * return "vacante/listVacantes";
+	 * }
+	 * 
+	 */
+
+
+
+	// **** /vacantes/viewdetalles/X (parametro enviadado via http con
+	// @PathVariable("id")) ****
 	@GetMapping("/viewdetalles/{id}")
 	public String verDetalleVacante(@PathVariable("id") int idVacante, Model modelo) {
 
