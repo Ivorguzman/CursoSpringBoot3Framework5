@@ -2,8 +2,6 @@ package com.ivor.empleos.model;
 
 import java.util.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 public class Vacante {
 
 
@@ -13,7 +11,7 @@ public class Vacante {
 	private String nombre;
 	private String descripcion;
 	private Integer id;
-	@DateTimeFormat(pattern= "yyyy-MM-dd")
+	// @DateTimeFormat(pattern= "yyyy-MM-dd")
 	private Date fecha;
 	private Double salario;
 	private String images= "no-image.png";
