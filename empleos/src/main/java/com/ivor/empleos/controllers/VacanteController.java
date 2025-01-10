@@ -53,15 +53,15 @@ public class VacanteController {
 	 * public String guardar(@RequestParam("nombre") String nombre,
 	 * 
 	 * @RequestParam("descripcion") String descripcion,
-	 * 
+	 *
 	 * @RequestParam("fecha") String fecha,
-	 * 
+	 *
 	 * @RequestParam("salario") Double salario,
-	 * 
+	 *
 	 * @RequestParam("destacado") int destacado,
-	 * 
+	 *
 	 * @RequestParam("status") String status,
-	 * 
+	 *
 	 * @RequestParam("detalles") String detalles) {
 	 * 
 	 * System.out.println ("Nombre Vacante :" + nombre);
@@ -80,20 +80,22 @@ public class VacanteController {
 	 * Aqui (Usando Objeto Vacante): <<El formulario completo>> se
 	 * vincula a un objeto Vacante. Los datos del formulario se asignan
 	 * automáticamente a los campos correspondientes del objeto Vacante gracias
-	 * al data binding de Spring MVC.
+	 * al <<data binding de Spring MVC.>>
 	 * <<Diferencias Clave en el Enfoque de Captura de Datos.>>
 	 * 
 	 * //<< /vacantes/save (Usando como parametro un Objeto tipo Vacante) >>
 	 */
-	@PostMapping("/save") // La anotacion Real
+	// Aquí se realiza el data binding:
+	// Spring MVC automáticamente vincula los datos del formulario HTML a los
+	// campos del objeto 'Vacante'.
+	// Esto se logra porque los nombres de los campos del formulario coinciden
+	// con los nombres de los atributos en la clase 'Vacante'.
+	@PostMapping("/save")
 	public String guardar(Vacante vacante) {
 
-		// Aquí se realiza el data binding:
-		// Spring MVC automáticamente vincula los datos del formulario HTML a los
-		// campos del objeto 'Vacante'.
-		// Esto se logra porque los nombres de los campos del formulario coinciden
-		// con los nombres de los atributos en la clase 'Vacante'.
 		System.out.println ("Nombre Vacante :" + vacante); // Imprime la información del objeto 'Vacante' en la consola
+		System.out.println ();
+		this.serviceVacantes.guardar (vacante);
 
 		return "vacante/listVacantes"; // Devuelve la vista 'listVacantes' después de guardar la información
 	}
@@ -201,9 +203,9 @@ public class VacanteController {
 		// Creación del formato de fecha
 		SimpleDateFormat dateFormat= new SimpleDateFormat ("dd-MM-yyyy");
 		dateFormat.setLenient (false); // Establecer que el análisis de fechas debe ser estricto
-
 		// Registrar el editor personalizado para el tipo Date
 		_WebDataBinder.registerCustomEditor (Date.class, new CustomDateEditor (dateFormat, false));
+
 	}
 
 
@@ -241,6 +243,11 @@ public class VacanteController {
 
 	// **** /vacantes/viewdetalles/X (parametro enviadado via http con
 	// @PathVariable("id")) ****
+	/**
+	 * @param idVacante
+	 * @param modelo
+	 * @return
+	 */
 	@GetMapping("/viewdetalles/{id}")
 	public String verDetalleVacante(@PathVariable("id") int idVacante, Model modelo) {
 

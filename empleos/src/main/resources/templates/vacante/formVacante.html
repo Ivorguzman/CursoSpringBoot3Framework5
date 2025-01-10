@@ -62,12 +62,28 @@
                         </div>
                     </div>
                     
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="fecha-publicacion">Fecha de Publicación</label>
                             <!-- Data binding: este campo se vincula con la propiedad 'fecha' del objeto 'Vacante' -->
-                            <input type="text" class="form-control" id="fecha-publicacion" name="fecha">
+                            <input type="date" class="form-control" id="fecha-publicacion" name="#" onchange="formatearFecha()">
+                                     <!-- Data binding: este campo se vincula con la propiedad 'fecha' del objeto 'Vacante' -->
+                            <input type="text" class="form-control" id="fecha-publicacion_modificado" style="visibility: hidden"  name="fecha">
                         </div>
+                        
+
+
+
+
+                        
+                        
                         
                         <div class="form-group col-md-6">
                             <label for="salario">Salario Ofrecido (Aprox)</label>
@@ -118,23 +134,43 @@
         </div>
     </div>
     
+    <!-- Script para formatear la fecha -->
+    <script>
+    function formatearFecha() {
+        // Obtener el valor del campo de fecha
+        var fechaInput = document.getElementById("fecha-publicacion").value;
+        
+        // Verificar si el campo de fecha tiene un valor
+        if (fechaInput) {
+            // Crear un objeto de fecha a partir del valor del campo
+            var fecha = new Date(fechaInput);
+            
+            // Formatear la fecha en dd-MM-yyyy
+            var dia = ("0" + (fecha.getDate() + 1 )).slice(-2);
+            var mes = ("0" + (fecha.getMonth() + 1)).slice(-2);
+            var anio = fecha.getFullYear();
+            var fechaFormateada = dia + "-" + mes + "-" + anio;
+            
+            // Actualizar el valor del campo de fecha con el formato deseado
+            document.getElementById("fecha-publicacion_modificado").value = fechaFormateada;
+        }
+    }
+    </script>
     
 <!-- Cada campo del formulario tiene un atributo name: que coincide con los nombres de los campos en 
      la clase Vacante en el backend. Esto permite que Spring MVC haga el data binding automáticamente.
  -->
     
+<!-- Footer -->
+<!-- <footer th:insert="/fragments/footer :: pie-pagina" ></footer>  (sintaxis de fragmento desactualizada) se eliminará en futuras versiones de Thymeleaf -->
+<footer th:insert="~{/fragments/footer :: pie-pagina}"></footer>
     
-  <!-- Footer -->
- <!--  <footer th:insert="/fragments/footer :: pie-pagina" ></footer>  (sintaxis de fragmento desactualizada) se eliminará en futuras versiones de Thymeleaf  -->
-  <footer th:insert="~{/fragments/footer :: pie-pagina}"></footer>
-    
-  <!-- Enlace a archivos de la CDN -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <!-- Enlace a archivos local -->
-  <script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
-    
+<!-- Enlace a archivos de la CDN -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- Enlace a archivos local -->
+<script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
     
 </body>
 </html>

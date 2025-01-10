@@ -11,7 +11,8 @@ public class Vacante {
 	private String nombre;
 	private String descripcion;
 	private Integer id;
-	// @DateTimeFormat(pattern= "yyyy-MM-dd")
+	// @DateTimeFormat(pattern= "yyyy-MM-dd") // Para procesos sencillos sin
+	// validaciones extremas
 	private Date fecha;
 	private Double salario;
 	private String images= "no-image.png";

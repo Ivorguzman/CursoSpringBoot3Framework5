@@ -106,13 +106,37 @@ public class VacantesServiceImpl implements I_Vacanteservice {
 
 	@Override
 	public Vacante buscarVarPorIdVacante(Integer idVacante) {
-		for (Vacante v_Vacante : this.lista){
-			System.out.println("v_Vacante = " + v_Vacante);
-			if (v_Vacante.getId() == idVacante){
-				return v_Vacante;
+		for (Vacante _Vacante : this.lista){
+			System.out.println ("v_Vacante = " + _Vacante);
+			if (_Vacante.getId () == idVacante){
+				return _Vacante;
 			}
 		}
 		return null;
 	}
+
+
+
+	@Override
+	public void guardar(Vacante vacante) {
+
+		this.lista.add (vacante);
+		System.out.println ("lista_MetodoGuardar() = " + this.lista);
+		System.out.println ();
+
+
+
+	}
+
+
+
+
+
+
+
+
+
+
+
 
 }

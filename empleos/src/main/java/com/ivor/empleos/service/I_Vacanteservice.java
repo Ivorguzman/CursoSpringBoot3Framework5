@@ -10,6 +10,8 @@ public interface I_Vacanteservice {
 
 	Vacante buscarVarPorIdVacante(Integer idVacante);
 
+	void guardar(Vacante vacante);
+
 }
 
 
