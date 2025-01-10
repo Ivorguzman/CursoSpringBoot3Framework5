@@ -9,40 +9,79 @@
 <!-- Enlace al CSS de la CDN -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <style></style>
+
 </head>
 <body>
 <!-- Navegación -->
 <!-- <header th:insert="/fragments/menu :: menu-principal "></header>  (sintaxis de fragmento desactualizada) se eliminará en futuras versiones de Thymeleaf -->
-<header th:insert="~{/fragments/menu :: menu-principal}"></header>
-
-  
-   <div class="container mt-5" style="width: 60%;"> <!-- Ancho del 60% -->
-        <div class="card">
-            <div class="card-body p-4"> <!-- Añadido padding interno a card-body -->
-                <div class="card-header">
-                    <h2>Para construir la Vista listVacantes</h2>
-                </div>
-                <form >
-                
-                    <div class="form-row">
-                 
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary">Guardar</button>
-                </form>
-            </div>
-        </div>
+<!-- <header th:insert="~{/fragments/menu :: menu-principal}"></header> -->
+ <!-- Navegación -->
+  <nav  th:fragment="menu-principal" class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">EmpleosApp</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Menu 1</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Menu 2</a></li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="button">Ingresar</button>
+        <button class="btn btn-outline-primary my-2 my-sm-0 ml-2" type="button">Registrarse</button>
+      </form>
     </div>
+  </nav>
+
+
+ <!--  
+<table>: Define una tabla en HTML.
+<thead>: Significa "Table Head" y se utiliza para agrupar el contenido del encabezado de una tabla.
+<tr>:    Significa "Table Row" y se usa para definir una fila en una tabla.
+<th>:    Significa "Table Header" y se utiliza para definir una encabezado  celda de  en una tabla.
+<td>:    Significa "Table Data" y se usa para definir una celda de datos en una tabla.
+-->
+   <table class="table table-striped  table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Categoria</th>
+        <th>Nombre</th>
+        <th>Fecha Publicación</th>
+        <th>Estatus</th>
+        <th>Destacado</th>
+        <th>Operaraciónes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="vacante : ${vacantes}">
+        <td >A</td>
+        <td >B</td>
+        <td >C</td>
+        <td >D</td>
+        <td >E</td>
+        <td>
+          <a th:href="@{/detalle/view/{id}(id=${vacante.id})}"  class=" btn btn-success">Detalle</a> 
+          <a th:href="@{/vacantes/delete(id=${vacante.id} )}" class=" btn btn-danger">Borrar</a> 
+        </td>
+      </tr>
+    </tbody>
+  </table>
   
+  <!-- Footer -->
+  <footer th:fragment="pie-pagina" class="footer mt-auto py-3  footer-dark  bg-dark">
+    <div class="container text-center">
+      <span class="text-muted">© 2024 EmpleosApp, Inc. | WebApp Desarrollada con Spring Boot 2.1.2 | Realizado
+        por: Ivor A. Guzmán Zambrano | <a href="#">Privacy</a> · <a href="#">Terms</a>
+      </span>
+    </div>
+  </footer>
+ 
   
-       <!-- Footer -->
-<!--  <footer th:insert="/fragments/footer :: pie-pagina" ></footer>  (sintaxis de fragmento desactualizada) se eliminará en futuras versiones de Thymeleaf  -->
-  <footer th:insert="~{/fragments/footer :: pie-pagina}"></footer>
-    <!-- Enlace a archivos de la CDN -->
+  <!-- Enlace a archivos de la CDN -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  
   <!-- Enlace a archivos local -->
   <script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
+  
 </body>
 </html>
