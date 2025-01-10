@@ -4,10 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Listado de columnas</title>
-<!-- Enlace al CSS local -->
-<link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.min.css">
-<!-- Enlace al CSS de la CDN -->
+
+<!-- Enlace al CSS bootstrap local -->
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+<!-- Enlace al CSS awesome local -->
+<link rel="stylesheet"  href="/css/all.min.css">
+
+
+<!-- Enlace al CSS bootstrap de la CDN -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<!-- Enlace al iconos Awesome la CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+
 <style>
 
 .btn-success {
@@ -69,20 +78,22 @@
                             <!--   Aplicando el Operador Elvis (?:)  ___simil de un operarador ternario___   -->
        <!--  <td th:text="${vacante.destacado}"></td> -->
        <!--  <td th:text="${vacante.destacado == 1 ? 'Si' : 'No'}"></td>  -->
-       
                             <!--   Aplicando la Experision if- unless ____simil del if--else pero con  muy peculiar en su sintaxi___ -->
          <span th:if="${vacante.destacado == 1}" class="badge  badge-success">Si</span>
          <span th:unless="${vacante.destacado == 1}" class="badge  badge-danger">No</span>
         </td>
+        
         <td>
-                                  <!-- Cuando se utiliza  @PathVariable() -->
-         <!--  <a th:href="@{/vacantes/view/{id}(id=${vacante.id})}"  class=" btn btn-success">Detalle</a>  -->
-          <a th:href="@{/detalle/view/{id}(id=${vacante.id})}"  class=" btn btn-success">Detalle</a> 
+         <!-- Botón Editar-->
+         <button class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
         </td>
         <td>
-                                  <!-- Cuando se utiliza  @RequestParam() -->
-          <a th:href="@{/vacantes/delete(id=${vacante.id} )}" class=" btn btn-danger">Borrar</a> 
+         <!-- Botón Borrar-->
+         <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
         </td>
+        
+        
+       
       </tr>
     </tbody>
   </table>
@@ -92,7 +103,11 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     
     <!-- Enlace a archivos local -->
-    <script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/all.min.js"></script>
 </body>
 </html>
 
