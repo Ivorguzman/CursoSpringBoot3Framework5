@@ -4,138 +4,120 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Listado de columnas</title>
-
 <!-- Enlace al CSS local -->
 <link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.min.css">
 <!-- Enlace al CSS de la CDN -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
 </head>
 <body>
-
-<!-- Navegación -->
-<!-- <header th:insert="/fragments/menu :: menu-principal "></header>  (sintaxis de fragmento desactualizada) se eliminará en futuras versiones de Thymeleaf -->
-<header th:insert="~{/fragments/menu :: menu-principal}"></header>
-
-    <div class="container mt-5" style="width: 60%;"> <!-- Ancho del 60% -->
-        <div class="card">
-            <div class="card-body p-4"> <!-- Añadido padding interno a card-body -->
-                <div class="card-header">
-                    <h2>Datos de la oferta de trabajo</h2>
-                </div>
-                <form th:action="@{/vacantes/save}" method="post"> <!-- Aquí se define la acción del formulario que envía los datos a la URL /vacantes/save -->
-                
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="nombre">Nombre</label>
-                            <!-- Data binding: este campo se vincula con la propiedad 'nombre' del objeto 'Vacante' -->
-                            <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Título de la oferta de trabajo">
-                        </div>
-                        
-                        <div class="form-group col-md-6">
-                            <label for="categoria">Categoría</label>
-                            <!-- Data binding: este campo se vincula con la propiedad 'categoria' del objeto 'Vacante' -->
-                            <select class="form-control" id="categoria" name="categoria">
-                                <option value="1">Ventas</option>
-                                <option value="2">Contabilidad</option>
-                                <option value="3">Transporte</option>
-                                <option value="4">Informática</option>
-                                <option value="">Construcción</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="descripcion">Descripción</label>
-                            <!-- Data binding: este campo se vincula con la propiedad 'descripcion' del objeto 'Vacante' -->
-                            <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Breve descripción de la oferta de trabajo">
-                        </div>
-                        
-                        <div class="form-group col-md-6">
-                            <label for="estatus">Estatus</label>
-                            <!-- Data binding: este campo se vincula con la propiedad 'status' del objeto 'Vacante' -->
-                            <select class="form-control" id="status" name="status">
-                                <option>Creada</option>
-                                <!-- Añade más opciones según sea necesario -->
-                            </select>
-                        </div>
-                    </div>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="fecha-publicacion">Fecha de Publicación</label>
-                            <!-- Data binding: este campo se vincula con la propiedad 'fecha' del objeto 'Vacante' -->
-                            <input type="date" class="form-control" id="fecha-publicacion" name="#" onchange="formatearFecha()">
-                                     <!-- Data binding: este campo se vincula con la propiedad 'fecha' del objeto 'Vacante' -->
-                            <input type="text" class="form-control" id="fecha-publicacion_modificado" style="visibility: hidden"  name="fecha">
-                        </div>
-                        
-
-
-
-
-                        
-                        
-                        
-                        <div class="form-group col-md-6">
-                            <label for="salario">Salario Ofrecido (Aprox)</label>
-                            <!-- Data binding: este campo se vincula con la propiedad 'salario' del objeto 'Vacante' -->
-                            <input type="text" class="form-control" id="salario" name="salario" placeholder="Salario aproximado">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="imagen">Imagen</label>
-                        <!-- Data binding: este campo se vincula con la propiedad 'images' del objeto 'Vacante' -->
-                        <input type="file" class="form-control-file" id="imagen" name="images">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Destacado</label>
-                        <div class="form-check">
-                            <!-- Data binding: estos campos de radio se vinculan con la propiedad 'destacado' del objeto 'Vacante' -->
-                            <input class="form-check-input" type="radio" name="destacado" id="destacado" value="1" checked>
-                            <label class="form-check-label" for="destacado1">Destacado</label>
-                        </div>
-                        
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="destacado" id="destacado" value="0">
-                            <label class="form-check-label" for="destacado2">No Destacado</label>
-                        </div>
-                    </div>
-                    
-                    <!-- Modificación comienza aquí -->
-                    <div class="form-row d-flex align-items-stretch">
-                        <div class="form-group col-md-9 d-flex flex-column">
-                            <label for="detalles">Detalles</label>
-                            <!-- Data binding: este campo se vincula con la propiedad 'detalles' del objeto 'Vacante' -->
-                            <textarea class="form-control flex-grow-1" id="detalles" name="detalles" rows="3"></textarea>
-                        </div>
-                        
-                        <div class="form-group col-md-3 d-flex flex-column align-items-center justify-content-center">
-                            <label>Imagen/Logo</label>
-                            <div class="d-flex justify-content-center align-items-center border w-100" style="height: 150px;">
-                                <span>Placeholder de Imagen</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Modificación termina aquí -->
-                    <button type="submit" class="btn btn-primary">Guardar</button>
-                </form> <!-- Fin del formulario con data binding -->
-            </div>
+  <!-- Navegación -->
+  <!-- <header th:insert="/fragments/menu :: menu-principal "></header>  (sintaxis de fragmento desactualizada) se eliminará en futuras versiones de Thymeleaf -->
+  <header th:insert="~{/fragments/menu :: menu-principal}"></header>
+  <div class="container mt-5" style="width: 60%;">
+    <!-- Ancho del 60% -->
+    <div class="card">
+      <div class="card-body p-4">
+        <!-- Añadido padding interno a card-body -->
+        <div class="card-header">
+          <h2>Datos de la oferta de trabajo</h2>
         </div>
+        <form th:action="@{/vacantes/save}" method="post">
+          <!-- Aquí se define la acción del formulario que envía los datos a la URL /vacantes/save -->
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="nombre">Nombre</label>
+              <!-- Data binding: este campo se vincula con la propiedad 'nombre' del objeto 'Vacante' -->
+              <input type="text" class="form-control" name="nombre" id="nombre"
+                placeholder="Título de la oferta de trabajo"
+              >
+            </div>
+            <div class="form-group col-md-6">
+              <label for="categoria">Categoría</label>
+              <!-- Data binding: este campo se vincula con la propiedad 'categoria' del objeto 'Vacante' -->
+              <select class="form-control" id="categoria" name="categoria">
+                <option value="1">Ventas</option>
+                <option value="2">Contabilidad</option>
+                <option value="3">Transporte</option>
+                <option value="4">Informática</option>
+                <option value="">Construcción</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="descripcion">Descripción</label>
+              <!-- Data binding: este campo se vincula con la propiedad 'descripcion' del objeto 'Vacante' -->
+              <input type="text" class="form-control" id="descripcion" name="descripcion"
+                placeholder="Breve descripción de la oferta de trabajo"
+              >
+            </div>
+            <div class="form-group col-md-6">
+              <label for="estatus">Estatus</label>
+              <!-- Data binding: este campo se vincula con la propiedad 'status' del objeto 'Vacante' -->
+              <select class="form-control" id="status" name="status">
+                <option>Creada</option>
+                <!-- Añade más opciones según sea necesario -->
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="fecha-publicacion">Fecha de Publicación</label>
+              <!-- Data binding: este campo se vincula con la propiedad 'fecha' del objeto 'Vacante' -->
+              <input type="date" class="form-control" id="fecha-publicacion" name="#" onchange="formatearFecha()">
+              <!-- Data binding: este campo se vincula con la propiedad 'fecha' del objeto 'Vacante' -->
+              <input type="text" class="form-control" id="fecha-publicacion_modificado" style="visibility: hidden"
+                name="fecha"
+              >
+            </div>
+            <div class="form-group col-md-6">
+              <label for="salario">Salario Ofrecido (Aprox)</label>
+              <!-- Data binding: este campo se vincula con la propiedad 'salario' del objeto 'Vacante' -->
+              <input type="text" class="form-control" id="salario" name="salario" placeholder="Salario aproximado">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="imagen">Imagen</label>
+            <!-- Data binding: este campo se vincula con la propiedad 'images' del objeto 'Vacante' -->
+            <input type="file" class="form-control-file" id="imagen" name="images">
+          </div>
+          <div class="form-group">
+            <label>Destacado</label>
+            <div class="form-check">
+              <!-- Data binding: estos campos de radio se vinculan con la propiedad 'destacado' del objeto 'Vacante' -->
+              <input class="form-check-input" type="radio" name="destacado" id="destacado" value="1" checked> <label
+                class="form-check-label" for="destacado1"
+              >Destacado</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="destacado" id="destacado" value="0"> <label
+                class="form-check-label" for="destacado2"
+              >No Destacado</label>
+            </div>
+          </div>
+          <!-- Modificación comienza aquí -->
+          <div class="form-row d-flex align-items-stretch">
+            <div class="form-group col-md-9 d-flex flex-column">
+              <label for="detalles">Detalles</label>
+              <!-- Data binding: este campo se vincula con la propiedad 'detalles' del objeto 'Vacante' -->
+              <textarea class="form-control flex-grow-1" id="detalles" name="detalles" rows="3"></textarea>
+            </div>
+            <div class="form-group col-md-3 d-flex flex-column align-items-center justify-content-center">
+              <label>Imagen/Logo</label>
+              <div class="d-flex justify-content-center align-items-center border w-100" style="height: 150px;">
+                <span>Placeholder de Imagen</span>
+              </div>
+            </div>
+          </div>
+          <!-- Modificación termina aquí -->
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+        <!-- Fin del formulario con data binding -->
+      </div>
     </div>
-    
-    <!-- Script para formatear la fecha -->
-    <script>
+  </div>
+  <!-- Script para formatear la fecha -->
+  <script>
     function formatearFecha() {
         // Obtener el valor del campo de fecha
         var fechaInput = document.getElementById("fecha-publicacion").value;
@@ -156,21 +138,17 @@
         }
     }
     </script>
-    
-<!-- Cada campo del formulario tiene un atributo name: que coincide con los nombres de los campos en 
+  <!-- Cada campo del formulario tiene un atributo name: que coincide con los nombres de los campos en 
      la clase Vacante en el backend. Esto permite que Spring MVC haga el data binding automáticamente.
  -->
-    
-<!-- Footer -->
-<!-- <footer th:insert="/fragments/footer :: pie-pagina" ></footer>  (sintaxis de fragmento desactualizada) se eliminará en futuras versiones de Thymeleaf -->
-<footer th:insert="~{/fragments/footer :: pie-pagina}"></footer>
-    
-<!-- Enlace a archivos de la CDN -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<!-- Enlace a archivos local -->
-<script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
-    
+  <!-- Footer -->
+  <!-- <footer th:insert="/fragments/footer :: pie-pagina" ></footer>  (sintaxis de fragmento desactualizada) se eliminará en futuras versiones de Thymeleaf -->
+  <footer th:insert="~{/fragments/footer :: pie-pagina}"></footer>
+  <!-- Enlace a archivos de la CDN -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- Enlace a archivos local -->
+  <script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
 </body>
 </html>
