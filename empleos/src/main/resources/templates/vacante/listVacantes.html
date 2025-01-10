@@ -52,7 +52,7 @@
         <th>Fecha Publicación</th>
         <th>Estatus</th>
         <th>Destacado</th>
-        <th>Operaraciónes</th>
+        <th>Operaración</th>
       </tr>
     </thead>
     <tbody>
@@ -63,9 +63,12 @@
         <td >D</td>
         <td >E</td>
         <td>
-          <a th:href="@{/detalle/view/{id}(id=${vacante.id})}"  class=" btn btn-success">Detalle</a> 
-          <a th:href="@{/vacantes/delete(id=${vacante.id} )}" class=" btn btn-danger">Borrar</a> 
+         <!-- Botón Editar-->
+         <button class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
+         <!-- Botón Borrar-->
+         <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
         </td>
+
       </tr>
     </tbody>
   </table>
@@ -79,7 +82,7 @@
     </div>
   </footer>
  
-  <!-- Enlace a archivos de la CDN -->
+ <!-- Enlace a archivos de la CDN -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
