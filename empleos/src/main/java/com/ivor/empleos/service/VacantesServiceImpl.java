@@ -123,9 +123,6 @@ public class VacantesServiceImpl implements I_Vacanteservice {
 		this.lista.add (vacante);
 		System.out.println ("lista_MetodoGuardar() = " + this.lista);
 		System.out.println ();
-
-
-
 	}
 
 

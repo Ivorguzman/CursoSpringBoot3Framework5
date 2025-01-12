@@ -4,6 +4,7 @@ package com.ivor.empleos.controllers;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -93,7 +94,7 @@ public class VacanteController {
 	@PostMapping("/save")
 	public String guardar(Vacante vacante) {
 
-		System.out.println ("Nombre Vacante :" + vacante); // Imprime la información del objeto 'Vacante' en la consola
+		System.out.println ("Nombre Vacante (/vacantes/save) :" + vacante); // Imprime la información del objeto 'Vacante' en la consola
 		System.out.println ();
 		this.serviceVacantes.guardar (vacante);
 
@@ -101,8 +102,24 @@ public class VacanteController {
 	}
 
 
+	// @GetMapping("/index")
+	@PostMapping("/index")
+	public String index(Vacante vacante, Model modelo) {
+
+		System.out.println ("Nombre Vacante (/vacantes/index) :" + vacante); // Imprime la información del objeto 'Vacante' en la consola
+		System.out.println ();
+		this.serviceVacantes.guardar (vacante);
+
+		List<Vacante> lista= this.serviceVacantes.buscarTodasVacante (); // Obtiene la lista de vacantes
+		// System.out.println();
+		// System.out.println("lista_VariableLocal = " + lista); // Imprime la lista
+		// para depuración
+
+		modelo.addAttribute ("vacantes", lista); // Añade la lista de vacantes al modelo
 
 
+		return "vacante/listvacantes"; // Devuelve la vista 'listVacantes' después de guardar la información
+	}
 
 
 

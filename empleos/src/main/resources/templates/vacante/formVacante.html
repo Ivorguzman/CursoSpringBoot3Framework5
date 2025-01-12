@@ -7,14 +7,11 @@
 <!-- Enlace al CSS bootstrap local -->
 <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 <!-- Enlace al CSS awesome local -->
-<link rel="stylesheet"  href="/css/all.min.css">
-
-
+<link rel="stylesheet" href="/css/all.min.css">
 <!-- Enlace al CSS bootstrap de la CDN -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <!-- Enlace al iconos Awesome la CDN -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
 </head>
 <body>
   <!-- Navegación -->
@@ -28,7 +25,8 @@
         <div class="card-header">
           <h2>Datos de la oferta de trabajo</h2>
         </div>
-        <form th:action="@{/vacantes/save}" method="post">
+        <!--         <form th:action="@{/vacantes/save}" method="post"> -->
+        <form th:action="@{/vacantes/index}" method="post">
           <!-- Aquí se define la acción del formulario que envía los datos a la URL /vacantes/save -->
           <div class="form-row">
             <div class="form-group col-md-6">
@@ -151,16 +149,15 @@
   <!-- Footer -->
   <!-- <footer th:insert="/fragments/footer :: pie-pagina" ></footer>  (sintaxis de fragmento desactualizada) se eliminará en futuras versiones de Thymeleaf -->
   <footer th:insert="~{/fragments/footer :: pie-pagina}"></footer>
- <!-- Enlace a archivos de la CDN -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    
-    <!-- Enlace a archivos local -->
-    <script src="/js/jquery-3.3.1.slim.min.js"></script>
-    <script src="/js/bootstrap.bundle.min.js"></script>
-    <script src="/js/popper.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/all.min.js"></script>
+  <!-- Enlace a archivos de la CDN -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- Enlace a archivos local -->
+  <script src="/js/jquery-3.3.1.slim.min.js"></script>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/popper.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/all.min.js"></script>
 </body>
 </html>
