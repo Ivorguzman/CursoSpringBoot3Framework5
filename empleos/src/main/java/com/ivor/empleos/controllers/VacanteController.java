@@ -98,18 +98,20 @@ public class VacanteController {
 		System.out.println ();
 		this.serviceVacantes.guardar (vacante);
 
-		return "vacante/listVacantes"; // Devuelve la vista 'listVacantes' después de guardar la información
+// return "vacante/listVacantes"; // Devuelve la vista 'listVacantes'
+// después de guardar la información
+		return "/home"; // Devuelve la vista 'home' después de guardar la información
 	}
 
 
 
-	// @GetMapping("/index")
-	@PostMapping("/index")
+	// @PostMapping("/index")
+	@GetMapping("/index")
 	public String index(Vacante vacante, Model modelo) {
 
 		System.out.println ("Nombre Vacante (/vacantes/index) :" + vacante); // Imprime la información del objeto 'Vacante' en la consola
 		System.out.println ();
-		this.serviceVacantes.guardar (vacante);
+		// 1this.serviceVacantes.guardar (vacante);
 
 		List<Vacante> lista= this.serviceVacantes.buscarTodasVacante (); // Obtiene la lista de vacantes
 		// System.out.println();

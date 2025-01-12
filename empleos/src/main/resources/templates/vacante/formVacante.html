@@ -26,7 +26,7 @@
           <h2>Datos de la oferta de trabajo</h2>
         </div>
         <!--         <form th:action="@{/vacantes/save}" method="post"> -->
-        <form th:action="@{/vacantes/index}" method="post">
+        <form th:action="@{/vacantes/save}" method="post">
           <!-- Aquí se define la acción del formulario que envía los datos a la URL /vacantes/save -->
           <div class="form-row">
             <div class="form-group col-md-6">
@@ -115,7 +115,7 @@
             </div>
           </div>
           <!-- Modificación termina aquí -->
-          <button type="submit" class="btn btn-primary">Guardar</button>
+          <button type="submit"  th:href="@{/vacantes/save}" class="btn btn-primary">Guardar</button>
         </form>
         <!-- Fin del formulario con data binding -->
       </div>
