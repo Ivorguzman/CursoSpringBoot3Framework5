@@ -3,11 +3,6 @@ package com.ivor.empleos.model;
 import java.util.Date;
 
 public class Vacante {
-
-
-
-
-
 	private String nombre;
 	private String descripcion;
 	private Integer id;
@@ -19,6 +14,7 @@ public class Vacante {
 	private Integer destacado;
 	private String status;
 	private String detalles;
+	private String categoria;
 
 
 	public Vacante( ) {
@@ -34,6 +30,10 @@ public class Vacante {
 
 	public String getDetalles() {
 		return this.detalles;
+	}
+
+	public String getCategoria() {
+		return this.categoria;
 	}
 
 
@@ -84,6 +84,9 @@ public class Vacante {
 	}
 
 
+	public void setCategoria(String categoria) {
+		this.categoria= categoria;
+	}
 
 
 	public void setDestacado(Integer destacado) {

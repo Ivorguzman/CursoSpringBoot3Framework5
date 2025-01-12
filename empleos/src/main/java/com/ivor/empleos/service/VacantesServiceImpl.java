@@ -119,7 +119,6 @@ public class VacantesServiceImpl implements I_Vacanteservice {
 
 	@Override
 	public void guardar(Vacante vacante) {
-
 		this.lista.add (vacante);
 		System.out.println ("lista_MetodoGuardar() = " + this.lista);
 		System.out.println ();

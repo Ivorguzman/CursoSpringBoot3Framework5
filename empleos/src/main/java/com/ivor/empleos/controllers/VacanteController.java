@@ -102,6 +102,7 @@ public class VacanteController {
 	}
 
 
+
 	// @GetMapping("/index")
 	@PostMapping("/index")
 	public String index(Vacante vacante, Model modelo) {
