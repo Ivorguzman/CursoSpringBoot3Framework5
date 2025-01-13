@@ -43,7 +43,8 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
 <!-- Navegación -->
-<header th:insert="fragments/menu :: menu-principal"></header>
+<!-- <header th:insert="fragments/menu :: menu-principal"> Antes (Obsoleto)</header> -->
+<header th:insert="~{/fragments/menu :: menu-principal}"></header>
  
   
   <div class="container mt-5" style="width: 60%;"> <!-- Ancho del 60% -->
@@ -91,7 +92,8 @@
      
      
   <!-- Footer -->
-  <footer th:insert="fragments/footer :: pie-pagina" ></footer>
+ <!--  <footer th:insert="fragments/footer :: pie-pagina" >Antes (Obsoleto)</footer> -->
+  <footer th:insert="~{fragments/footer :: pie-pagina}"></footer>
   
    <!-- Enlace a archivos de la CDN -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

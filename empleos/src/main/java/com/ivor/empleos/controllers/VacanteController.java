@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -86,21 +87,68 @@ public class VacanteController {
 	 * 
 	 * //<< /vacantes/save (Usando como parametro un Objeto tipo Vacante) >>
 	 */
-	// Aquí se realiza el data binding:
-	// Spring MVC automáticamente vincula los datos del formulario HTML a los
-	// campos del objeto 'Vacante'.
-	// Esto se logra porque los nombres de los campos del formulario coinciden
-	// con los nombres de los atributos en la clase 'Vacante'.
-	@PostMapping("/save")
-	public String guardar(Vacante vacante) {
 
-		System.out.println ("Nombre Vacante (/vacantes/save) :" + vacante); // Imprime la información del objeto 'Vacante' en la consola
+
+	/*
+	 * // Aquí se realiza el data binding:
+	 * // Spring MVC automáticamente vincula los datos del formulario HTML a los
+	 * // campos del objeto 'Vacante'.
+	 * // Esto se logra porque los nombres de los campos del formulario
+	 * coinciden
+	 * // con los nombres de los atributos en la clase 'Vacante'.
+	 * 
+	 * @PostMapping("/save")
+	 * public String guardar(Vacante vacante) {
+	 * 
+	 * System.out.println ("Nombre Vacante (/vacantes/save) :" + vacante); //
+	 * Imprime la información del objeto 'Vacante' en la consola
+	 * System.out.println ();
+	 * this.serviceVacantes.guardar (vacante);
+	 * 
+	 * // return "vacante/listVacantes"; // Devuelve la vista 'listVacantes'
+	 * // después de guardar la información
+	 * return "/home"; // Devuelve la vista 'home' después de guardar la
+	 * información
+	 * }
+	 */
+	@PostMapping("/save")
+	public String guardar(Vacante vacante, BindingResult result, Model model) {
+
+		// Verifica si hay errores en la validación del objeto 'Vacante'
+		if (result.hasErrors ()){
+
+			// Verifica si hay errores globales
+			if (result.hasGlobalErrors ()){
+				System.out.println ("Errores globales:"); // Imprime "Errores globales:" en la consola
+				result.getGlobalErrors ().forEach (error-> {
+					System.out.println ("Error: " + error.getDefaultMessage ()); // Imprime cada mensaje de error global en la consola
+				});
+			}
+
+			// Verifica si hay errores específicos
+			if (result.hasFieldErrors ()){
+				System.out.println ("Errores en campos específicos:"); // Imprime "Errores en campos específicos:" en la consola
+				result.getFieldErrors ().forEach (error-> {
+					System.out.println ("Campo: " + error.getField () + ", Error Objeto: " + error.getObjectName () + ", Error Code: " + error.getCode ()); // Imprime
+																																							// detalles de
+																																							// cada error de
+																																							// campo
+				});
+			}
+
+			return "vacante/formVacante"; // Si hay errores, vuelve al formulario para corregirlos
+		}
+
+		// Imprime la información del objeto 'Vacante' en la consola para propósitos
+		// de depuración
+		System.out.println ("Nombre Vacante (/vacantes/save) :" + vacante);
 		System.out.println ();
+
+		// Guarda el objeto 'Vacante' utilizando el servicio
 		this.serviceVacantes.guardar (vacante);
 
-// return "vacante/listVacantes"; // Devuelve la vista 'listVacantes'
-// después de guardar la información
-		return "/home"; // Devuelve la vista 'home' después de guardar la información
+		// Devuelve la vista "vacante/formVacante" después de guardar la información
+		return "vacante/formVacante";
 	}
 
 
@@ -121,7 +169,7 @@ public class VacanteController {
 		modelo.addAttribute ("vacantes", lista); // Añade la lista de vacantes al modelo
 
 
-		return "vacante/listvacantes"; // Devuelve la vista 'listVacantes' después de guardar la información
+		return "vacante/listvacantes"; // Devuelve la vista 'listVacantes'
 	}
 
 
