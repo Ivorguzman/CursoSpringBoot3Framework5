@@ -88,7 +88,9 @@ public class VacanteController {
 
 		// Devuelve la vista "vacante/formVacante"' después de guardar la
 		// información
-		return "vacante/formVacante";
+		return "redirect:/vacantes/index";// Se realiza en forma indirecta petición http tipo Get
+												// (vacantes/listVacante)
+
 	}
 
 
@@ -97,20 +99,13 @@ public class VacanteController {
 
 	// @PostMapping("/index")
 	@GetMapping("/index")
-	public String index(Vacante vacante, Model modelo) {
-
-		System.out.println ("Nombre Vacante (/vacantes/index) :" + vacante); // Imprime la información del objeto 'Vacante' en la consola
-		System.out.println ();
-		// 1this.serviceVacantes.guardar (vacante);
+	public String mostrarIndex(Model modelo) {
 
 		List<Vacante> lista= this.serviceVacantes.buscarTodasVacante (); // Obtiene la lista de vacantes
 		// System.out.println();
 		// System.out.println("lista_VariableLocal = " + lista); // Imprime la lista
 		// para depuración
-
 		modelo.addAttribute ("vacantes", lista); // Añade la lista de vacantes al modelo
-
-
 		return "vacante/listvacantes"; // Devuelve la vista 'listVacantes' después de guardar la información
 	}
 
