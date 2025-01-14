@@ -31,125 +31,67 @@ public class VacanteController {
 	private I_Vacanteservice serviceVacantes;
 
 
-	// **************** /vacantes/create **********
+	/*
+	 * // **************** /vacantes/create **********
+	 * 
+	 * @GetMapping("/create")
+	 * public String crear() {
+	 * 
+	 * return "vacante/formVacante";
+	 * };
+	 */
+
 	@GetMapping("/create")
-	public String crear() {
-
+	public String crear(Vacante vacante) {
 		return "vacante/formVacante";
-	};
+	}
 
 
-
-
-
-	/*
-	 * 
-	 * // **** /vacantes/save (Usando la Anotación @RequestParam()) ******
-	 * 
-	 * Aqui (Usando @RequestParam): Cada campo del formulario se
-	 * captura individualmente a través de los parámetros del método usando la
-	 * anotación @RequestParam. Esto significa que cada valor del formulario se
-	 * asigna a una variable individual.
-	 *
-	 * @PostMapping("/save") // La anotacion Real
-	 * public String guardar(@RequestParam("nombre") String nombre,
-	 * 
-	 * @RequestParam("descripcion") String descripcion,
-	 *
-	 * @RequestParam("fecha") String fecha,
-	 *
-	 * @RequestParam("salario") Double salario,
-	 *
-	 * @RequestParam("destacado") int destacado,
-	 *
-	 * @RequestParam("status") String status,
-	 *
-	 * @RequestParam("detalles") String detalles) {
-	 * 
-	 * System.out.println ("Nombre Vacante :" + nombre);
-	 * System.out.println ("Nombre descripcion :" + descripcion);
-	 * System.out.println ("Nombre fecha :" + fecha);
-	 * System.out.println ("Nombre salario :" + salario);
-	 * System.out.println ("Nombre destacado :" + destacado);
-	 * System.out.println ("Nombre status :" + status);
-	 * System.out.println ("Nombre detalles :" + detalles);
-	 * 
-	 * return "vacante/listVacantes";
-	 * }
-	 * 
-	 * 
-	 * 
-	 * Aqui (Usando Objeto Vacante): <<El formulario completo>> se
-	 * vincula a un objeto Vacante. Los datos del formulario se asignan
-	 * automáticamente a los campos correspondientes del objeto Vacante gracias
-	 * al <<data binding de Spring MVC.>>
-	 * <<Diferencias Clave en el Enfoque de Captura de Datos.>>
-	 * 
-	 * //<< /vacantes/save (Usando como parametro un Objeto tipo Vacante) >>
-	 */
-
-
-	/*
-	 * // Aquí se realiza el data binding:
-	 * // Spring MVC automáticamente vincula los datos del formulario HTML a los
-	 * // campos del objeto 'Vacante'.
-	 * // Esto se logra porque los nombres de los campos del formulario
-	 * coinciden
-	 * // con los nombres de los atributos en la clase 'Vacante'.
-	 * 
-	 * @PostMapping("/save")
-	 * public String guardar(Vacante vacante) {
-	 * 
-	 * System.out.println ("Nombre Vacante (/vacantes/save) :" + vacante); //
-	 * Imprime la información del objeto 'Vacante' en la consola
-	 * System.out.println ();
-	 * this.serviceVacantes.guardar (vacante);
-	 * 
-	 * // return "vacante/listVacantes"; // Devuelve la vista 'listVacantes'
-	 * // después de guardar la información
-	 * return "/home"; // Devuelve la vista 'home' después de guardar la
-	 * información
-	 * }
-	 */
+// Aquí se realiza el data binding:
+// Spring MVC automáticamente vincula los datos del formulario HTML a los
+// campos del objeto 'Vacante'.
+// Esto se logra porque los nombres de los campos del formulario coinciden
+// con los nombres de los atributos en la clase 'V
 	@PostMapping("/save")
 	public String guardar(Vacante vacante, BindingResult result, Model model) {
 
+		// Modificación comienza aquí
 		// Verifica si hay errores en la validación del objeto 'Vacante'
 		if (result.hasErrors ()){
 
 			// Verifica si hay errores globales
 			if (result.hasGlobalErrors ()){
-				System.out.println ("Errores globales:"); // Imprime "Errores globales:" en la consola
+				System.out.println ("Errores globales:");
 				result.getGlobalErrors ().forEach (error-> {
-					System.out.println ("Error: " + error.getDefaultMessage ()); // Imprime cada mensaje de error global en la consola
+					System.out.println ("Error: " + error.getDefaultMessage ());
 				});
-			}
 
+			}
 			// Verifica si hay errores específicos
 			if (result.hasFieldErrors ()){
-				System.out.println ("Errores en campos específicos:"); // Imprime "Errores en campos específicos:" en la consola
+				System.out.println ("Errores en campos específicos:");
 				result.getFieldErrors ().forEach (error-> {
-					System.out.println ("Campo: " + error.getField () + ", Error Objeto: " + error.getObjectName () + ", Error Code: " + error.getCode ()); // Imprime
-																																							// detalles de
-																																							// cada error de
-																																							// campo
+					System.out.println ("Campo: " + error.getField () + ", Error Objeto: " + error.getObjectName () + ", Error Code: " + error.getCode ());
 				});
 			}
 
 			return "vacante/formVacante"; // Si hay errores, vuelve al formulario para corregirlos
 		}
+		// Modificación termina aquí
 
-		// Imprime la información del objeto 'Vacante' en la consola para propósitos
-		// de depuración
+		// Imprime la información del objeto 'Vacante' en la consola
 		System.out.println ("Nombre Vacante (/vacantes/save) :" + vacante);
 		System.out.println ();
 
 		// Guarda el objeto 'Vacante' utilizando el servicio
 		this.serviceVacantes.guardar (vacante);
 
-		// Devuelve la vista "vacante/formVacante" después de guardar la información
+		// Devuelve la vista "vacante/formVacante"' después de guardar la
+		// información
 		return "vacante/formVacante";
 	}
+
+
 
 
 
@@ -169,7 +111,7 @@ public class VacanteController {
 		modelo.addAttribute ("vacantes", lista); // Añade la lista de vacantes al modelo
 
 
-		return "vacante/listvacantes"; // Devuelve la vista 'listVacantes'
+		return "vacante/listvacantes"; // Devuelve la vista 'listVacantes' después de guardar la información
 	}
 
 

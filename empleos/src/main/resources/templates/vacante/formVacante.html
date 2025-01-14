@@ -26,7 +26,16 @@
           <h2>Datos de la oferta de trabajo</h2>
         </div>
         <!--         <form th:action="@{/vacantes/save}" method="post"> -->
-        <form th:action="@{/vacantes/save}" method="post">
+        <form th:action="@{/vacantes/save}" method="post" th:object="${vacante}">
+          <!-- Sección para mostrar los errores -->
+          <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger mt-3">
+            <h5>Error:</h5>
+            <h6>Por favor corrija los siguientes errores:</h6>
+            <!--  <ul>
+            <li th:each="error : ${#fields.errors('*')}" th:text="${error}"></li>
+          </ul> -->
+          </div>
+          <!-- Fin de la sección de errores -->
           <!-- Aquí se define la acción del formulario que envía los datos a la URL /vacantes/save -->
           <div class="form-row">
             <div class="form-group col-md-6">
@@ -55,6 +64,9 @@
               <input type="text" class="form-control" id="descripcion" name="descripcion"
                 placeholder="Breve descripción de la oferta de trabajo"
               >
+              <div th:if="${#fields.hasErrors('descripcion')}" class="alert alert-danger mt-2">
+                <p th:text="${#fields.errors('descripcion')}"></p>
+              </div>
             </div>
             <div class="form-group col-md-6">
               <label for="estatus">Estatus</label>
@@ -74,11 +86,17 @@
               <input type="text" class="form-control" id="fecha-publicacion_modificado" style="visibility: hidden"
                 name="fecha"
               >
+              <div th:if="${#fields.hasErrors('fecha')}" class="alert alert-danger mt-2">
+                <p th:text="${#fields.errors('fecha')}"></p>
+              </div>
             </div>
             <div class="form-group col-md-6">
               <label for="salario">Salario Ofrecido (Aprox)</label>
               <!-- Data binding: este campo se vincula con la propiedad 'salario' del objeto 'Vacante' -->
               <input type="text" class="form-control" id="salario" name="salario" placeholder="Salario aproximado">
+              <div th:if="${#fields.hasErrors('salario')}" class="alert alert-danger mt-2">
+                <p th:text="${#fields.errors('salario')}"></p>
+              </div>
             </div>
           </div>
           <div class="form-group">
@@ -115,7 +133,7 @@
             </div>
           </div>
           <!-- Modificación termina aquí -->
-          <button type="submit"  th:href="@{/vacantes/save}" class="btn btn-primary">Guardar</button>
+          <button type="submit" th:href="@{/vacantes/save}" class="btn btn-primary">Guardar</button>
         </form>
         <!-- Fin del formulario con data binding -->
       </div>
