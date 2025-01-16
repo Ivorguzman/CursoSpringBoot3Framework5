@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ivor.empleos.model.Vacante;
 import com.ivor.empleos.service.I_Vacanteservice;
@@ -53,13 +54,12 @@ public class VacanteController {
 // Esto se logra porque los nombres de los campos del formulario coinciden
 // con los nombres de los atributos en la clase 'V
 	@PostMapping("/save")
-	public String guardar(Vacante vacante, BindingResult result, Model model) {
+	public String guardar(Vacante vacante, BindingResult result, RedirectAttributes atributoRedirec) {
 
 		// Modificación comienza aquí
 		// Verifica si hay errores en la validación del objeto 'Vacante'
 		if (result.hasErrors ()){
 
-			// Verifica si hay errores globales
 			if (result.hasGlobalErrors ()){
 				System.out.println ("Errores globales:");
 				result.getGlobalErrors ().forEach (error-> {
@@ -77,7 +77,6 @@ public class VacanteController {
 
 			return "vacante/formVacante"; // Si hay errores, vuelve al formulario para corregirlos
 		}
-		// Modificación termina aquí
 
 		// Imprime la información del objeto 'Vacante' en la consola
 		System.out.println ("Nombre Vacante (/vacantes/save) :" + vacante);
@@ -85,6 +84,10 @@ public class VacanteController {
 
 		// Guarda el objeto 'Vacante' utilizando el servicio
 		this.serviceVacantes.guardar (vacante);
+
+		// Añadir un mensaje de éxito usando Flash Attributes
+		atributoRedirec.addFlashAttribute ("registroGuardado", "¡Registro guardada con éxito!");
+		
 
 		// Devuelve la vista "vacante/formVacante"' después de guardar la
 		// información

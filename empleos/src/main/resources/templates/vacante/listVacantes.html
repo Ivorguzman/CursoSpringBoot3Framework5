@@ -12,10 +12,10 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <!-- Enlace al iconos Awesome la CDN -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+
+
 </head>
-
-
-
 <body class="d-flex flex-column min-vh-100">
   <!-- Navegación -->
   <!-- <header th:insert="/fragments/menu :: menu-principal "></header>  (sintaxis de fragmento desactualizada) se eliminará en futuras versiones de Thymeleaf -->
@@ -32,12 +32,18 @@
   <div class="container mt-5" style="width: 80%;">
     <div class="card">
       <!-- Añadido padding interno a card-body -->
-      <div class="card-body p-4">
+      <div class="card-body p-4"> 
         <div class="card-header">
+          <!-- Mostrar mensaje de éxito -->
+          <div th:if="${registroGuardado}" class="alert alert-success">
+<!--           <h3 th:attr="role='alert', class='text-center text-success'" th:text="${mensaje}"></h3> th:attr= role="..." con thymeleaf -->
+                <h3 role='alert' class='text-center text-success' th:text="${registroGuardado}"></h3>   <!--  role="..." con html puro -->
+          </div>
+          <!-- Fin Mostrar mensaje de éxito -->
           <h1 class="text-primary">Listado de ofertas de trabajo</h1>
         </div>
         <div class="p-4">
-       <a th:href="@{/vacantes/create}"  class=" btn btn-primary"> Nueva &raquo; </a>
+          <a th:href="@{/vacantes/create}" class=" btn btn-primary"> Nueva &raquo; </a>
         </div>
         <table class="table table-striped  table-bordered table-hover">
           <thead>
@@ -56,7 +62,7 @@
               <td th:text="${vacante.categoria}"></td>
               <td th:text="${vacante.nombre}"></td>
               <td th:text="${vacante.fecha}"></td>
-               <td th:text="${vacante.status}"></td>
+              <td th:text="${vacante.status}"></td>
               <td><span th:if="${vacante.destacado == 1}" class="badge  badge-success">Si</span> <span
                 th:unless="${vacante.destacado == 1}" class="badge  badge-danger"
               >No</span></td>
@@ -90,11 +96,13 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.tiny.cloud/1/tinymce/5/tinymce.min.js"></script>
   <!-- Enlace a archivos local -->
   <script src="/js/jquery-3.3.1.slim.min.js"></script>
   <script src="/js/bootstrap.bundle.min.js"></script>
   <script src="/js/popper.min.js"></script>
   <script src="/js/bootstrap.min.js"></script>
   <script src="/js/all.min.js"></script>
+  <script src="/tiniymce/tinymce.min.js"></script> 
 </body>
 </html>
