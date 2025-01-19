@@ -26,6 +26,8 @@ public class CategoriaController {
 	private I_CategoriaService categoriaService;
 
 
+
+	// **************** /categorias/index **********
 	// Maneja las solicitudes GET a "/categorias/index"
 	@RequestMapping(value= "/index", method= RequestMethod.GET)
 
@@ -39,15 +41,19 @@ public class CategoriaController {
 	}
 
 
+
+	// **************** /categorias/create **********
 	// Maneja las solicitudes GET a "/categorias/create"
 	@RequestMapping(value= "/create", method= RequestMethod.GET)
-	public String crear() {
+	public String crear(Categoria categoria) {
 		return "categorias/formCategorias"; // Retorna el nombre de la vista para crear una nueva categoría
 	}
 
 
 
 
+
+	// **************** /categorias/save **********
 	// Maneja las solicitudes POST a "/categorias/save"
 	@RequestMapping(value= "/save", method= RequestMethod.POST)
 	/*
@@ -76,16 +82,30 @@ public class CategoriaController {
 				System.out.println ("Error: " + error.getDefaultMessage ());
 			});
 
+
+			// Verifica si hay errores específicos
+			if (result.hasFieldErrors ()){
+				System.out.println ("Errores en campos específicos:");
+				result.getFieldErrors ().forEach (error-> {
+					System.out.println ("Campo: " + error.getField () + ", Error Objeto: " + error.getObjectName () + ", Error Code: " + error.getCode ());
+				});
+			}
+			return "redirect:/categorias/index";// Si hay errores, vuelve al formulario para formCategorias
 		}
 
-		// Verifica si hay errores específicos
-		if (result.hasFieldErrors ()){
-			System.out.println ("Errores en campos específicos:");
-			result.getFieldErrors ().forEach (error-> {
-				System.out.println ("Campo: " + error.getField () + ", Error Objeto: " + error.getObjectName () + ", Error Code: " + error.getCode ());
-			});
-		}
-		return "redirect:/categorias/index";// Si hay errores, vuelve al formulario para formCategorias
+		// Imprime la información del objeto 'Vacante' en la consola
+		System.out.println ("Nombre Categoria (/vacantes/save) :" + categoria);
+		System.out.println ();
+
+		// Guarda el objeto 'Vacante' utilizando el servicio
+		this.categoriaService.guardar (categoria);
+
+		// Añadir un mensaje de éxito usando Flash Attributes
+		atributoRedirec.addFlashAttribute ("registroGuardado", "¡Registro guardada con éxito!");
+
+
+		// Devuelve la vista "vacante/formVacante"' después de guardar la información
+		return "redirect:/categorias/index";// Se realiza en forma indirecta petición http tipo Get a /categorias/index
 	}
 }
 

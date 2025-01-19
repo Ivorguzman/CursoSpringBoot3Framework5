@@ -89,10 +89,8 @@ public class VacanteController {
 		atributoRedirec.addFlashAttribute ("registroGuardado", "¡Registro guardada con éxito!");
 		
 
-		// Devuelve la vista "vacante/formVacante"' después de guardar la
-		// información
-		return "redirect:/vacantes/index";// Se realiza en forma indirecta petición http tipo Get
-												// (vacantes/listVacante)
+		// Devuelve la vista "vacante/formVacante"' después de guardar la información
+		return "redirect:/vacantes/index";// Se realiza en forma indirecta petición http tipo Get (vacantes/listVacante)
 
 	}
 

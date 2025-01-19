@@ -12,9 +12,6 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <!-- Enlace al iconos Awesome la CDN -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
-
-
 </head>
 <body class="d-flex flex-column min-vh-100">
   <!-- Navegación -->
@@ -32,12 +29,13 @@
   <div class="container mt-5" style="width: 80%;">
     <div class="card">
       <!-- Añadido padding interno a card-body -->
-      <div class="card-body p-4"> 
+      <div class="card-body p-4">
         <div class="card-header">
           <!-- Mostrar mensaje de éxito -->
           <div th:if="${registroGuardado}" class="alert alert-success">
-<!--           <h3 th:attr="role='alert', class='text-center text-success'" th:text="${mensaje}"></h3> th:attr= role="..." con thymeleaf -->
-                <h3 role='alert' class='text-center text-success' th:text="${registroGuardado}"></h3>   <!--  role="..." con html puro -->
+            <!--           <h3 th:attr="role='alert', class='text-center text-success'" th:text="${mensaje}"></h3> th:attr= role="..." con thymeleaf -->
+            <h3 role='alert' class='text-center text-success' th:text="${registroGuardado}"></h3>
+            <!--  role="..." con html puro -->
           </div>
           <!-- Fin Mostrar mensaje de éxito -->
           <h1 class="text-primary">Listado de Categorias</h1>
@@ -45,43 +43,45 @@
         <div class="p-4">
           <a th:href="@{/categorias/create}" class=" btn btn-primary"> Nueva &raquo; </a>
         </div>
-        <table class="table table-striped  table-bordered table-hover">
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Nombre</th>
-              <th>Descripción</th>
-            <!--   <th>Estatus</th> -->
-             <!--  <th>Destacado</th> -->
-              <th>Editar</th>
-              <th>Borrar</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr th:each="_categoria : ${_categorias}">
-              <td th:text="${_categoria.id}"></td>
-              <td th:text="${_categoria.nombre}"></td>
-              <td th:text="${_categoria.descripcion}"></td>
-              <!-- <td><span th:if="${_categoria.destacado == 1}" class="badge  badge-success">Si</span> <span
+        <form th:action="@{/categorias/save}" method="post" th:object="${categoria}">
+          <table class="table table-striped  table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <!--   <th>Estatus</th> -->
+                <!--  <th>Destacado</th> -->
+                <th>Editar</th>
+                <th>Borrar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="_categoria : ${_categorias}">
+                <td th:text="${_categoria.id}"></td>
+                <td th:text="${_categoria.nombre}"></td>
+                <td th:text="${_categoria.descripcion}"></td>
+                <!-- <td><span th:if="${_categoria.destacado == 1}" class="badge  badge-success">Si</span> <span
                 th:unless="${_categoria.destacado == 1}" class="badge  badge-danger"
               >No</span></td> -->
-              <td>
-                <!-- Inicio Botón Editar-->
-                <button class="btn btn-warning">
-                  <i class="fas fa-pencil-alt"></i>
-                </button>
-              </td>
-               <!-- Fin Inicio Botón Editar-->
-              <!-- Inicio Botón Borrar-->
-              <td>
-                <button class="btn btn-danger">
-                  <i class="fas fa-trash-alt"></i>
-                </button>
-              </td>
+                <td>
+                  <!-- Inicio Botón Editar-->
+                  <button class="btn btn-warning">
+                    <i class="fas fa-pencil-alt"></i>
+                  </button>
+                </td>
                 <!-- Fin Inicio Botón Editar-->
-            </tr>
-          </tbody>
-        </table>
+                <!-- Inicio Botón Borrar-->
+                <td>
+                  <button class="btn btn-danger">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </td>
+                <!-- Fin Inicio Botón Editar-->
+              </tr>
+            </tbody>
+          </table>
+        </form>
       </div>
     </div>
   </div>
@@ -97,13 +97,13 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
- <!--  <script src="https://cdn.tiny.cloud/1/tinymce/5/tinymce.min.js"></script> -->
+  <!--  <script src="https://cdn.tiny.cloud/1/tinymce/5/tinymce.min.js"></script> -->
   <!-- Enlace a archivos local -->
   <script src="/js/jquery-3.3.1.slim.min.js"></script>
   <script src="/js/bootstrap.bundle.min.js"></script>
   <script src="/js/popper.min.js"></script>
   <script src="/js/bootstrap.min.js"></script>
   <script src="/js/all.min.js"></script>
-<!--   <script src="/tiniymce/tinymce.min.js"></script>  -->
+  <!--   <script src="/tiniymce/tinymce.min.js"></script>  -->
 </body>
 </html>
