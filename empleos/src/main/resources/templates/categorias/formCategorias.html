@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tabla con Encabezados</title>
+<!-- Enlace al CSS bootstrap local -->
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+<!-- Enlace al CSS awesome local -->
+<link rel="stylesheet" href="/css/all.min.css">
+<!-- Enlace al CSS bootstrap de la CDN -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<!-- Enlace al iconos Awesome la CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<script type="text/javascript" src='https://cdn.tiny.cloud/1/no-api-key/tinymce/7/tinymce.min.js'
+  referrerpolicy="origin"
+>
+  </script>
+</head>
+<!-- <body class="d-flex flex-column min-vh-100"> -->
+<body>
+  <!-- Navegación -->
+  <!-- <header th:insert="/fragments/menu :: menu-principal "></header>  (sintaxis de fragmento desactualizada) se eliminará en futuras versiones de Thymeleaf -->
+  <header th:insert="~{/fragments/menu :: menu-principal}"></header>
+  <div class="container mt-5" style="width: 100%;">
+    <!-- Ancho del 100% -->
+    <!--     <div class="row justify-content-center"> -->
+    <div class="container mt-5" style="width: 90%;">
+      <div class="card">
+        <div class="card-body p-4">
+          <div class="card-header">
+            <h3 class="text-primary">Datos de la Categoría</h3>
+          </div>
+          <!-- Formulario -->
+          <form th:action="@{/categorias/save}" method="post" th:object="${categoria}">
+            <!-- Sección para mostrar los errores -->
+            <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger mt-3">
+              <h5>Error:</h5>
+              <h6>Por favor corrija los siguientes errores:</h6>
+            </div>
+            <!-- Fin de la sección de errores -->
+            <div class="form-group row  mt-3">
+              <label for="nombre" class="col-sm-3 col-form-label">Nombre</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingresa el nombre">
+              </div>
+              <div th:if="${#fields.hasErrors('nombre')}" class="alert alert-danger mt-2">
+                <p th:text="${#fields.errors('nombre')}"></p>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="descripcion" class="col-sm-3 col-form-label">Descripción</label>
+              <div class="col-sm-9">
+                <textarea class="form-control" id="descripcion" name="descripcion" rows="3"
+                  placeholder="Ingresa la descripción"
+                ></textarea>
+              </div>
+              <div th:if="${#fields.hasErrors('descripcion')}" class="alert alert-danger mt-2">
+                <p th:text="${#fields.errors('descripcion')}"></p>
+              </div>
+            </div>
+            <button type="submit" th:href="@{/categorias/save}" class="btn btn-primary">Guardar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer -->
+  <footer th:insert="fragments/footer :: pie-pagina"> </footer>
+  <!-- Enlace a archivos de la CDN -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- Enlace a archivos local -->
+  <script src="/js/jquery-3.3.1.slim.min.js"></script>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/popper.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/all.min.js"></script>
+  <script src="/tinymce/tinymce.min.js"></script>
+  <!-- Script para inicializar TinyMCE -->
+  <script type="text/javascript">
+   // Función de inicialización de TinyMCE
+  tinymce.init({
+   // Selector de elementos HTML que se convertirán en editores TinyMCE
+   selector: '#descripcion',
+    // Dimeciones del editor TinyMCE
+       height: 400,
+    // Lista de plugins que se activarán en el editor
+    plugins: [
+      'advlist', 'autolink', 'link', 'image', 'lists', 'charmap', 'preview', 'anchor', 'pagebreak',
+      'searchreplace', 'wordcount', 'visualblocks', 'visualchars', 'code', 'fullscreen', 'insertdatetime',
+      'media', 'table', 'emoticons', 'help'
+    ],
+    // Configuración de la barra de herramientas del editor
+    toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | ' +
+      'bullist numlist outdent indent | link image | print preview media fullscreen | ' +
+      'forecolor backcolor emoticons | help',
+    menu: {
+      favs: { title: 'My Favorites', items: 'code visualaid | searchreplace | emoticons' }
+    },
+    menubar: 'favs file edit view insert format tools table help',
+    content_css: 'css/content.css'
+  });
+  </script>
+</body>
+</html>

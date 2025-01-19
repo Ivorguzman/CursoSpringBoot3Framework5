@@ -58,25 +58,27 @@
             </tr>
           </thead>
           <tbody>
-            <tr th:each="categoria : ${categorias}">
-              <td th:text="${categoria.id}"></td>
-              <td th:text="${categoria.nombre}"></td>
-              <td th:text="${categoria.descripcion}"></td>
-              <!-- <td><span th:if="${categoria.destacado == 1}" class="badge  badge-success">Si</span> <span
-                th:unless="${categoria.destacado == 1}" class="badge  badge-danger"
+            <tr th:each="_categoria : ${_categorias}">
+              <td th:text="${_categoria.id}"></td>
+              <td th:text="${_categoria.nombre}"></td>
+              <td th:text="${_categoria.descripcion}"></td>
+              <!-- <td><span th:if="${_categoria.destacado == 1}" class="badge  badge-success">Si</span> <span
+                th:unless="${_categoria.destacado == 1}" class="badge  badge-danger"
               >No</span></td> -->
               <td>
-                <!-- Botón Editar-->
+                <!-- Inicio Botón Editar-->
                 <button class="btn btn-warning">
                   <i class="fas fa-pencil-alt"></i>
                 </button>
               </td>
-              <!-- Botón Borrar-->
+               <!-- Fin Inicio Botón Editar-->
+              <!-- Inicio Botón Borrar-->
               <td>
                 <button class="btn btn-danger">
                   <i class="fas fa-trash-alt"></i>
                 </button>
               </td>
+                <!-- Fin Inicio Botón Editar-->
             </tr>
           </tbody>
         </table>
@@ -95,13 +97,13 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script src="https://cdn.tiny.cloud/1/tinymce/5/tinymce.min.js"></script>
+ <!--  <script src="https://cdn.tiny.cloud/1/tinymce/5/tinymce.min.js"></script> -->
   <!-- Enlace a archivos local -->
   <script src="/js/jquery-3.3.1.slim.min.js"></script>
   <script src="/js/bootstrap.bundle.min.js"></script>
   <script src="/js/popper.min.js"></script>
   <script src="/js/bootstrap.min.js"></script>
   <script src="/js/all.min.js"></script>
-  <script src="/tiniymce/tinymce.min.js"></script> 
+<!--   <script src="/tiniymce/tinymce.min.js"></script>  -->
 </body>
 </html>

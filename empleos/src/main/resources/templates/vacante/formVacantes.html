@@ -22,6 +22,7 @@
   <!-- Navegación -->
   <!-- <header th:insert="/fragments/menu :: menu-principal "></header>  (sintaxis de fragmento desactualizada) se eliminará en futuras versiones de Thymeleaf -->
   <header th:insert="~{/fragments/menu :: menu-principal}"></header>
+    <div class="container mt-5" style="width:100%;"> <!-- Ancho del 100% -->
     <!-- Ancho del 90% -->
   <div class="container mt-5" style="width: 90%;">
     <div class="card">
@@ -32,6 +33,8 @@
         </div>
         <!--         <form th:action="@{/vacantes/save}" method="post"> -->
         <form th:action="@{/vacantes/save}" method="post" th:object="${vacante}">
+        
+        
           <!-- Sección para mostrar los errores -->
           <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger mt-3">
             <h5>Error:</h5>
@@ -41,6 +44,8 @@
           </ul> -->
           </div>
           <!-- Fin de la sección de errores -->
+          
+          
           <!-- Aquí se define la acción del formulario que envía los datos a la URL /vacantes/save -->
           <div class="form-row">
             <div class="form-group col-md-6">
@@ -142,6 +147,7 @@
         </form>
         <!-- Fin del formulario con data binding -->
       </div>
+    </div>
     </div>
   </div>
   <!-- Script para formatear la fecha -->

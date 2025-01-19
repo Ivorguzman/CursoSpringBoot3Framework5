@@ -26,7 +26,7 @@ import com.ivor.empleos.service.I_Vacanteservice;
 
 
 @Controller
-@RequestMapping("/vacantes")
+@RequestMapping("/vacantes") // Marca esta clase como un controlador de Spring MVC
 public class VacanteController {
 	@Autowired // this.serviceVacantes = new VacanteServiceImpl();
 	private I_Vacanteservice serviceVacantes;
@@ -44,7 +44,7 @@ public class VacanteController {
 
 	@GetMapping("/create")
 	public String crear(Vacante vacante) {
-		return "vacante/formVacante";
+		return "vacante/formVacantes";
 	}
 
 
@@ -75,7 +75,7 @@ public class VacanteController {
 				});
 			}
 
-			return "vacante/formVacante"; // Si hay errores, vuelve al formulario para corregirlos
+			return "vacante/formVacantes"; // Si hay errores, vuelve al formulario para formVacantes
 		}
 
 		// Imprime la información del objeto 'Vacante' en la consola
@@ -108,7 +108,7 @@ public class VacanteController {
 		// System.out.println();
 		// System.out.println("lista_VariableLocal = " + lista); // Imprime la lista
 		// para depuración
-		modelo.addAttribute ("vacantes", lista); // Añade la lista de vacantes al modelo
+		modelo.addAttribute ("_vacantes", lista); // Añade la lista de vacantes al modelo
 		return "vacante/listvacantes"; // Devuelve la vista 'listVacantes' después de guardar la información
 	}
 
@@ -263,7 +263,7 @@ public class VacanteController {
 		System.out.println ("Detalle de vacante: " + vacante);
 
 		modelo.addAttribute ("vacante", vacante);
-		return "/vacante/detalleVacante";
+		return "/vacante/detalleVacantes";
 	}
 
 

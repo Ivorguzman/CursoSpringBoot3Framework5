@@ -58,13 +58,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr th:each="vacante : ${vacantes}">
-              <td th:text="${vacante.categoria}"></td>
-              <td th:text="${vacante.nombre}"></td>
-              <td th:text="${vacante.fecha}"></td>
-              <td th:text="${vacante.status}"></td>
-              <td><span th:if="${vacante.destacado == 1}" class="badge  badge-success">Si</span> <span
-                th:unless="${vacante.destacado == 1}" class="badge  badge-danger"
+            <tr th:each="_vacante : ${_vacantes}">
+              <td th:text="${_vacante.categoria}"></td>
+              <td th:text="${_vacante.nombre}"></td>
+              <td th:text="${_vacante.fecha}"></td>
+              <td th:text="${_vacante.status}"></td>
+              <td><span th:if="${_vacante.destacado == 1}" class="badge  badge-success">Si</span> <span
+                th:unless="${_vacante.destacado == 1}" class="badge  badge-danger"
               >No</span></td>
               <td>
                 <!-- Botón Editar-->
