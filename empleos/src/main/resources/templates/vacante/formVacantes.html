@@ -12,142 +12,140 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <!-- Enlace al iconos Awesome la CDN -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  <script
-    type="text/javascript"
-    src='https://cdn.tiny.cloud/1/no-api-key/tinymce/7/tinymce.min.js'
-    referrerpolicy="origin">
-  </script>
+<!-- <script type="text/javascript" src='https://cdn.tiny.cloud/1/no-api-key/tinymce/7/tinymce.min.js'
+  referrerpolicy="origin"
+>
+  </script> -->
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
   <!-- Navegación -->
   <!-- <header th:insert="/fragments/menu :: menu-principal "></header>  (sintaxis de fragmento desactualizada) se eliminará en futuras versiones de Thymeleaf -->
   <header th:insert="~{/fragments/menu :: menu-principal}"></header>
-    <div class="container mt-5" style="width:100%;"> <!-- Ancho del 100% -->
+    <!-- Ancho del 100% -->
+  <div class="container mt-5" style="width: 100%;">
     <!-- Ancho del 90% -->
-  <div class="container mt-5" style="width: 90%;">
-    <div class="card">
-      <div class="card-body p-4">
-        <!-- Añadido padding interno a card-body -->
-        <div class="card-header">
-          <h2>Datos de la oferta de trabajo</h2>
+    <div class="container mt-5" style="width: 90%;">
+      <div class="card">
+        <div class="card-body p-4">
+          <!-- Añadido padding interno a card-body -->
+          <div class="card-header">
+            <h2 class="text-primary">Datos de la oferta de trabajo</h2>
+          </div>
+          <!--         <form th:action="@{/vacantes/save}" method="post"> -->
+          <!--th:object="${vacante}" Vincula el formulario con el objeto vacante de la  calse modelo Vacante  -->
+          <form th:action="@{/vacantes/save}" method="post" th:object="${vacante}">
+            <!-- Sección para mostrar los errores -->
+            <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger mt-3">
+              <h5>Error:</h5>
+              <h6>Por favor corrija los siguientes errores:</h6>
+            </div>
+            <!-- Fin de la sección de errores -->
+            <!-- Aquí se define la acción del formulario que envía los datos a la URL /vacantes/save -->
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="nombre">Nombre</label>
+                <!-- Data binding: este campo se vincula con la propiedad 'nombre' del objeto 'Vacante' -->
+                <input type="text" class="form-control" th:field="*{nombre}" name="nombre" id="nombre"
+                  placeholder="Título de la oferta de trabajo"
+                >
+              </div>
+              <div class="form-group col-md-6">
+                <label for="categoria">Categoría</label>
+                <!-- Data binding: este campo se vincula con la propiedad 'categoria' del objeto 'Vacante' -->
+                <select class="form-control" id="categoria" th:field="*{categoria}" name="categoria">
+                  <option value="Ventas">Ventas</option>
+                  <option value="Contabilidad">Contabilidad</option>
+                  <option value="Transporte">Transporte</option>
+                  <option value="Informática">Informática</option>
+                  <option value="Construcción">Construcción</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="descripcion">Descripción</label>
+                <!-- Data binding: este campo se vincula con la propiedad 'descripcion' del objeto 'Vacante' -->
+                <input type="text" class="form-control" id="descripcion" th:field="*{descripcion}" name="descripcion"
+                  placeholder="Breve descripción de la oferta de trabajo"
+                >
+                <div th:if="${#fields.hasErrors('descripcion')}" class="alert alert-danger mt-2">
+                  <p th:text="${#fields.errors('descripcion')}"></p>
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="estatus">Estatus</label>
+                <!-- Data binding: este campo se vincula con la propiedad 'status' del objeto 'Vacante' -->
+                <select class="form-control" id="status" th:field="*{status}" name="status">
+                  <option value="creada">Creada</option>
+                  <option value="aprobada">Aprobada</option>
+                  <option value="liminada">Eliminada</option>
+                  <!-- Añade más opciones según sea necesario -->
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="fecha-publicacion">Fecha de Publicación</label>
+                <!-- Data binding: este campo se vincula con la propiedad 'fecha' del objeto 'Vacante' en formato  -->
+                <input type="date" class="form-control" id="fecha-publicacion" name="#" onchange="formatearFecha()">
+                <!-- Data binding: este campo se vincula con la propiedad 'fecha' del objeto 'Vacante' -->
+                <input type="text" class="form-control" id="fecha-publicacion_modificado" style="visibility: hidden"
+                  th:field="*{fecha}" name="fecha"
+                >
+                <div th:if="${#fields.hasErrors('fecha')}" class="alert alert-danger mt-2">
+                  <p th:text="${#fields.errors('fecha')}"></p>
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="salario">Salario Ofrecido (Aprox)</label>
+                <!-- Data binding: este campo se vincula con la propiedad 'salario' del objeto 'Vacante' -->
+                <input type="text" class="form-control" id="salario" th:field="*{salario}" name="salario"
+                  placeholder="Salario aproximado"
+                >
+                <div th:if="${#fields.hasErrors('salario')}" class="alert alert-danger mt-2">
+                  <p th:text="${#fields.errors('salario')}"></p>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="imagen">Imagen</label>
+              <!-- Data binding: este campo se vincula con la propiedad 'images' del objeto 'Vacante' -->
+              <input type="file" class="form-control-file" id="imagen" th:field="*{images}" name="images">
+            </div>
+            <div class="form-group">
+              <label>Destacado</label>
+              <div class="form-check">
+                <!-- Data binding: estos campos de radio se vinculan con la propiedad 'destacado' del objeto 'Vacante' -->
+                <input class="form-check-input" type="radio" th:field="*{destacado}" name="destacado" id="destacado" value="1"
+                  checked
+                > <label class="form-check-label" for="destacado1">Destacado</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" th:field="*{destacado}" name="destacado" id="destacado" value="0"> <label
+                  class="form-check-label" for="destacado2"
+                >No Destacado</label>
+              </div>
+            </div>
+            <!-- Modificación comienza aquí -->
+            <div class="form-row d-flex align-items-stretch">
+              <div class="form-group col-md-9 d-flex flex-column">
+                <label for="detalles">Detalles</label>
+                <!-- Data binding: este campo se vincula con la propiedad 'detalles' del objeto 'Vacante' -->
+                <textarea class="form-control flex-grow-1" id="detalles" th:field="*{detalles}" name="detalles" rows="3"></textarea>
+              </div>
+              <div class="form-group col-md-3 d-flex flex-column align-items-center justify-content-center">
+                <label>Imagen/Logo</label>
+                <div class="d-flex justify-content-center align-items-center border w-100" style="height: 150px;">
+                  <span>Placeholder de Imagen</span>
+                </div>
+              </div>
+            </div>
+            <!-- Modificación termina aquí -->
+            <button type="submit" th:href="@{/vacantes/save}" class="btn btn-primary">Guardar</button>
+          </form>
+          <!-- Fin del formulario con data binding -->
         </div>
-        <!--         <form th:action="@{/vacantes/save}" method="post"> -->
-        <form th:action="@{/vacantes/save}" method="post" th:object="${vacante}">
-        
-        
-          <!-- Sección para mostrar los errores -->
-          <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger mt-3">
-            <h5>Error:</h5>
-            <h6>Por favor corrija los siguientes errores:</h6>
-            <!--  <ul>
-            <li th:each="error : ${#fields.errors('*')}" th:text="${error}"></li>
-          </ul> -->
-          </div>
-          <!-- Fin de la sección de errores -->
-          
-          
-          <!-- Aquí se define la acción del formulario que envía los datos a la URL /vacantes/save -->
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="nombre">Nombre</label>
-              <!-- Data binding: este campo se vincula con la propiedad 'nombre' del objeto 'Vacante' -->
-              <input type="text" class="form-control" name="nombre" id="nombre"
-                placeholder="Título de la oferta de trabajo"
-              >
-            </div>
-            <div class="form-group col-md-6">
-              <label for="categoria">Categoría</label>
-              <!-- Data binding: este campo se vincula con la propiedad 'categoria' del objeto 'Vacante' -->
-              <select class="form-control" id="categoria" name="categoria">
-                <option value="Ventas">Ventas</option>
-                <option value="Contabilidad">Contabilidad</option>
-                <option value="Transporte">Transporte</option>
-                <option value="Informática">Informática</option>
-                <option value="Construcción">Construcción</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="descripcion">Descripción</label>
-              <!-- Data binding: este campo se vincula con la propiedad 'descripcion' del objeto 'Vacante' -->
-              <input type="text" class="form-control" id="descripcion" name="descripcion"
-                placeholder="Breve descripción de la oferta de trabajo"
-              >
-              <div th:if="${#fields.hasErrors('descripcion')}" class="alert alert-danger mt-2">
-                <p th:text="${#fields.errors('descripcion')}"></p>
-              </div>
-            </div>
-            <div class="form-group col-md-6">
-              <label for="estatus">Estatus</label>
-              <!-- Data binding: este campo se vincula con la propiedad 'status' del objeto 'Vacante' -->
-              <select class="form-control" id="status" name="status">
-                <option>Creada</option>
-                <!-- Añade más opciones según sea necesario -->
-              </select>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="fecha-publicacion">Fecha de Publicación</label>
-              <!-- Data binding: este campo se vincula con la propiedad 'fecha' del objeto 'Vacante' en formato  -->
-              <input type="date" class="form-control" id="fecha-publicacion" name="#" onchange="formatearFecha()">
-              <!-- Data binding: este campo se vincula con la propiedad 'fecha' del objeto 'Vacante' -->
-              <input type="text" class="form-control" id="fecha-publicacion_modificado" style="visibility: hidden"
-                name="fecha"
-              >
-              <div th:if="${#fields.hasErrors('fecha')}" class="alert alert-danger mt-2">
-                <p th:text="${#fields.errors('fecha')}"></p>
-              </div>
-            </div>
-            <div class="form-group col-md-6">
-              <label for="salario">Salario Ofrecido (Aprox)</label>
-              <!-- Data binding: este campo se vincula con la propiedad 'salario' del objeto 'Vacante' -->
-              <input type="text" class="form-control" id="salario" name="salario" placeholder="Salario aproximado">
-              <div th:if="${#fields.hasErrors('salario')}" class="alert alert-danger mt-2">
-                <p th:text="${#fields.errors('salario')}"></p>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="imagen">Imagen</label>
-            <!-- Data binding: este campo se vincula con la propiedad 'images' del objeto 'Vacante' -->
-            <input type="file" class="form-control-file" id="imagen" name="images">
-          </div>
-          <div class="form-group">
-            <label>Destacado</label>
-            <div class="form-check">
-              <!-- Data binding: estos campos de radio se vinculan con la propiedad 'destacado' del objeto 'Vacante' -->
-              <input class="form-check-input" type="radio" name="destacado" id="destacado" value="1" checked> <label
-                class="form-check-label" for="destacado1"
-              >Destacado</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="destacado" id="destacado" value="0"> <label
-                class="form-check-label" for="destacado2"
-              >No Destacado</label>
-            </div>
-          </div>
-          <!-- Modificación comienza aquí -->
-          <div class="form-row d-flex align-items-stretch">
-            <div class="form-group col-md-9 d-flex flex-column">
-              <label for="detalles">Detalles</label>
-              <!-- Data binding: este campo se vincula con la propiedad 'detalles' del objeto 'Vacante' -->
-              <textarea class="form-control flex-grow-1" id="detalles" name="detalles" rows="3"></textarea>
-            </div>
-            <div class="form-group col-md-3 d-flex flex-column align-items-center justify-content-center">
-              <label>Imagen/Logo</label>
-              <div class="d-flex justify-content-center align-items-center border w-100" style="height: 150px;">
-                <span>Placeholder de Imagen</span>
-              </div>
-            </div>
-          </div>
-          <!-- Modificación termina aquí -->
-          <button type="submit" th:href="@{/vacantes/save}" class="btn btn-primary">Guardar</button>
-        </form>
-        <!-- Fin del formulario con data binding -->
       </div>
-    </div>
     </div>
   </div>
   <!-- Script para formatear la fecha -->
@@ -177,24 +175,21 @@
  -->
   <!-- Footer -->
   <!-- <footer th:insert="/fragments/footer :: pie-pagina" ></footer>  (sintaxis de fragmento desactualizada) se eliminará en futuras versiones de Thymeleaf -->
-  <footer th:insert="~{/fragments/footer :: pie-pagina}"></footer>
+  <footer class="mt-auto" th:insert="~{/fragments/footer :: pie-pagina}"></footer>
   <!-- Enlace a archivos de la CDN -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
- 
   <!-- Enlace a archivos local -->
   <script src="/js/jquery-3.3.1.slim.min.js"></script>
   <script src="/js/bootstrap.bundle.min.js"></script>
   <script src="/js/popper.min.js"></script>
   <script src="/js/bootstrap.min.js"></script>
   <script src="/js/all.min.js"></script>
-  <script src="/tinymce/tinymce.min.js"></script> 
-
+  <script src="/tinymce/tinymce.min.js"></script>
   
-  
-  <!-- Script para inicializar TinyMCE -->
-  <script type="text/javascript">
+   <!-- Script para inicializar TinyMCE todas  las opciones y plugines -->
+  <!--<script type="text/javascript">
    // Función de inicialización de TinyMCE
   tinymce.init({
    // Selector de elementos HTML que se convertirán en editores TinyMCE
@@ -216,6 +211,27 @@
     },
     menubar: 'favs file edit view insert format tools table help',
     content_css: 'css/content.css'
+  });
+  </script> -->
+  
+  
+  <!-- Script para inicializar TinyMCE -->
+  <script type="text/javascript">
+   // Función de inicialización de TinyMCE
+  tinymce.init({
+   // Selector de elementos HTML que se convertirán en editores TinyMCE
+   selector: '#detalles',
+    // Dimeciones del editor TinyMCE
+       height: 300,
+    // Lista de plugins que se activarán en el editor
+    plugins: ['textcolor', 'table lists code'],
+    // Configuración de la barra de herramientas del editor
+    toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | ' +
+      'bullist numlist outdent indent | link image | print preview media fullscreen | ' +
+      'forecolor backcolor emoticons | help',
+    menu: {
+      favs: { title: 'My Favorites', items: 'code visualaid | searchreplace | emoticons' }
+    },
   });
   </script>
 </body>

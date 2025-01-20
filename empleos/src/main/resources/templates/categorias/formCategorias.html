@@ -17,15 +17,14 @@
 >
   </script>
 </head>
-<!-- <body class="d-flex flex-column min-vh-100"> -->
-<body>
+<body class="d-flex flex-column min-vh-100">
   <!-- Navegación -->
   <!-- <header th:insert="/fragments/menu :: menu-principal "></header>  (sintaxis de fragmento desactualizada) se eliminará en futuras versiones de Thymeleaf -->
   <header th:insert="~{/fragments/menu :: menu-principal}"></header>
+  <!-- Ancho del 100% -->
   <div class="container mt-5" style="width: 100%;">
-    <!-- Ancho del 100% -->
     <!--     <div class="row justify-content-center"> -->
-    <div class="container mt-5" style="width: 90%;">
+    <div class="container mt-5" style="width: 60%;">
       <div class="card">
         <div class="card-body p-4">
           <div class="card-header">
@@ -39,24 +38,26 @@
               <h6>Por favor corrija los siguientes errores:</h6>
             </div>
             <!-- Fin de la sección de errores -->
-            <div class="form-group row  mt-3">
-              <label for="nombre" class="col-sm-3 col-form-label">Nombre</label>
-              <div class="col-sm-4">
-                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingresa el nombre">
-              </div>
-              <div th:if="${#fields.hasErrors('nombre')}" class="alert alert-danger mt-2">
-                <p th:text="${#fields.errors('nombre')}"></p>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="nombre">Nombre</label> <input type="text" class="form-control" id="nombre" name="nombre"
+                  placeholder="Ingresa el nombre"
+                >
+                <div th:if="${#fields.hasErrors('nombre')}" class="alert alert-danger mt-2">
+                  <p th:text="${#fields.errors('nombre')}"></p>
+                </div>
               </div>
             </div>
-            <div class="form-group row">
-              <label for="descripcion" class="col-sm-3 col-form-label">Descripción</label>
-              <div class="col-sm-9">
-                <textarea class="form-control" id="descripcion" name="descripcion" rows="3"
+              <!-- Modificación comienza aquí -->
+            <div class="form-row d-flex align-items-stretch">
+             <div class="form-group col-md-9 d-flex flex-column">   
+                <label for="descripcion">Descripción</label>
+                <textarea class="form-control flex-grow-1" id="descripcion" name="descripcion" rows="3"
                   placeholder="Ingresa la descripción"
                 ></textarea>
-              </div>
-              <div th:if="${#fields.hasErrors('descripcion')}" class="alert alert-danger mt-2">
-                <p th:text="${#fields.errors('descripcion')}"></p>
+                <div th:if="${#fields.hasErrors('descripcion')}" class="alert alert-danger mt-2">
+                  <p th:text="${#fields.errors('descripcion')}"></p>
+                </div>
               </div>
             </div>
             <button type="submit" th:href="@{/categorias/save}" class="btn btn-primary">Guardar</button>
@@ -65,9 +66,7 @@
       </div>
     </div>
   </div>
-  <!-- Footer -->
-  <!-- <footer th:insert="/fragments/footer :: pie-pagina" ></footer>  (sintaxis de fragmento desactualizada) se eliminará en futuras versiones de Thymeleaf -->
-  <footer th:insert="~{/fragments/footer :: pie-pagina}"></footer>
+
   <!-- Enlace a archivos de la CDN -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -79,8 +78,8 @@
   <script src="/js/bootstrap.min.js"></script>
   <script src="/js/all.min.js"></script>
   <script src="/tinymce/tinymce.min.js"></script>
-  <!-- Script para inicializar TinyMCE -->
-  <script type="text/javascript">
+  <!-- Script para inicializar TinyMCE todas  las opciones y plugines -->
+  <!--   <script type="text/javascript">
    // Función de inicialización de TinyMCE
   tinymce.init({
    // Selector de elementos HTML que se convertirán en editores TinyMCE
@@ -103,6 +102,45 @@
     menubar: 'favs file edit view insert format tools table help',
     content_css: 'css/content.css'
   });
+  </script> -->
+  <!-- Script para inicializar TinyMCE -->
+  <script type="text/javascript">
+   // Función de inicialización de TinyMCE
+  tinymce.init({
+   // Selector de elementos HTML que se convertirán en editores TinyMCE
+   selector: '#descripcion',
+    // Dimeciones del editor TinyMCE
+       height: 300,
+    // Lista de plugins que se activarán en el editor
+    plugins: ['textcolor', 'table lists code'],
+    // Configuración de la barra de herramientas del editor
+    toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | ' +
+      'bullist numlist outdent indent | link image | print preview media fullscreen | ' +
+      'forecolor backcolor emoticons | help',
+    menu: {
+      favs: { title: 'My Favorites', items: 'code visualaid | searchreplace | emoticons' }
+    },
+  });
   </script>
+     <!-- Footer -->
+  <footer th:fragment="pie-pagina" class="footer mt-auto py-3  footer-dark  bg-dark">
+    <div class="container text-center">
+      <span class="text-muted">© 2024 EmpleosApp, Inc. | WebApp Desarrollada con Spring Boot 2.1.2 | Realizado
+        por: Ivor A. Guzmán Zambrano | <a href="#">Privacy</a> · <a href="#">Terms</a>
+      </span>
+    </div>
+  </footer>
+  <!-- Enlace a archivos de la CDN -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!--  <script src="https://cdn.tiny.cloud/1/tinymce/5/tinymce.min.js"></script> -->
+  <!-- Enlace a archivos local -->
+  <script src="/js/jquery-3.3.1.slim.min.js"></script>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/popper.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/all.min.js"></script>
+  <!--   <script src="/tiniymce/tinymce.min.js"></script>  -->
 </body>
 </html>

@@ -77,6 +77,8 @@ public class CategoriaController {
 		// Modificación comienza aquí
 		// Verifica si hay errores en la validación del objeto 'categoria'
 		if (result.hasErrors ()){
+
+			// Verifica si hay errores globales
 			System.out.println ("Errores globales:");
 			result.getGlobalErrors ().forEach (error-> {
 				System.out.println ("Error: " + error.getDefaultMessage ());
