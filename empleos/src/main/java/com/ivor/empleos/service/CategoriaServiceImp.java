@@ -29,7 +29,46 @@ public class CategoriaServiceImp implements I_CategoriaService {
 
 	// ******************* Contructor ********************************
 	public CategoriaServiceImp( ) {
+
 		this.categoria= new LinkedList<Categoria> ();
+
+		// Crear categoria 1
+		Categoria categoria1= new Categoria ();
+		categoria1.setId (1);
+		categoria1.setNombre ("Ventas");
+		categoria1.setDescripcion (null);
+		// Crear categoria 2
+		Categoria categoria2= new Categoria ();
+		categoria2.setId (2);
+		categoria2.setNombre ("Contabilidad");
+		categoria2.setDescripcion (null);
+		// Crear categoria 3
+		Categoria categoria3= new Categoria ();
+		categoria3.setId (3);
+		categoria3.setNombre ("Transporte");
+		categoria3.setDescripcion (null);
+		// Crear categoria 4
+		Categoria categoria4= new Categoria ();
+		categoria4.setId (4);
+		categoria4.setNombre ("Informática");
+		categoria4.setDescripcion (null);
+		// Crear categoria 5
+		Categoria categoria5= new Categoria ();
+		categoria5.setId (5);
+		categoria5.setNombre ("Construcción");
+		categoria5.setDescripcion (null);
+		// Crear categoria 6
+		Categoria categoria6= new Categoria ();
+		categoria5.setId (6);
+		categoria5.setNombre ("Desarrollo Web (Java Spring)");
+		categoria5.setDescripcion (null);
+
+		this.categoria.add (categoria1);
+		this.categoria.add (categoria2);
+		this.categoria.add (categoria3);
+		this.categoria.add (categoria4);
+		this.categoria.add (categoria5);
+		this.categoria.add (categoria6);
 
 	}
 

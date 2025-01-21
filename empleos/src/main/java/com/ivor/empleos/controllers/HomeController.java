@@ -10,7 +10,7 @@ import org.springframework.ui.Model; // Importa la interfaz Model para pasar dat
 import org.springframework.web.bind.annotation.GetMapping; // Importa la anotación @GetMapping para manejar solicitudes GET
 
 import com.ivor.empleos.model.Vacante; // Importa la clase Vacante desde el paquete com.ivor.empleos.model
-import com.ivor.empleos.service.I_Vacanteservice;
+import com.ivor.empleos.service.I_VacanteService;
 
 @Controller // Marca esta clase como un controlador de Spring MVC indica que Spring debe
 			// inyectar automáticamente un bean de tipo I_Vacanteservice en este campo.
@@ -25,7 +25,7 @@ public class HomeController {
 	 * 3- Y otros paso màs.
 	 */
 	@Autowired
-	private I_Vacanteservice serviceVacantes;
+	private I_VacanteService serviceVacantes;
 	// ****************** (/) **********************
 	@GetMapping("/") // Mapea las solicitudes HTTP GET en la URL raíz "/"
 	public String mostrarHome(Model modelo) {

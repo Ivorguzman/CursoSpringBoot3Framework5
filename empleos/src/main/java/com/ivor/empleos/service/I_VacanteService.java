@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.ivor.empleos.model.Vacante;
 
-public interface I_Vacanteservice {
+public interface I_VacanteService {
 
 	List<Vacante> buscarTodasVacante();
 

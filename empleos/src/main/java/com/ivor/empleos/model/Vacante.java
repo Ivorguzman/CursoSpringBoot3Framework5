@@ -14,7 +14,7 @@ public class Vacante {
 	private Integer destacado;
 	private String status;
 	private String detalles;
-	private String categoria;
+	private Categoria categoria;
 
 
 	public Vacante( ) {
@@ -22,7 +22,7 @@ public class Vacante {
 	}
 
 
-	// Getters
+	// ************* Getters ************
 	public String getStatus() {
 		return this.status;
 	}
@@ -32,7 +32,7 @@ public class Vacante {
 		return this.detalles;
 	}
 
-	public String getCategoria() {
+	public Categoria getCategoria() {
 		return this.categoria;
 	}
 
@@ -73,7 +73,7 @@ public class Vacante {
 
 
 
-	// Setters
+	// ************** Setters *************
 	public void setStatus(String status) {
 		this.status= status;
 	}
@@ -84,7 +84,7 @@ public class Vacante {
 	}
 
 
-	public void setCategoria(String categoria) {
+	public void setCategoria(Categoria categoria) {
 		this.categoria= categoria;
 	}
 
@@ -122,9 +122,10 @@ public class Vacante {
 
 	@Override
 	public String toString() {
-		return "Vacante [images=" + this.images + ", id=" + this.id + ", nombre=" + this.nombre + ", descripcion=" + this.descripcion + ", fecha=" + this.fecha + ", salario="
-				+ this.salario + ", destacado=" + this.destacado + ", status=" + this.status + ", detalles=" + this.detalles + "]";
+		return "Vacante [nombre=" + this.nombre + ", descripcion=" + this.descripcion + ", id=" + this.id + ", fecha=" + this.fecha + ", salario=" + this.salario + ", images="
+							+ this.images + ", destacado=" + this.destacado + ", status=" + this.status + ", detalles=" + this.detalles + ", categoria=" + this.categoria + "]";
 	}
+
 
 
 

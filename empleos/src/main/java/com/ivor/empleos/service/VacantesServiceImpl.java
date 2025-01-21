@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.ivor.empleos.model.Vacante;
 
 @Service
-public class VacantesServiceImpl implements I_Vacanteservice {
+public class VacantesServiceImpl implements I_VacanteService {
 
 	private List<Vacante> lista = null; // Atributo a nivel de la clase
 

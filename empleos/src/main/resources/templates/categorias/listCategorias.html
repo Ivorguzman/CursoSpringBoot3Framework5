@@ -27,6 +27,9 @@
 <td>:    Significa "Table Data" y se usa para definir una celda de datos en una tabla.
 -->
 <body class="d-flex flex-column min-vh-100">
+  <!-- Navegación -->
+  <!-- <header th:insert="/fragments/menu :: menu-principal "></header>  (sintaxis de fragmento desactualizada) se eliminará en futuras versiones de Thymeleaf -->
+  <header th:insert="~{/fragments/menu :: menu-principal}"></header>
   <div class="container mt-5" style="width: 80%;">
     <div class="card">
       <!-- Añadido padding interno a card-body -->

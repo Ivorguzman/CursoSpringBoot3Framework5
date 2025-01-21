@@ -21,29 +21,38 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ivor.empleos.model.Vacante;
-import com.ivor.empleos.service.I_Vacanteservice;
+import com.ivor.empleos.service.I_CategoriaService;
+import com.ivor.empleos.service.I_VacanteService;
 
 
 
 @Controller
 @RequestMapping("/vacantes") // Marca esta clase como un controlador de Spring MVC
 public class VacanteController {
-	@Autowired // this.serviceVacantes = new VacanteServiceImpl();
-	private I_Vacanteservice serviceVacantes;
-
 
 	/*
-	 * // **************** /vacantes/create **********
-	 * 
-	 * @GetMapping("/create")
-	 * public String crear() {
-	 * 
-	 * return "vacante/formVacante";
-	 * };
+	 * _____ Todos los pasos Ahorrados _______
+	 * CategoriaServiceImp categoriaInyectar= new CategoriaServiceImp ();
+	 * private I_CategoriaService serviceCategoria= this.categoriaInyectar;
 	 */
+	@Autowired // this.serviceCategoria = new CategoriaServiceImp();
+	private I_CategoriaService serviceCategoria;
 
+
+
+	@Autowired // this.serviceVacantes = new VacanteServiceImpl();
+	private I_VacanteService serviceVacantes;
+
+
+
+
+
+	// **************** /vacantes/create **********
 	@GetMapping("/create")
-	public String crear(Vacante vacante) {
+	public String crear(Vacante vacante, Model model) {
+
+		model.addAttribute ("_categorias", this.serviceCategoria.buscarTodas ());
+
 		return "vacante/formVacantes";
 	}
 
