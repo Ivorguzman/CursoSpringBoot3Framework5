@@ -12,7 +12,7 @@ import com.ivor.empleos.model.Vacante;
 @Service
 public class VacantesServiceImpl implements I_VacanteService {
 
-	private List<Vacante> lista = null; // Atributo a nivel de la clase
+	private List<Vacante> listaVacantes = null; // Atributo a nivel de la clase
 
 
 
@@ -26,14 +26,14 @@ public class VacantesServiceImpl implements I_VacanteService {
 	 *
 	 * new LinkedList<>():
 	 * Crea una nueva instancia de LinkedList<Vacante> y la asigna a la variable
-	 * lista.
+	 * listaVacantes.
 	 * LinkedList es una implementación concreta de la interfaz List.
 	 */
 	// ******************* Contructor ********************************
 	public VacantesServiceImpl( ) {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy"); // Formato de fecha
 
-		this.lista = new LinkedList<Vacante>(); // Lista de vacantes
+		this.listaVacantes = new LinkedList<Vacante>(); // Lista de vacantes
 
 
 		try{
@@ -81,10 +81,10 @@ public class VacantesServiceImpl implements I_VacanteService {
 
 
 
-			this.lista.add(vacante1);
-			this.lista.add(vacante2);
-			this.lista.add(vacante3);
-			this.lista.add(vacante4);
+			this.listaVacantes.add(vacante1);
+			this.listaVacantes.add(vacante2);
+			this.listaVacantes.add(vacante3);
+			this.listaVacantes.add(vacante4);
 
 
 
@@ -99,14 +99,14 @@ public class VacantesServiceImpl implements I_VacanteService {
 	public List<Vacante> buscarTodasVacante() {
 		// System.out.println("lista_VariableInstancias = " + this.lista);
 		// System.out.println();
-		return this.lista;
+		return this.listaVacantes;
 	}
 
 
 
 	@Override
 	public Vacante buscarVarPorIdVacante(Integer idVacante) {
-		for (Vacante _vacante : this.lista){
+		for (Vacante _vacante : this.listaVacantes){
 			System.out.println ("v_Vacante = " + _vacante);
 			if (_vacante.getId () == idVacante){
 				return _vacante;
@@ -119,8 +119,8 @@ public class VacantesServiceImpl implements I_VacanteService {
 
 	@Override
 	public void guardar(Vacante vacante) {
-		this.lista.add (vacante);
-		System.out.println ("lista_MetodoGuardar() = " + this.lista);
+		this.listaVacantes.add (vacante);
+		System.out.println ("lista_MetodoGuardar() = " + this.listaVacantes);
 		System.out.println ();
 	}
 

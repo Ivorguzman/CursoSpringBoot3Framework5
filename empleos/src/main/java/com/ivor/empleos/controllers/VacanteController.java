@@ -40,84 +40,14 @@ public class VacanteController {
 
 
 
+	/*
+	 * _____ Todos los pasos Ahorrados _______
+	 * CategoriaServiceImp serviceInyectar= new CategoriaServiceImp ();
+	 * private I_CategoriaService serviceVacantes= this.serviceInyectar;
+	 */
 	@Autowired // this.serviceVacantes = new VacanteServiceImpl();
 	private I_VacanteService serviceVacantes;
 
-
-
-
-
-	// **************** /vacantes/create **********
-	@GetMapping("/create")
-	public String crear(Vacante vacante, Model model) {
-
-		model.addAttribute ("_categorias", this.serviceCategoria.buscarTodas ());
-
-		return "vacante/formVacantes";
-	}
-
-
-// Aquí se realiza el data binding:
-// Spring MVC automáticamente vincula los datos del formulario HTML a los
-// campos del objeto 'Vacante'.
-// Esto se logra porque los nombres de los campos del formulario coinciden
-// con los nombres de los atributos en la clase 'V
-	@PostMapping("/save")
-	public String guardar(Vacante vacante, BindingResult result, RedirectAttributes atributoRedirec) {
-
-		// Modificación comienza aquí
-		// Verifica si hay errores en la validación del objeto 'Vacante'
-		if (result.hasErrors ()){
-
-			if (result.hasGlobalErrors ()){
-				System.out.println ("Errores globales:");
-				result.getGlobalErrors ().forEach (error-> {
-					System.out.println ("Error: " + error.getDefaultMessage ());
-				});
-
-			}
-			// Verifica si hay errores específicos
-			if (result.hasFieldErrors ()){
-				System.out.println ("Errores en campos específicos:");
-				result.getFieldErrors ().forEach (error-> {
-					System.out.println ("Campo: " + error.getField () + ", Error Objeto: " + error.getObjectName () + ", Error Code: " + error.getCode ());
-				});
-			}
-
-			return "vacante/formVacantes"; // Si hay errores, vuelve al formulario para formVacantes
-		}
-
-		// Imprime la información del objeto 'Vacante' en la consola
-		System.out.println ("Nombre Vacante (/vacantes/save) :" + vacante);
-		System.out.println ();
-
-		// Guarda el objeto 'Vacante' utilizando el servicio
-		this.serviceVacantes.guardar (vacante);
-
-		// Añadir un mensaje de éxito usando Flash Attributes
-		atributoRedirec.addFlashAttribute ("registroGuardado", "¡Registro guardada con éxito!");
-		
-
-		// Devuelve la vista "vacante/formVacante"' después de guardar la información
-		return "redirect:/vacantes/index";// Se realiza en forma indirecta petición http tipo Get (vacantes/listVacante)
-
-	}
-
-
-
-
-
-	// @PostMapping("/index")
-	@GetMapping("/index")
-	public String mostrarIndex(Model modelo) {
-
-		List<Vacante> lista= this.serviceVacantes.buscarTodasVacante (); // Obtiene la lista de vacantes
-		// System.out.println();
-		// System.out.println("lista_VariableLocal = " + lista); // Imprime la lista
-		// para depuración
-		modelo.addAttribute ("_vacantes", lista); // Añade la lista de vacantes al modelo
-		return "vacante/listvacantes"; // Devuelve la vista 'listVacantes' después de guardar la información
-	}
 
 
 
@@ -162,10 +92,10 @@ public class VacanteController {
 	 * SimpleDateFormat con el patrón de fecha "dd-MM-yyyy", lo que significa
 	 * que la fecha se espera en el formato día-mes-año.
 	 * 
-	 * _WebDataBinder.registerCustomEditor(Date.class, new
+	 * WebDataBinder.registerCustomEditor(Date.class, new
 	 * CustomDateEditor(dateFormat, false));:
 	 * 
-	 * _WebDataBinder.registerCustomEditor: Este método se utiliza para
+	 * WebDataBinder.registerCustomEditor: Este método se utiliza para
 	 * registrar un editor personalizado para un tipo específico de datos.
 	 * 
 	 * Date.class: Especifica que queremos registrar un editor personalizado
@@ -199,27 +129,90 @@ public class VacanteController {
 	 * la fecha se convierta correctamente en un objeto Date de acuerdo con el
 	 * formato especificado.
 	 */
-
-
 	/*
 	 * @InitBinder
 	 * public void initBinder(WebDataBinder _WebDataBinder) {
 	 * SimpleDateFormat dateFormat= new SimpleDateFormat ("dd-MM-yyy");
 	 * _WebDataBinder.registerCustomEditor (Date.class, new CustomDateEditor
 	 * (dateFormat, false));
-	 * };
+	 * }
 	 */
-
-
-
-
 	@InitBinder
-	public void initBinder(WebDataBinder _WebDataBinder) {
-		// Creación del formato de fecha
-		SimpleDateFormat dateFormat= new SimpleDateFormat ("dd-MM-yyyy");
-		dateFormat.setLenient (false); // Establecer que el análisis de fechas debe ser estricto
-		// Registrar el editor personalizado para el tipo Date
-		_WebDataBinder.registerCustomEditor (Date.class, new CustomDateEditor (dateFormat, false));
+	public void initBinder(WebDataBinder binder) {
+		SimpleDateFormat dateFormat= new SimpleDateFormat ("yyyy-MM-dd");
+		dateFormat.setLenient (false);
+		binder.registerCustomEditor (Date.class, new CustomDateEditor (dateFormat, false));
+	}
+
+
+
+	// @PostMapping("/index")
+	@GetMapping("/index")
+	public String mostrarIndex(Model modelo) {
+	
+		List<Vacante> lista= this.serviceVacantes.buscarTodasVacante (); // Obtiene la lista de vacantes
+		// System.out.println();
+		// System.out.println("lista_VariableLocal = " + lista); // Imprime la lista
+		// para depuración
+		modelo.addAttribute ("_vacantes", lista); // Añade la lista de vacantes al modelo
+		return "vacante/listvacantes"; // Devuelve la vista 'listVacantes' después de guardar la información
+	}
+
+
+
+	// **************** /vacantes/create **********
+	@GetMapping("/create")
+	public String crear(Vacante vacante, Model model) {
+
+		model.addAttribute ("categorias", this.serviceCategoria.buscarTodas ());
+
+		return "vacante/formVacantes";
+	}
+
+
+// Aquí se realiza el data binding:
+// Spring MVC automáticamente vincula los datos del formulario HTML a los
+// campos del objeto 'Vacante'.
+// Esto se logra porque los nombres de los campos del formulario coinciden
+// con los nombres de los atributos en la clase 'V
+// **************** /vacantes/save **********
+	@PostMapping("/save")
+	public String guardar(Vacante vacante, BindingResult result, RedirectAttributes atributoRedirec) {
+
+		// Modificación comienza aquí
+		// Verifica si hay errores en la validación del objeto 'Vacante'
+		if (result.hasErrors ()){
+
+			if (result.hasGlobalErrors ()){
+				System.out.println ("Errores globales:");
+				result.getGlobalErrors ().forEach (error-> {
+					System.out.println ("Error: " + error.getDefaultMessage ());
+				});
+
+			}
+			// Verifica si hay errores específicos
+			if (result.hasFieldErrors ()){
+				System.out.println ("Errores en campos específicos:");
+				result.getFieldErrors ().forEach (error-> {
+					System.out.println ("Campo: " + error.getField () + ", Error Objeto: " + error.getObjectName () + ", Error Code: " + error.getCode ());
+				});
+			}
+
+			return "vacante/formVacantes"; // Si hay errores, vuelve al formulario para formVacantes
+		}
+
+		// Imprime la información del objeto 'Vacante' en la consola
+		System.out.println ("Nombre Vacante (/vacantes/save) :" + vacante);
+		System.out.println ();
+
+		// Guarda el objeto 'Vacante' utilizando el servicio
+		this.serviceVacantes.guardar (vacante);
+		// Añadir un mensaje de éxito usando Flash Attributes
+		atributoRedirec.addFlashAttribute ("registroGuardado", "¡Registro guardada con éxito!");
+		
+
+		// Devuelve la vista "vacante/formVacante"' después de guardar la información
+		return "redirect:/vacantes/index";// Se realiza en forma indirecta petición http tipo Get (vacantes/listVacante)
 
 	}
 
@@ -227,34 +220,15 @@ public class VacanteController {
 
 
 
+	// **************** /vacantes/delete?id=X (parametro enviadado via http con
+	// @RequestParam("id")) ******************************
+	@GetMapping("/delete")
+	public String eliminar(@RequestParam("id") int idVacante, Model modelo) {
+		modelo.addAttribute ("id", idVacante);
+		System.out.println ("Borrando vacantes con id: " + idVacante);
+		return "/mensaje";
+	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// ------<<EJEMPLOS DE CLASES QUE NO QUIERO BORRAR>>-----
 
 	// **** /vacantes/viewdetalles/X (parametro enviadado via http con
 	// @PathVariable("id")) ****
@@ -300,20 +274,6 @@ public class VacanteController {
 
 		modelo.addAttribute ("vacante", vacante);
 		return "detalle";
-	}
-
-
-
-
-
-
-	// **************** /vacantes/delete?id=X (parametro enviadado via http con
-	// @RequestParam("id")) ******************************
-	@GetMapping("/delete")
-	public String eliminar(@RequestParam("id") int idVacante, Model modelo) {
-		modelo.addAttribute ("id", idVacante);
-		System.out.println ("Borrando vacantes con id: " + idVacante);
-		return "/mensaje";
 	}
 
 

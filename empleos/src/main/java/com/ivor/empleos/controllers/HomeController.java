@@ -26,6 +26,9 @@ public class HomeController {
 	 */
 	@Autowired
 	private I_VacanteService serviceVacantes;
+
+
+
 	// ****************** (/) **********************
 	@GetMapping("/") // Mapea las solicitudes HTTP GET en la URL raíz "/"
 	public String mostrarHome(Model modelo) {

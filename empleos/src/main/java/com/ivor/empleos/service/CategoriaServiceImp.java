@@ -12,9 +12,9 @@ import com.ivor.empleos.model.Categoria;
 public class CategoriaServiceImp implements I_CategoriaService {
 
 
-	private List<Categoria> categoria= null; // Atributo a nivel de la clase
+	private List<Categoria> listaCategorias= null; // Atributo a nivel de la clase
 	/*
-	 * List<Vacante>:
+	 * List<Categoria>:
 	 * LinkedList es una clase concreta que implementa la interfaz List.
 	 * La asignación funciona debido al principio del polimorfismo,
 	 * que permite que una variable de tipo interfaz pueda referirse
@@ -22,15 +22,15 @@ public class CategoriaServiceImp implements I_CategoriaService {
 	 * 
 	 *
 	 * new LinkedList<>():
-	 * Crea una nueva instancia de LinkedList<Vacante> y la asigna a la variable
-	 * lista.
+	 * Crea una nueva instancia de LinkedList<Categoria> y la asigna a la variable
+	 * listaCategorias.
 	 * LinkedList es una implementación concreta de la interfaz List.
 	 */
 
 	// ******************* Contructor ********************************
 	public CategoriaServiceImp( ) {
 
-		this.categoria= new LinkedList<Categoria> ();
+		this.listaCategorias= new LinkedList<Categoria> ();
 
 		// Crear categoria 1
 		Categoria categoria1= new Categoria ();
@@ -59,16 +59,16 @@ public class CategoriaServiceImp implements I_CategoriaService {
 		categoria5.setDescripcion (null);
 		// Crear categoria 6
 		Categoria categoria6= new Categoria ();
-		categoria5.setId (6);
-		categoria5.setNombre ("Desarrollo Web (Java Spring)");
-		categoria5.setDescripcion (null);
+		categoria6.setId (6);
+		categoria6.setNombre ("Desarrollo Web (Java Spring)");
+		categoria6.setDescripcion (null);
 
-		this.categoria.add (categoria1);
-		this.categoria.add (categoria2);
-		this.categoria.add (categoria3);
-		this.categoria.add (categoria4);
-		this.categoria.add (categoria5);
-		this.categoria.add (categoria6);
+		this.listaCategorias.add (categoria1);
+		this.listaCategorias.add (categoria2);
+		this.listaCategorias.add (categoria3);
+		this.listaCategorias.add (categoria4);
+		this.listaCategorias.add (categoria5);
+		this.listaCategorias.add (categoria6);
 
 	}
 
@@ -76,8 +76,8 @@ public class CategoriaServiceImp implements I_CategoriaService {
 
 	@Override
 	public void guardar(Categoria categoria) {
-		this.categoria.add (categoria);
-		System.out.println ("categoria_MetodoGuardar() = " + this.categoria);
+		this.listaCategorias.add (categoria);
+		System.out.println ("categoria_MetodoGuardar() = " + this.listaCategorias);
 		System.out.println ();
 
 	}
@@ -85,14 +85,14 @@ public class CategoriaServiceImp implements I_CategoriaService {
 
 	@Override
 	public List<Categoria> buscarTodas() {
-
-		return this.categoria;
+		System.out.println ("Lista Generada: " + this.listaCategorias);
+		return this.listaCategorias;
 	}
 
 
 	@Override
 	public Categoria buscarPorID(Integer idCategoria) {
-		for (Categoria _categoria : this.categoria){
+		for (Categoria _categoria : this.listaCategorias){
 			
 			if (_categoria.getId () == idCategoria){
 				return _categoria;

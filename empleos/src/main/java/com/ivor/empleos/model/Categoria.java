@@ -4,9 +4,18 @@ package com.ivor.empleos.model;
 // Clase de tipo Java Beans
 public class Categoria {
 
+
+
 	private Integer id;
 	private String nombre;
-	private String descripcion;
+	private String descripcion= "En desarrollo";
+
+
+
+	public Categoria( ) {
+
+	}
+
 
 
 
