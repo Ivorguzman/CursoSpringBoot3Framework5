@@ -60,7 +60,7 @@ public class CategoriaServiceImp implements I_CategoriaService {
 		// Crear categoria 6
 		Categoria categoria6= new Categoria ();
 		categoria6.setId (6);
-		categoria6.setNombre ("Desarrollo Web (Java Spring)");
+		categoria6.setNombre ("Desarrollo Java (Java Spring)");
 		categoria6.setDescripcion (null);
 
 		this.listaCategorias.add (categoria1);
@@ -85,7 +85,7 @@ public class CategoriaServiceImp implements I_CategoriaService {
 
 	@Override
 	public List<Categoria> buscarTodas() {
-		System.out.println ("Lista Generada: " + this.listaCategorias);
+		System.out.println ("buscarTodas(): " + this.listaCategorias);
 		return this.listaCategorias;
 	}
 

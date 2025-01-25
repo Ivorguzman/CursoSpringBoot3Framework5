@@ -164,8 +164,9 @@ public class VacanteController {
 	@GetMapping("/create")
 	public String crear(Vacante vacante, Model model) {
 
+		System.out.println ("crear(Vacante vacante, Model model)==> " + this.serviceCategoria.buscarTodas ());
+		System.out.println ();
 		model.addAttribute ("categorias", this.serviceCategoria.buscarTodas ());
-
 		return "vacante/formVacantes";
 	}
 
