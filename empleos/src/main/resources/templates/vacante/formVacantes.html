@@ -47,8 +47,12 @@
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="nombre">Nombre</label>
-                <!-- Data binding: este campo se vincula con la propiedad 'nombre' del objeto 'Vacante' -->
-                <input type="text" class="form-control" th:field="*{nombre}" name="nombre" id="nombre"
+                <!-- 
+                Data binding: este campo se vincula con la propiedad 'nombre' del objeto 'Vacante'
+                El atributo th:field en Thymeleaf sirve para establecer una relación directa entre los campos del formulario
+                HTML y los atributos del objeto del modelo en el backend. Y esto sucede de manera implícita (Tras Babalinas):
+                 -->
+                <input type="text" class="form-control" th:field="*{nombre}" name="nombre" 
                   placeholder="Título de la oferta de trabajo"
                 >
                 <div th:if="${#fields.hasErrors('nombre')}" class="alert alert-danger mt-2">
@@ -61,10 +65,10 @@
               
               
               
-                <label for="categoria">Categoría</label>
+                <label for="categoria">Categoría</label>  
                 <!-- Data binding: este campo se vincula con la propiedad 'categoria' del objeto 'Vacante' -->
-<!--                 <select class="form-control" id="categoria" th:field="*{categoria.id}"> -->
-                <select class="form-control" id="categoria">
+                <!-- <select class="form-control" id="categoria"> -->
+                <select class="form-control" id="categoria" th:field="*{categoria.id}">
                   <option th:each="_categoria: ${categorias}"
                     th:value="${_categoria.id}" 
                     th:text="${_categoria.nombre}">
