@@ -116,6 +116,7 @@ public class Vacante {
 
 
 	public void setImages(String images) {
+		System.out.println (" Propiedadde Vacante  images =" + images);
 		this.images = images;
 	}
 

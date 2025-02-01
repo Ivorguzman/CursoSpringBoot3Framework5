@@ -1,0 +1,25 @@
+Comentario\ de\ una\ sola\ l\u00EDnea=0,0,0,0,0,64,128,128
+Comentario\ de\ varias\ l\u00EDneas=0,0,0,0,0,64,128,128
+Double\ quoted\ string=0,0,0,0,0,255,198,0
+Double\\\ quoted\\\ string=0,0,0,0,0,29,161,152
+Identificador=0,0,0,0,0,0,0,128
+Identifier=0,0,0,0,0,255,255,255
+Keyword=0,0,0,0,0,141,203,226
+Multi-line\ comment=0,0,0,0,0,199,221,12
+Multi-line\\\ comment=0,0,0,0,0,61,110,117
+Others=0,0,0,0,0,216,216,216
+Otras=0,0,0,0,1,255,255,255
+Palabra\ clave=1,0,0,0,0,127,0,85
+SQLEditor.executeSelectedSQL.betweenDelimiter.delimiterType=go
+Single\ quoted\ string=0,0,0,0,0,255,198,0
+Single-line\ comment=0,0,0,0,0,199,221,12
+Single-line\\\ comment=0,0,0,0,0,61,110,117
+Single\\\ quoted\\\ string=0,0,0,0,0,29,161,152
+String\ entre\ comillas\ dobles=0,0,0,0,0,0,128,0
+String\ entre\ comillas\ simples=0,0,0,0,0,0,0,255
+Tipo=1,0,0,0,0,64,0,200
+Type=0,0,0,0,0,210,82,82
+com.sybase.stf.dmp.ui.sqleditor.template.customtemplates=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates/>
+eclipse.preferences.version=1
+overriddenByCSS=,Multi-line comment,Double quoted string,Single-line comment,Single quoted string,Identifier,Keyword,Others,Type,
+show.syntax.error.detail=true

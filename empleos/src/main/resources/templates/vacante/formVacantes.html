@@ -33,13 +33,13 @@
           </div>
           <!--         <form th:action="@{/vacantes/save}" method="post"> -->
           <!--th:object="${vacante}" Vincula el formulario con el objeto vacante de la  calse modelo Vacante  -->
-          <form th:action="@{/vacantes/save}" method="post" th:object="${vacante}">
+          <form th:action="@{/vacantes/save}" method="post" th:object="${vacante}" enctype="multipart/form-data">
             <!-- Sección para mostrar los errores -->
             <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger mt-3">
               <h5>Error:</h5>
               <h6>Por favor corrija los siguientes errores:</h6>
-               <ul>
-              <li th:each="elError: ${#fields.errors('*')}" th:text="${elError}">
+              <ul>
+                <li th:each="elError: ${#fields.errors('*')}" th:text="${elError}">
               </ul>
             </div>
             <!-- Fin de la sección de errores -->
@@ -52,7 +52,7 @@
                 El atributo th:field en Thymeleaf sirve para establecer una relación directa entre los campos del formulario
                 HTML y los atributos del objeto del modelo en el backend. Y esto sucede de manera implícita (Tras Babalinas):
                  -->
-                <input type="text" class="form-control" th:field="*{nombre}" name="nombre" 
+                <input type="text" class="form-control" th:field="*{nombre}" name="nombre"
                   placeholder="Título de la oferta de trabajo"
                 >
                 <div th:if="${#fields.hasErrors('nombre')}" class="alert alert-danger mt-2">
@@ -60,28 +60,16 @@
                 </div>
               </div>
               <div class="form-group col-md-6">
-              
-              
-              
-              
-              
-                <label for="categoria">Categoría</label>  
+                <label for="categoria">Categoría</label>
                 <!-- Data binding: este campo se vincula con la propiedad 'categoria' del objeto 'Vacante' -->
                 <!-- <select class="form-control" id="categoria"> -->
                 <select class="form-control" id="categoria" th:field="*{categoria.id}">
-                  <option th:each="_categoria: ${categorias}"
-                    th:value="${_categoria.id}" 
-                    th:text="${_categoria.nombre}">
+                  <option th:each="_categoria: ${categorias}" th:value="${_categoria.id}" th:text="${_categoria.nombre}">
                   </option>
                 </select>
                 <div th:if="${#fields.hasErrors('categoria')}" class="alert alert-danger mt-2">
                   <p th:text="${#fields.errors('categoria')}"></p>
                 </div>
-                
-                
-                
-                
-                
               </div>
             </div>
             <div class="form-row">
@@ -114,13 +102,12 @@
                 <label for="fecha-publicacion">Fecha de Publicación</label> <input type="date" class="form-control"
                   id="fecha-publicacion" th:field="*{fecha}" name="fecha" onchange="formatearFecha()"
                 >
-                   <div th:if="${#fields.hasErrors('fecha')}" class="alert alert-danger mt-2">
+                <div th:if="${#fields.hasErrors('fecha')}" class="alert alert-danger mt-2">
                   <p th:text="${#fields.errors('fecha')}"></p>
                 </div>
-                 <input type="text" class="form-control" id="fecha-publicacion_modificado" th:field="*{fecha}"
+                <input type="text" class="form-control" id="fecha-publicacion_modificado" th:field="*{fecha}"
                   name="fecha" style="visibility: hidden"
-                > 
-           
+                >
               </div>
               <div class="form-group col-md-6">
                 <label for="salario">Salario Ofrecido (Aprox)</label>
@@ -134,9 +121,12 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="imagen">Imagen</label>
+              <label for="ArchivoImagen">Imagen</label>
               <!-- Data binding: este campo se vincula con la propiedad 'images' del objeto 'Vacante' -->
-              <input type="file" class="form-control-file" id="imagen" th:field="*{images}" name="images">
+              <input type="file" class="form-control-file" id="ArchivoImagen"  name="ArchivoImagen">
+<!--               <div th:if="${#fields.hasErrors('ArchivoImagen')}" class="alert alert-danger mt-2">
+                <p th:text="${#fields.errors('ArchivoImagen')}"></p>
+              </div> -->
             </div>
             <div class="form-group">
               <label>Destacado</label>
@@ -168,7 +158,7 @@
             </div>
             <!-- Modificación termina aquí -->
             <!--             <button type="submit" th:href="@{/vacantes/save}" class="btn btn-primary">Guardar</button> -->
-            <button type="submit" class="btn btn-primary">Guardar &raquo </button>
+            <button type="submit" class="btn btn-primary">Guardar &raquo</button>
           </form>
           <!-- Fin del formulario con data binding -->
         </div>

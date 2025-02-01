@@ -18,11 +18,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ivor.empleos.model.Vacante;
 import com.ivor.empleos.service.I_CategoriaService;
 import com.ivor.empleos.service.I_VacanteService;
+import com.ivor.empleos.util.Utileria;
 
 
 
@@ -139,9 +141,9 @@ public class VacanteController {
 	 */
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		SimpleDateFormat dateFormat= new SimpleDateFormat ("yyyy-MM-dd");
-		dateFormat.setLenient (false);
-		binder.registerCustomEditor (Date.class, new CustomDateEditor (dateFormat, false));
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		dateFormat.setLenient(false);
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
 	}
 
 
@@ -149,12 +151,12 @@ public class VacanteController {
 	// @PostMapping("/index")
 	@GetMapping("/index")
 	public String mostrarIndex(Model modelo) {
-	
-		List<Vacante> lista= this.serviceVacantes.buscarTodasVacante (); // Obtiene la lista de vacantes
+
+		List<Vacante> lista = this.serviceVacantes.buscarTodasVacante(); // Obtiene la lista de vacantes
 		// System.out.println();
 		// System.out.println("lista_VariableLocal = " + lista); // Imprime la lista
 		// para depuración
-		modelo.addAttribute ("_vacantes", lista); // Añade la lista de vacantes al modelo
+		modelo.addAttribute("_vacantes", lista); // Añade la lista de vacantes al modelo
 		return "vacante/listvacantes"; // Devuelve la vista 'listVacantes' después de guardar la información
 	}
 
@@ -164,53 +166,76 @@ public class VacanteController {
 	@GetMapping("/create")
 	public String crear(Vacante vacante, Model model) {
 
-		System.out.println ("crear(Vacante vacante, Model model)==> " + this.serviceCategoria.buscarTodas ());
-		System.out.println ();
-		model.addAttribute ("categorias", this.serviceCategoria.buscarTodas ());
+		System.out.println("crear(Vacante vacante, Model model)==> " + this.serviceCategoria.buscarTodas());
+		System.out.println();
+		model.addAttribute("categorias", this.serviceCategoria.buscarTodas());
 		return "vacante/formVacantes";
 	}
 
 
-// Aquí se realiza el data binding:
-// Spring MVC automáticamente vincula los datos del formulario HTML a los
-// campos del objeto 'Vacante'.
-// Esto se logra porque los nombres de los campos del formulario coinciden
-// con los nombres de los atributos en la clase 'V
-// **************** /vacantes/save **********
+	// Aquí se realiza el data binding:
+	// Spring MVC automáticamente vincula los datos del formulario HTML a los
+	// campos del objeto 'Vacante'.
+	// Esto se logra porque los nombres de los campos del formulario coinciden
+	// con los nombres de los atributos en la clase 'V
+	// **************** /vacantes/save **********
 	@PostMapping("/save")
-	public String guardar(Vacante vacante, BindingResult result, RedirectAttributes atributoRedirec) {
+	/*
+	 * @RequestParam es una anotación de Spring que se utiliza para extraer
+	 * parámetros de una solicitud HTTP.
+	 */
+	public String guardar(Vacante vacante, BindingResult result, RedirectAttributes atributoRedirec, @RequestParam("ArchivoImagen") MultipartFile multiPart) {
 
 		// Modificación comienza aquí
 		// Verifica si hay errores en la validación del objeto 'Vacante'
-		if (result.hasErrors ()){
+		if (result.hasErrors()){
 
-			if (result.hasGlobalErrors ()){
-				System.out.println ("Errores globales:");
-				result.getGlobalErrors ().forEach (error-> {
-					System.out.println ("Error: " + error.getDefaultMessage ());
+			if (result.hasGlobalErrors()){
+				System.out.println("Errores globales:");
+				result.getGlobalErrors().forEach(error-> {
+					System.out.println("Error: " + error.getDefaultMessage());
 				});
 
 			}
 			// Verifica si hay errores específicos
-			if (result.hasFieldErrors ()){
-				System.out.println ("Errores en campos específicos:");
-				result.getFieldErrors ().forEach (error-> {
-					System.out.println ("Campo: " + error.getField () + ", Error Objeto: " + error.getObjectName () + ", Error Code: " + error.getCode ());
+			if (result.hasFieldErrors()){
+				System.out.println("Errores en campos específicos:");
+				result.getFieldErrors().forEach(error-> {
+					System.out.println("Campo: " + error.getField() + ", Error Objeto: " + error.getObjectName() + ", Error Code: " + error.getCode());
 				});
 			}
 
 			return "vacante/formVacantes"; // Si hay errores, vuelve al formulario para formVacantes
 		}
 
+
+
+		/*
+		 * MultipartFile es una interfaz proporcionada por Spring para manejar
+		 * archivos subidos. Este tipo de dato permite que el controlador reciba el
+		 * archivo en su forma binaria, que luego puede ser guardada en el sistema de
+		 * archivos, una base de datos, o procesada de otra manera según sea necesario.
+		 */
+		if (!multiPart.isEmpty()){
+			String ruta = "C:/empleos/img-vacantes";
+			String nombreImagen = Utileria.guardarArchivo(multiPart, ruta);
+			System.out.println("nombreImagen= " + nombreImagen);
+			System.out.println("multiPart= " + multiPart);
+			System.out.println("ruta= " + ruta);
+			if (nombreImagen != null){
+				vacante.setImages(nombreImagen);
+			}
+		}
 		// Imprime la información del objeto 'Vacante' en la consola
-		System.out.println ("Nombre Vacante (/vacantes/save) :" + vacante);
-		System.out.println ();
+		System.out.println("Nombre Vacante (/vacantes/save) :" + vacante);
+		System.out.println();
+
 
 		// Guarda el objeto 'Vacante' utilizando el servicio
-		this.serviceVacantes.guardar (vacante);
+		this.serviceVacantes.guardar(vacante);
 		// Añadir un mensaje de éxito usando Flash Attributes
-		atributoRedirec.addFlashAttribute ("registroGuardado", "¡Registro guardada con éxito!");
-		
+		atributoRedirec.addFlashAttribute("registroGuardado", "¡Registro guardada con éxito!");
+
 
 		// Devuelve la vista "vacante/formVacante"' después de guardar la información
 		return "redirect:/vacantes/index";// Se realiza en forma indirecta petición http tipo Get (vacantes/listVacante)
@@ -225,8 +250,8 @@ public class VacanteController {
 	// @RequestParam("id")) ******************************
 	@GetMapping("/delete")
 	public String eliminar(@RequestParam("id") int idVacante, Model modelo) {
-		modelo.addAttribute ("id", idVacante);
-		System.out.println ("Borrando vacantes con id: " + idVacante);
+		modelo.addAttribute("id", idVacante);
+		System.out.println("Borrando vacantes con id: " + idVacante);
 		return "/mensaje";
 	}
 
@@ -241,10 +266,10 @@ public class VacanteController {
 	@GetMapping("/viewdetalles/{id}")
 	public String verDetalleVacante(@PathVariable("id") int idVacante, Model modelo) {
 
-		Vacante vacante= this.serviceVacantes.buscarVarPorIdVacante (idVacante);
-		System.out.println ("Detalle de vacante: " + vacante);
+		Vacante vacante = this.serviceVacantes.buscarVarPorIdVacante(idVacante);
+		System.out.println("Detalle de vacante: " + vacante);
 
-		modelo.addAttribute ("vacante", vacante);
+		modelo.addAttribute("vacante", vacante);
 		return "/vacante/detalleVacantes";
 	}
 
@@ -255,7 +280,7 @@ public class VacanteController {
 	@GetMapping("/prueba")
 	public String pruebaHtml(Model modelo) {
 
-		modelo.addAttribute ("hola");
+		modelo.addAttribute("hola");
 		return "/home_ofertaTrabajo";
 	}
 
@@ -270,10 +295,10 @@ public class VacanteController {
 	@GetMapping("/view/{id}")
 	public String verDetalle(@PathVariable("id") int idVacante, Model modelo) {
 
-		Vacante vacante= this.serviceVacantes.buscarVarPorIdVacante (idVacante);
-		System.out.println ("Detalle de vacante: " + vacante);
+		Vacante vacante = this.serviceVacantes.buscarVarPorIdVacante(idVacante);
+		System.out.println("Detalle de vacante: " + vacante);
 
-		modelo.addAttribute ("vacante", vacante);
+		modelo.addAttribute("vacante", vacante);
 		return "detalle";
 	}
 
