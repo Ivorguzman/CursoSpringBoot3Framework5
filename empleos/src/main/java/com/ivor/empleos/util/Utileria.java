@@ -37,6 +37,8 @@ public class Utileria { // Declara la clase Utileria
 		// Asigna el resultado del reemplazo a una nueva variable
 		String nombreSinEspacios = nombreOriginal.replace(" ", "_");
 		System.out.println("nombreOriginal (replace) = " + nombreSinEspacios);
+		String nombreDefinitivo = randomAlphaNumeric(8) + nombreSinEspacios;
+
 		// Inicia un bloque try para manejar excepciones
 		try{
 
@@ -61,7 +63,7 @@ public class Utileria { // Declara la clase Utileria
 			 * lo estés ejecutando ejemplo, \ en windows y / en Unix/Linux).
 			 * 
 			 */
-			File imageFile = new File(ruta + File.separator + nombreSinEspacios);
+			File imageFile = new File(ruta + File.separator + nombreDefinitivo);
 
 			System.out.println("ruta =" + ruta);
 			System.out.println("imageFilel =" + imageFile);
@@ -78,21 +80,38 @@ public class Utileria { // Declara la clase Utileria
 			System.out.println("ERROR:" + ex.getStackTrace()); // Imprime el rastreo de la pila del error
 			return null; // Retorna null si hubo un error
 		}
-		System.out.println(" ruta + nombreOriginal =" + ruta + "/" + nombreSinEspacios);
-		return nombreSinEspacios;
+		/*
+		 * System.out.println("ruta + nombreOriginal =" + ruta + "/" + nombreDefinitivo);
+		 */
+		System.out.println("ruta + nombreOriginal =" + ruta + nombreDefinitivo);
+		return nombreDefinitivo;
 
 	}
+	/*
+	 * Resumen de la función
+	 * La función randomAlphaNumeric genera una cadena de caracteres aleatorios alfanuméricos (letras y números) de longitud
+	 * especificada por el parámetro count. Utiliza un ciclo para seleccionar aleatoriamente caracteres de una cadena
+	 * predefinida y los agrega a un objeto StringBuilder. Finalmente, devuelve la cadena resultante como una String.
+	 */
 
 	public static String randomAlphaNumeric(int count) {
-		String caracteres = "ABCDEFGHILKLMNOPQRSTUVWXYZ0123456789";
+		// Define una cadena que contiene los caracteres alfanuméricos permitidos (A-Z y 0-9).
+		String alfanumericos = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
+		// Crea un objeto StringBuilder, que se utilizará para construir la cadena de caracteres aleatorios.
+		StringBuilder builder = new StringBuilder();
 
+		// Un ciclo que se repetirá 'count' veces, decrementando 'count' en cada iteración.
+		while (count-- != 0){
+			// Genera un número aleatorio dentro del rango de los índices de la cadena 'alfanumericos'.
+			int agregarCaracter = (int) (Math.random() * alfanumericos.length());
 
-		return null;
+			// Añade el carácter aleatorio seleccionado a la cadena en construcción 'builder'.
+			builder.append(alfanumericos.charAt(agregarCaracter));
+		}
 
-
-
-
+		// Convierte el contenido de 'builder' en una cadena de texto y la devuelve.
+		return builder.toString();
 	}
 
 }

@@ -45,8 +45,8 @@ public class VacantesServiceImpl implements I_VacanteService {
 			vacante1.setFecha(sdf.parse("06-12-2024"));
 			vacante1.setSalario(3999.0);
 			vacante1.setDestacado(1); // Vacante destacada
-			vacante1.setImages ("logo1.png");
-			
+			vacante1.setImages("logo1.png");
+
 
 			// Crear vacante 2
 			Vacante vacante2 = new Vacante();
@@ -56,7 +56,7 @@ public class VacantesServiceImpl implements I_VacanteService {
 			vacante2.setFecha(sdf.parse("06-12-2024"));
 			vacante2.setSalario(2999.0);
 			vacante2.setDestacado(1); // Vacante destacada
-			vacante2.setImages ("logo2.png");
+			vacante2.setImages("logo2.png");
 
 			// Crear vacante 3
 			Vacante vacante3 = new Vacante();
@@ -66,7 +66,7 @@ public class VacantesServiceImpl implements I_VacanteService {
 			vacante3.setFecha(sdf.parse("06-12-2024"));
 			vacante3.setSalario(5999.0);
 			vacante3.setDestacado(0); // Vacante no destacada
-			vacante3.setImages ("logo3.png");
+			vacante3.setImages("logo3.png");
 
 
 			// Crear vacante 4
@@ -77,7 +77,7 @@ public class VacantesServiceImpl implements I_VacanteService {
 			vacante4.setFecha(sdf.parse("06-12-2024"));
 			vacante4.setSalario(3999.0);
 			vacante4.setDestacado(1); // Vacante destacada
-			vacante4.setImages ("logo4.png");
+			vacante4.setImages("logo4.png");
 
 
 
@@ -97,8 +97,8 @@ public class VacantesServiceImpl implements I_VacanteService {
 
 	@Override
 	public List<Vacante> buscarTodasVacante() {
-		// System.out.println("lista_VariableInstancias = " + this.lista);
-		// System.out.println();
+		System.out.println("VacanteServiceImp.java [buscarTodasVacante()]=> return this.listaVacantes " + this.listaVacantes);
+		System.out.println();
 		return this.listaVacantes;
 	}
 
@@ -107,8 +107,8 @@ public class VacantesServiceImpl implements I_VacanteService {
 	@Override
 	public Vacante buscarVarPorIdVacante(Integer idVacante) {
 		for (Vacante _vacante : this.listaVacantes){
-			System.out.println ("v_Vacante = " + _vacante);
-			if (_vacante.getId () == idVacante){
+			System.out.println("v_Vacante = " + _vacante);
+			if (_vacante.getId() == idVacante){
 				return _vacante;
 			}
 		}
@@ -119,9 +119,9 @@ public class VacantesServiceImpl implements I_VacanteService {
 
 	@Override
 	public void guardar(Vacante vacante) {
-		this.listaVacantes.add (vacante);
-		System.out.println ("lista_MetodoGuardar() = " + this.listaVacantes);
-		System.out.println ();
+		this.listaVacantes.add(vacante);
+		System.out.println("lista_MetodoGuardar() = " + this.listaVacantes);
+		System.out.println();
 	}
 
 

@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +32,10 @@ import com.ivor.empleos.util.Utileria;
 @Controller
 @RequestMapping("/vacantes") // Marca esta clase como un controlador de Spring MVC
 public class VacanteController {
+
+
+	@Value("${empleos.ruta.imagenes}")
+	private String ruta;
 
 	/*
 	 * _____ Todos los pasos Ahorrados _______
@@ -153,9 +158,10 @@ public class VacanteController {
 	public String mostrarIndex(Model modelo) {
 
 		List<Vacante> lista = this.serviceVacantes.buscarTodasVacante(); // Obtiene la lista de vacantes
-		// System.out.println();
-		// System.out.println("lista_VariableLocal = " + lista); // Imprime la lista
+
 		// para depuración
+		System.out.println();
+		System.out.println("(/index) VacanteController [buscarTodasVacante()] - listvacantes.html ==> " + lista); // Imprime la lista
 		modelo.addAttribute("_vacantes", lista); // Añade la lista de vacantes al modelo
 		return "vacante/listvacantes"; // Devuelve la vista 'listVacantes' después de guardar la información
 	}
@@ -165,8 +171,8 @@ public class VacanteController {
 	// **************** /vacantes/create **********
 	@GetMapping("/create")
 	public String crear(Vacante vacante, Model model) {
-
-		System.out.println("crear(Vacante vacante, Model model)==> " + this.serviceCategoria.buscarTodas());
+		// "(/create) VacanteController [ this.serviceCategoria.buscarTodas()] - formVacantes.html ==> "
+		System.out.println("(/create) VacanteController [buscarTodas()] - formVacantes.html ==> " + this.serviceCategoria.buscarTodas());
 		System.out.println();
 		model.addAttribute("categorias", this.serviceCategoria.buscarTodas());
 		return "vacante/formVacantes";
@@ -217,11 +223,11 @@ public class VacanteController {
 		 * archivos, una base de datos, o procesada de otra manera según sea necesario.
 		 */
 		if (!multiPart.isEmpty()){
-			String ruta = "C:/empleos/img-vacantes";
-			String nombreImagen = Utileria.guardarArchivo(multiPart, ruta);
+			// String ruta = "C:/empleos/img-vacantes";
+			String nombreImagen = Utileria.guardarArchivo(multiPart, this.ruta);
 			System.out.println("nombreImagen= " + nombreImagen);
 			System.out.println("multiPart= " + multiPart);
-			System.out.println("ruta= " + ruta);
+			System.out.println("ruta= " + this.ruta);
 			if (nombreImagen != null){
 				vacante.setImages(nombreImagen);
 			}

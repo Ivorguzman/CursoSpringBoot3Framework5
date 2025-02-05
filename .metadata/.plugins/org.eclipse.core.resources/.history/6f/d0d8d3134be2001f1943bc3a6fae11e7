@@ -1,0 +1,15 @@
+spring.application.name=empleos
+server.port=9080
+
+spring.servlet.multipart.enabled=true
+
+spring.servlet.multipart.location=C:/tmp
+
+spring.servlet.multipart.max-file-size=2MB
+
+empleos.ruta.imagenes=C:/empleos/img-vacantes/
+{"properties": [{
+  "name": "empleos.ruta.imagenes",
+  "type": "java.lang.String",
+  "description": "A description for 'empleos.ruta.imagenes'"
+}]}
