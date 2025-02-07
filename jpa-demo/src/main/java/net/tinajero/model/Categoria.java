@@ -1,14 +1,21 @@
 package net.tinajero.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-// Clase de tipo Java Beans
+@Entity
+@Table(name = "categoria")
 public class Categoria {
 
 
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nombre;
-	private String descripcion= "En desarrollo";
+	private String descripcion = "En desarrollo";
 
 
 
@@ -35,15 +42,15 @@ public class Categoria {
 
 	// **** Setters *****
 	public void setId(Integer id) {
-		this.id= id;
+		this.id = id;
 	}
 
 	public void setNombre(String nombre) {
-		this.nombre= nombre;
+		this.nombre = nombre;
 	}
 
 	public void setDescripcion(String descripcion) {
-		this.descripcion= descripcion;
+		this.descripcion = descripcion;
 	}
 
 	@Override
