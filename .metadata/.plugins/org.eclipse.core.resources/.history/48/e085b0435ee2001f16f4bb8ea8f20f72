@@ -1,7 +1,0 @@
-{"properties": [
-  {
-    "name": "empleos.ruta.imagenes",
-    "type": "java.lang.String",
-    "description": "Ubicación de la imagenes "
-  }
-]}

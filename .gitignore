@@ -1,4 +1,6 @@
 echo ".metadata/" >> .gitignore
+# Ignorar la carpeta .metadata y todo su contenido
+.metadata/
 desktop.ini
 1616930238237182019058100203183357203124129.ico
 

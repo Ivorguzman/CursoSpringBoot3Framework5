@@ -1,7 +1,0 @@
-package net.tinajero.repository;
-
-import org.springframework.data.repository.CrudRepository;
-
-public interface I_CategoriaRepository extends CrudRepository<Categoria, Integer> {
-
-}
