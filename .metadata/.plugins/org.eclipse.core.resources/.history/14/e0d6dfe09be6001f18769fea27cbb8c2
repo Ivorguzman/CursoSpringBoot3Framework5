@@ -70,7 +70,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 		 * - 'Optional<Categoria>': El resultado se almacena en un objeto 'Optional', que puede contener la categoría o estar
 		 * vacío.
 		 */
-		Optional<Categoria> optional = this.repositorio.findById(2);
+		Optional<Categoria> optional = this.repositorio.findById(4);
 
 		/*
 		 * Si el 'Optional' contiene un valor (es decir, la categoría existe), se ejecuta este bloque.
@@ -78,16 +78,16 @@ public class JpaDemoApplication implements CommandLineRunner {
 		 * - 'categoriaTemporal':categoriaTemporal es el nombre del parámetro que recibe la expresión lambda. En este caso, si
 		 * el Optional contiene un valor, ese valor será asignado a categoriaTemporal.
 		 */
-		optional.ifPresent((categoriaTemporal)-> {
-			// Imprime en la consola la categoría encontrada.
-			System.out.println("Categoria categoriaTemporal = optional.ifPresent() ==> " + categoriaTemporal);
-
-			// Actualiza el nombre y la descripción de la categoría.
-			categoriaTemporal.setNombre("Desarrollador Java Spring Boot");
-			categoriaTemporal.setDescripcion("Desarrollo de Endpoints y su mantenimiento");
-
-			// Guarda la categoría actualizada en el repositorio.
-			this.repositorio.save(categoriaTemporal);
+		optional.ifPresent((categoriaTemporal) -> {
+		    // Imprime en la consola la categoría encontrada.
+		    System.out.println("Categoria categoriaTemporal = optional.ifPresent() ==> " + categoriaTemporal);
+		    
+		    // Actualiza el nombre y la descripción de la categoría.
+		    categoriaTemporal.setNombre("Desarrollador Java Spring Boot");
+		    categoriaTemporal.setDescripcion("Desarrollo de Endpoints y su mantenimiento");
+		    
+		    // Guarda la categoría actualizada en el repositorio.
+		    this.repositorio.save(categoriaTemporal);
 		});
 
 

@@ -70,7 +70,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 		 * - 'Optional<Categoria>': El resultado se almacena en un objeto 'Optional', que puede contener la categoría o estar
 		 * vacío.
 		 */
-		Optional<Categoria> optional = this.repositorio.findById(2);
+		Optional<Categoria> optional = this.repositorio.findById(4);
 
 		/*
 		 * Si el 'Optional' contiene un valor (es decir, la categoría existe), se ejecuta este bloque.
@@ -82,14 +82,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 			// Imprime en la consola la categoría encontrada.
 			System.out.println("Categoria categoriaTemporal = optional.ifPresent() ==> " + categoriaTemporal);
 
-			// Actualiza el nombre y la descripción de la categoría.
-			categoriaTemporal.setNombre("Desarrollador Java Spring Boot");
-			categoriaTemporal.setDescripcion("Desarrollo de Endpoints y su mantenimiento");
-
-			// Guarda la categoría actualizada en el repositorio.
-			this.repositorio.save(categoriaTemporal);
 		});
-
 
 		/*
 		 * Si el 'Optional' está vacío (es decir, no se encontró ninguna categoría con el ID especificado), se ejecuta este

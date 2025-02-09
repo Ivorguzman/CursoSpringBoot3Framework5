@@ -70,7 +70,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 		 * - 'Optional<Categoria>': El resultado se almacena en un objeto 'Optional', que puede contener la categoría o estar
 		 * vacío.
 		 */
-		Optional<Categoria> optional = this.repositorio.findById(2);
+		Optional<Categoria> optional = this.repositorio.findById(4);
 
 		/*
 		 * Si el 'Optional' contiene un valor (es decir, la categoría existe), se ejecuta este bloque.
