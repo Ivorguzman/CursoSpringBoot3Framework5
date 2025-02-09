@@ -27,14 +27,19 @@ public class JpaDemoApplication implements CommandLineRunner {
 		System.out.println("========================== > Ejecutando public void run(...){......} < =========================");
 		// this.guardar();
 		// this.buscarPorId();
-		this.modificar();
+		// this.modificar();
 		// this.eliminar();
+		this.eliminarTodos();
+		// this.contar();
 	}
+
+
+
 
 
 	private void guardar() {
 
-		System.out.println("########################### Insertando Registro ##############################");
+		System.out.println("########################### .save(?) guardar() Registro ##############################");
 		Categoria catagoria = new Categoria();
 		catagoria.setNombre("Finanzas");
 		catagoria.setDescripcion("Trabajo de finanzas y contabilidad");
@@ -63,7 +68,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 	private void modificar() {
 
 		// Imprime un mensaje en la consola para indicar el inicio del método.
-		System.out.println("########################### modificar() Registro ##############################");
+		System.out.println("###########################.save(...)  modificar() Registro ##############################");
 
 		/*
 		 * Busca una categoría en el repositorio por su ID (en este caso, ID = 2).
@@ -105,9 +110,9 @@ public class JpaDemoApplication implements CommandLineRunner {
 
 
 	private void buscarPorId() {
-		System.out.println("########################### buscarPorId() Registro ##############################");
+		System.out.println("########################### .findById(...) buscarPorId()  Registro ##############################");
 		Optional<Categoria> optional = this.repositorio.findById(2);
-		System.out.println(" Optional<Categoria> repositorio.findById(X) ==>  " + this.repositorio);
+		System.out.println(" Optional<Categoria> repositorio.findById(...) ==>  " + this.repositorio);
 		if (optional.isPresent()){
 
 			System.out.println("optional.get() ==> " + optional.get());
@@ -119,7 +124,46 @@ public class JpaDemoApplication implements CommandLineRunner {
 	}
 
 	private void eliminar() {
-		System.out.println("########################### ELEIMINANDO Registro ##############################");
+		System.out.println("########################### deleteById(...) eliminar() Registro ##############################");
+		int id = 5;
+
+		this.repositorio.deleteById(id);
+		System.out.println("deleteById(id) ==>  " + this.repositorio);
+
+
 	}
 
+
+	private void contar() {
+		System.out.println("##### .count() Registro devuelve la cantidade de  entidades (registros) del tipo categorias(tables) estan almacenadas BD #####");
+		long conteo = this.repositorio.count();
+		System.out.println("this.repositorio.count() ==> " + conteo);
+
+	}
+
+	private void eliminarTodos() {
+		System.out.println("########################### deleteAll() eliminarTodos() Registro ##############################");
+		this.repositorio.deleteAll();
+	}
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
