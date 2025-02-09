@@ -81,11 +81,11 @@ public class JpaDemoApplication implements CommandLineRunner {
 		 */
 		optional.ifPresent((categoriaTemporal)-> {
 			// Imprime en la consola la categoría encontrada.
+			System.out.println("Categoria categoriaTemporal = optional.ifPresent() ==> " + categoriaTemporal);
 
 			// Actualiza el nombre y la descripción de la categoría.
 			categoriaTemporal.setNombre("Desarrollador Java Spring Boot");
-			categoriaTemporal.setDescripcion("Desarrollo de End-Points y su mantenimiento");
-			System.out.println("Categoria categoriaTemporal = optional.ifPresent() ==> " + categoriaTemporal);
+			categoriaTemporal.setDescripcion("Desarrollo de EndPoints y su mantenimiento");
 
 			// Guarda la categoría actualizada en el repositorio.
 			this.repositorio.save(categoriaTemporal);
