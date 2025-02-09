@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "categoria")
+@Table(name = "categorias")
 public class Categoria {
 
 
@@ -15,7 +15,7 @@ public class Categoria {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nombre;
-	private String descripcion = "En desarrollo";
+	private String descripcion;
 
 
 
