@@ -10,13 +10,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import net.tinajero.model.Categoria;
-import net.tinajero.repository.I_CategoriaRepository;
+import net.tinajero.repository.IR_CategoriaRepository;
 
 @SpringBootApplication
 public class JpaDemoApplication implements CommandLineRunner {
 
 	@Autowired
-	private I_CategoriaRepository repositorio;
+	private IR_CategoriaRepository repositorio;
 
 	public static void main(String[] args) {
 		SpringApplication.run(JpaDemoApplication.class, args);
@@ -35,12 +35,9 @@ public class JpaDemoApplication implements CommandLineRunner {
 		// this.contar();
 		// this.econtrarEstosIds();
 		// this.buscarTodoRegistos();
-		this.existeId();
+		// this.existeId();
+		this.guardarTodasInstacias();
 	}
-
-
-
-
 
 
 
@@ -133,7 +130,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 
 	private void eliminar() {
 		System.out.println("########################### deleteById(...) eliminar() Registro ##############################");
-		int id = 5;
+		int id = 18;
 
 		this.repositorio.deleteById(id);
 		System.out.println("deleteById(id) ==>  " + this.repositorio);
@@ -201,6 +198,39 @@ public class JpaDemoApplication implements CommandLineRunner {
 		}
 	}
 
+	private List<Categoria> obtenerListaCategoria() {
+
+		List<Categoria> listaCategorias = new LinkedList<>();
+		System.out.println("lista ==> " + listaCategorias);
+
+		Categoria categoria_1 = new Categoria();
+		categoria_1.setNombre("Programador Java/C# - .Net, Spring Frame Work, Spring Boot ");
+		categoria_1.setDescripcion("Tabajo relacionado con el  desarrollo de un  sietemna de empleo (APP)");
+
+		Categoria categoria_2 = new Categoria();
+		categoria_2.setNombre("Programador WEB BackEnd  Java - Spring Frame Work , Spring Boot");
+		categoria_2.setDescripcion("Tabajo relacionado con el  desarrollo de un  sietemna de empleo (APP)");
+
+
+		Categoria categoria_3 = new Categoria();
+		categoria_3.setNombre("Programador WEB FrontEnd  Java - Spring Boot");
+		categoria_3.setDescripcion("Tabajo relacionado con el  desarrollo de un  sietemna de empleo (APP)");
+
+
+		listaCategorias.add(categoria_1);
+		listaCategorias.add(categoria_2);
+		listaCategorias.add(categoria_3);
+
+		System.out.println("listaCategorias ==> " + listaCategorias);
+		return listaCategorias;
+	}
+
+	private void guardarTodasInstacias() {
+		System.out.println("########################### .saveAll(....) guardarTodo()  Registro ##############################");
+		List<Categoria> listaNuevasCategorias = this.obtenerListaCategoria();
+		this.repositorio.saveAll(listaNuevasCategorias);
+
+	}
 }
 
 

@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import net.tinajero.model.Categoria;
 
-public interface I_CategoriaRepository extends CrudRepository<Categoria, Integer> {
+public interface IR_CategoriaRepository extends CrudRepository<Categoria, Integer> {
 
 }
