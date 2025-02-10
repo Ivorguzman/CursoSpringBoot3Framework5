@@ -1,5 +1,7 @@
 package net.tinajero;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +31,15 @@ public class JpaDemoApplication implements CommandLineRunner {
 		// this.buscarPorId();
 		// this.modificar();
 		// this.eliminar();
-		this.eliminarTodos();
+		// this.eliminarTodos();
 		// this.contar();
+		// this.econtrarEstosIds();
+		// this.buscarTodoRegistos();
+		this.existeId();
 	}
+
+
+
 
 
 
@@ -146,6 +154,52 @@ public class JpaDemoApplication implements CommandLineRunner {
 		this.repositorio.deleteAll();
 	}
 
+
+	private void econtrarEstosIds() {
+		System.out.println("########################### .findAllById(...) econtrarEstosIds()  en Registro ##############################");
+		List<Integer> ids = new LinkedList<Integer>();
+		ids.add(14);
+		ids.add(12);
+		ids.add(13);
+		Iterable<Categoria> categoria = this.repositorio.findAllById(ids);
+
+		for (Categoria temporalCategoria : categoria){
+			System.out.println("tempotralCategoria ==> " + temporalCategoria);
+
+
+		}
+	}
+
+
+
+	private void buscarTodoRegistos() {
+		System.out.println("########################### .findAll() buscarTodoRegistos() los Registro ##############################");
+		Iterable<Categoria> categoria = this.repositorio.findAll();
+
+		for (Categoria temporalCategoria : categoria){
+			System.out.println("tempotralCategoria ==> " + temporalCategoria);
+
+
+		}
+
+
+	}
+
+
+	private void existeId() {
+		System.out.println("########################### .existsById(....) existeId() en Registro ##############################");
+
+		Integer id = 125;
+		boolean siExisteId = this.repositorio.existsById(id);
+
+		if (siExisteId){
+
+			System.out.println("repositorio.existsById() ==>  SI existe el id= " + id + "(" + siExisteId + ")");
+
+		} else{
+			System.out.println("repositorio.existsById() ==>  No existe el id= " + id + "(" + siExisteId + ")");
+		}
+	}
 
 }
 
