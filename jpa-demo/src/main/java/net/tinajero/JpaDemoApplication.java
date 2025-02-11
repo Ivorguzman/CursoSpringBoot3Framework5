@@ -27,6 +27,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("========================== > Ejecutando public void run(...){......} < =========================");
+		// ****** Metodo utilizados extendiendo de la intrfaz CrudRepository ********
 		// this.guardar();
 		// this.buscarPorId();
 		// this.modificar();
@@ -36,8 +37,16 @@ public class JpaDemoApplication implements CommandLineRunner {
 		// this.econtrarEstosIds();
 		// this.buscarTodoRegistos();
 		// this.existeId();
-		this.guardarTodasInstacias();
+		// this.guardarTodasInstacias();
+
+
+		// ****** Metodo utilizados extendiendo de la intrfaz JpaRepository ********
+
+		this.buscarTodosJpa();
+
 	}
+
+
 
 
 
@@ -113,124 +122,201 @@ public class JpaDemoApplication implements CommandLineRunner {
 		}
 	}
 
-
 	private void buscarPorId() {
+		// Imprime un mensaje en la consola para indicar que se está ejecutando el método buscarPorId.
 		System.out.println("########################### .findById(...) buscarPorId()  Registro ##############################");
-		Optional<Categoria> optional = this.repositorio.findById(2);
-		System.out.println(" Optional<Categoria> repositorio.findById(...) ==>  " + this.repositorio);
-		if (optional.isPresent()){
 
+		// Busca una entidad de tipo Categoria en el repositorio por su ID (en este caso, el ID es 2).
+		// El método findById devuelve un Optional, que puede contener la entidad si existe, o estar vacío si no.
+		Optional<Categoria> optional = this.repositorio.findById(2);
+
+		// Imprime el repositorio en la consola. Esto puede ser útil para depuración, pero no es común en producción.
+		System.out.println(" Optional<Categoria> repositorio.findById(...) ==>  " + this.repositorio);
+
+		// Verifica si el Optional contiene una entidad (es decir, si se encontró la categoría con el ID 2).
+		if (optional.isPresent()){
+			// Si la entidad existe, la obtiene del Optional y la imprime en la consola.
 			System.out.println("optional.get() ==> " + optional.get());
 		} else{
-			System.out.println("La Calse Categorio no se encontro");
+			// Si no se encuentra la entidad, imprime un mensaje indicando que no se encontró.
+			System.out.println("La Clase Categoria no se encontró");
 		}
-
-
 	}
 
 	private void eliminar() {
+		// Imprime un mensaje en la consola para indicar que se está ejecutando el método eliminar.
 		System.out.println("########################### deleteById(...) eliminar() Registro ##############################");
+
+		// Define el ID de la entidad que se desea eliminar (en este caso, el ID es 18).
 		int id = 18;
 
+		// Elimina la entidad con el ID especificado del repositorio.
 		this.repositorio.deleteById(id);
+
+		// Imprime el repositorio en la consola. Esto puede ser útil para depuración, pero no es común en producción.
 		System.out.println("deleteById(id) ==>  " + this.repositorio);
-
-
 	}
 
-
 	private void contar() {
-		System.out.println("##### .count() Registro devuelve la cantidade de  entidades (registros) del tipo categorias(tables) estan almacenadas BD #####");
-		long conteo = this.repositorio.count();
-		System.out.println("this.repositorio.count() ==> " + conteo);
+		// Imprime un mensaje en la consola para indicar que se está ejecutando el método contar.
+		System.out.println("##### .count() Registro devuelve la cantidad de entidades (registros) del tipo categorias (tablas) almacenadas en la BD #####");
 
+		// Cuenta el número total de entidades de tipo Categoria almacenadas en la base de datos.
+		long conteo = this.repositorio.count();
+
+		// Imprime el número total de entidades en la consola.
+		System.out.println("this.repositorio.count() ==> " + conteo);
 	}
 
 	private void eliminarTodos() {
+		// Imprime un mensaje en la consola para indicar que se está ejecutando el método eliminarTodos.
 		System.out.println("########################### deleteAll() eliminarTodos() Registro ##############################");
+
+		// Elimina todas las entidades de tipo Categoria del repositorio.
 		this.repositorio.deleteAll();
 	}
 
-
 	private void econtrarEstosIds() {
-		System.out.println("########################### .findAllById(...) econtrarEstosIds()  en Registro ##############################");
+		// Imprime un mensaje en la consola para indicar que se está ejecutando el método econtrarEstosIds.
+		System.out.println("########################### .findAllById(...) econtrarEstosIds() en Registro ##############################");
+
+		// Crea una lista de IDs que se desean buscar en el repositorio.
 		List<Integer> ids = new LinkedList<Integer>();
 		ids.add(14);
 		ids.add(12);
 		ids.add(13);
+
+		// Busca todas las entidades de tipo Categoria cuyos IDs estén en la lista proporcionada.
 		Iterable<Categoria> categoria = this.repositorio.findAllById(ids);
 
+		// Itera sobre las entidades encontradas y las imprime en la consola.
 		for (Categoria temporalCategoria : categoria){
-			System.out.println("tempotralCategoria ==> " + temporalCategoria);
-
-
+			System.out.println("temporalCategoria ==> " + temporalCategoria);
 		}
 	}
-
-
 
 	private void buscarTodoRegistos() {
-		System.out.println("########################### .findAll() buscarTodoRegistos() los Registro ##############################");
+		// Imprime un mensaje en la consola para indicar que se está ejecutando el método buscarTodoRegistos.
+		System.out.println("########################### .findAll() buscarTodoRegistos() los Registros ##############################");
+
+		// Busca todas las entidades de tipo Categoria en el repositorio.
 		Iterable<Categoria> categoria = this.repositorio.findAll();
 
+		// Itera sobre todas las entidades encontradas y las imprime en la consola.
 		for (Categoria temporalCategoria : categoria){
-			System.out.println("tempotralCategoria ==> " + temporalCategoria);
-
-
+			System.out.println("temporalCategoria ==> " + temporalCategoria);
 		}
-
-
 	}
 
-
 	private void existeId() {
+		// Imprime un mensaje en la consola para indicar que se está ejecutando el método existeId.
 		System.out.println("########################### .existsById(....) existeId() en Registro ##############################");
 
+		// Define el ID que se desea verificar si existe en el repositorio.
 		Integer id = 125;
+
+		// Verifica si existe una entidad con el ID especificado en el repositorio.
 		boolean siExisteId = this.repositorio.existsById(id);
 
+		// Si el ID existe, imprime un mensaje indicando que sí existe.
 		if (siExisteId){
-
 			System.out.println("repositorio.existsById() ==>  SI existe el id= " + id + "(" + siExisteId + ")");
-
 		} else{
+			// Si el ID no existe, imprime un mensaje indicando que no existe.
 			System.out.println("repositorio.existsById() ==>  No existe el id= " + id + "(" + siExisteId + ")");
 		}
 	}
 
 	private List<Categoria> obtenerListaCategoria() {
-
+		// Crea una lista vacía de categorías.
 		List<Categoria> listaCategorias = new LinkedList<>();
+
+		// Imprime la lista vacía en la consola (útil para depuración).
 		System.out.println("lista ==> " + listaCategorias);
 
+		// Crea una nueva instancia de Categoria y establece sus propiedades (nombre y descripción).
 		Categoria categoria_1 = new Categoria();
 		categoria_1.setNombre("Programador Java/C# - .Net, Spring Frame Work, Spring Boot ");
-		categoria_1.setDescripcion("Tabajo relacionado con el  desarrollo de un  sietemna de empleo (APP)");
+		categoria_1.setDescripcion("Trabajo relacionado con el desarrollo de un sistema de empleo (APP)");
 
+		// Crea otra instancia de Categoria y establece sus propiedades.
 		Categoria categoria_2 = new Categoria();
-		categoria_2.setNombre("Programador WEB BackEnd  Java - Spring Frame Work , Spring Boot");
-		categoria_2.setDescripcion("Tabajo relacionado con el  desarrollo de un  sietemna de empleo (APP)");
+		categoria_2.setNombre("Programador WEB BackEnd Java - Spring Frame Work, Spring Boot");
+		categoria_2.setDescripcion("Trabajo relacionado con el desarrollo de un sistema de empleo (APP)");
 
-
+		// Crea otra instancia de Categoria y establece sus propiedades.
 		Categoria categoria_3 = new Categoria();
-		categoria_3.setNombre("Programador WEB FrontEnd  Java - Spring Boot");
-		categoria_3.setDescripcion("Tabajo relacionado con el  desarrollo de un  sietemna de empleo (APP)");
+		categoria_3.setNombre("Programador WEB FrontEnd Java - Spring Boot");
+		categoria_3.setDescripcion("Trabajo relacionado con el desarrollo de un sistema de empleo (APP)");
 
-
+		// Agrega las categorías creadas a la lista.
 		listaCategorias.add(categoria_1);
 		listaCategorias.add(categoria_2);
 		listaCategorias.add(categoria_3);
 
+		// Imprime la lista de categorías en la consola (útil para depuración).
 		System.out.println("listaCategorias ==> " + listaCategorias);
+
+		// Devuelve la lista de categorías.
 		return listaCategorias;
 	}
 
 	private void guardarTodasInstacias() {
-		System.out.println("########################### .saveAll(....) guardarTodo()  Registro ##############################");
+		// Imprime un mensaje en la consola para indicar que se está ejecutando el método guardarTodasInstacias.
+		System.out.println("########################### .saveAll(....) guardarTodasInstacias() Registro ##############################");
+
+		// Obtiene una lista de categorías utilizando el método obtenerListaCategoria.
 		List<Categoria> listaNuevasCategorias = this.obtenerListaCategoria();
+
+		// Guarda todas las categorías de la lista en el repositorio.
 		this.repositorio.saveAll(listaNuevasCategorias);
+	}
+
+
+
+
+
+	// ******** Ejemplos Utilizado extendiendo de la Interfaz JpaRepository en vez de de la intefaz CrudRepository
+	// *************
+	private void buscarTodosJpa() {
+		System.out.println("########################### .findAll() buscarTodosJpa()  Registro ##############################");
+
+		List<Categoria> categoriasJpa = this.repositorio.findAll();
+
+		System.out.println("categoriasJpa ==>" + categoriasJpa);
+		for (Categoria categoriasJpaTemp : categoriasJpa){
+			System.out.println("categoriasJpaTemp ==>" + categoriasJpaTemp);
+			System.out.println(categoriasJpaTemp.getId() + " " + categoriasJpaTemp.getNombre());
+		}
+		;
 
 	}
+
+
+
+
+	/*
+	 * Explicación General:
+	 * Repositorio (repositorio): Es una interfaz que proporciona métodos para interactuar con la base de datos, como
+	 * findById, deleteById, count, saveAll, etc.
+	 * 
+	 * Optional: Es una clase contenedora que puede o no contener un valor no nulo. Se utiliza para evitar
+	 * NullPointerException.
+	 * 
+	 * Iterable: Es una interfaz que permite iterar sobre una colección de elementos.
+	 * 
+	 * LinkedList: Es una implementación de la interfaz List que almacena elementos en una lista enlazada.
+	 * 
+	 * ¿Por qué se hace cada cosa?
+	 * Impresiones en consola: Se utilizan para depuración y seguimiento del flujo del programa.
+	 * 
+	 * Métodos del repositorio: Se utilizan para realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) en la base de
+	 * datos.
+	 * 
+	 * Optional: Se utiliza para manejar casos en los que una entidad puede no existir en la base de datos.
+	 * 
+	 * List: Se utilizan para almacenar múltiples entidades y manipularlas de manera eficiente.
+	 */
 }
 
 
