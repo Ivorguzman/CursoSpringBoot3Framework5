@@ -397,7 +397,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 		// ejecutado.
 		System.out.println();
 		System.out.println();
-		Page<Categoria> paginacion = this.repositorio.findAll(PageRequest.of(1, 4));
+		Page<Categoria> paginacion = this.repositorio.findAll(PageRequest.of(1, 6));
 
 		for (Categoria subListaPaginada : paginacion.getContent()){
 
@@ -420,8 +420,9 @@ public class JpaDemoApplication implements CommandLineRunner {
 		// ejecutado.
 		System.out.println();
 		System.out.println();
-		Page<Categoria> paginacion = this.repositorio.findAll(PageRequest.of(1, 4, Sort.by("nombre")));
-
+		// Page<Categoria> paginacion = this.repositorio.findAll(PageRequest.of(1, 4, Sort.by("nombre")));
+		// ordenadas decendentemente por Nombre
+		Page<Categoria> paginacion = this.repositorio.findAll(PageRequest.of(1, 6, Sort.by("nombre").descending()));
 		for (Categoria subListaPaginada : paginacion.getContent()){
 
 			System.out.println(subListaPaginada.getId() + "" + subListaPaginada.getNombre());
