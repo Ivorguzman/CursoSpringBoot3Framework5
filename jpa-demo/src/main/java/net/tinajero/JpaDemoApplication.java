@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
 import net.tinajero.model.Categoria;
 import net.tinajero.repository.IR_CategoriaRepository;
@@ -29,24 +32,28 @@ public class JpaDemoApplication implements CommandLineRunner {
 		System.out.println("========================== > Ejecutando public void run(...){......} < =========================");
 		// ****** Metodo utilizados extendiendo de la intrfaz CrudRepository ********
 		// this.guardar();
+		// this.eliminarTodos();
+		// this.guardarTodasInstacias();
 		// this.buscarPorId();
+		// this.obtenerListaCategoria();
 		// this.modificar();
 		// this.eliminar();
-		// this.eliminarTodos();
 		// this.contar();
 		// this.econtrarEstosIds();
 		// this.buscarTodoRegistos();
 		// this.existeId();
-		// this.guardarTodasInstacias();
 
 
 
 
 		// ****** Metodo utilizados extendiendo de la intrfaz JpaRepository ********
 		// this.buscarTodosJpa();
-		this.borrarTodoRegistrosBloque();
-		// this.buscarTodoOrdenado();
+		// this.borrarTodoRegistrosBloqueJpa();
+		// this.buscarTodoOrdenadoJpa();
+		// this.buscarTodoSoloPaginacion();
+		this.buscarTodosPaginacionOrdenamineto();
 	}
+
 
 
 
@@ -252,10 +259,29 @@ public class JpaDemoApplication implements CommandLineRunner {
 		categoria_3.setNombre("Programador WEB FrontEnd Java - Spring Boot");
 		categoria_3.setDescripcion("Trabajo relacionado con el desarrollo de un sistema de empleo (APP)");
 
+		// Crea otra instancia de Categoria y establece sus propiedades.
+		Categoria categoria_4 = new Categoria();
+		categoria_4.setNombre("Programador Java-EE");
+		categoria_4.setDescripcion("Trabajo relacionado con el desarrollo de un sistema de empleo (APP) a nivel OfLine");
+
+		// Crea otra instancia de Categoria y establece sus propiedades.
+		Categoria categoria_5 = new Categoria();
+		categoria_5.setNombre("Programador WEB PhP");
+		categoria_5.setDescripcion("Trabajo relacionado con el desarrollo de un sistema de empleo (APP)");
+
+
+		// Crea otra instancia de Categoria y establece sus propiedades.
+		Categoria categoria_6 = new Categoria();
+		categoria_6.setNombre("Programador WEB  JavaScript Node");
+		categoria_6.setDescripcion("Trabajo relacionado con el desarrollo de un sistema de empleo (APP)");
+
 		// Agrega las categorías creadas a la lista.
 		listaCategorias.add(categoria_1);
 		listaCategorias.add(categoria_2);
 		listaCategorias.add(categoria_3);
+		listaCategorias.add(categoria_4);
+		listaCategorias.add(categoria_5);
+		listaCategorias.add(categoria_6);
 
 		// Imprime la lista de categorías en la consola (útil para depuración).
 		System.out.println("listaCategorias ==> " + listaCategorias);
@@ -310,8 +336,10 @@ public class JpaDemoApplication implements CommandLineRunner {
 	}
 
 
-	private void borrarTodoRegistrosBloque() {
+	private void borrarTodoRegistrosBloqueJpa() {
 		System.out.println("########################### deleteAllInBatch() borrarTodoRegistrosBloque() ##############################");
+		// Esta línea imprime un mensaje en la consola para indicar que el método borrarTodoRegistrosBloque() está siendo
+		// ejecutado.
 
 		// Imprimir y eliminar registros en bloque
 		List<Categoria> categoriasJpaAntes = this.repositorio.findAll();
@@ -326,10 +354,99 @@ public class JpaDemoApplication implements CommandLineRunner {
 
 
 
-	private void buscarTodoOrdenado() {
-		System.out.println("###########################  () buscarTodoOrdenado() ##############################");
+	private void buscarTodoOrdenadoJpa() {
+
+
+		System.out.println("########################### .findAll(....) buscarTodoOrdenadoJpa()  Registro ##############################");
+		// Esta línea imprime un mensaje en la consola para indicar que el método buscarTodoOrdenadoJpa está siendo ejecutado.
+
+		List<Categoria> categoriasJpa = this.repositorio.findAll(); // ordenadas acendentemente por Ids
+		// List<Categoria> categoriasJpa = this.repositorio.findAll(Sort.by("nombre")); // ordenadas acendentemente por Nombre
+		// List<Categoria> categoriasJpa = this.repositorio.findAll(Sort.by("nombre").descending()); // ordenadas
+		// decendentemente por Nombre
+		// Aquí se declara una lista de objetos de tipo Categoria y se inicializa con el resultado del método findAll() del
+		// repositorio.
+		// El repositorio es una instancia de algún objeto que gestiona las operaciones de la base de datos.
+
+		System.out.println();
+		System.out.println("categoriasJpa ==>" + categoriasJpa);
+		System.out.println();
+		System.out.println();
+		// Esta línea imprime en la consola el contenido de la lista categoriasJpa.
+
+		for (Categoria categoriasJpaTemp : categoriasJpa){
+			// Este es un bucle for-each que recorre cada objeto de tipo Categoria en la lista categoriasJpa.
+
+			// System.out.println("categoriasJpaTemp ==>" + categoriasJpaTemp);
+			// Imprime en la consola el objeto actual de la lista.
+
+			System.out.println(categoriasJpaTemp.getId() + " " + categoriasJpaTemp.getNombre());
+			// Imprime en la consola el id y el nombre del objeto actual. Se asume que la clase Categoria tiene métodos getId() y
+			// getNombre().
+		}
+		// El bucle for-each termina aquí.
+		System.out.println();
+		System.out.println();
 
 	}
+
+
+	private void buscarTodoSoloPaginacion() {
+		System.out.println("########################### .findAll(....) buscarTodoSoloPaginacion()  Registro ##############################");
+		// Esta línea imprime un mensaje en la consola para indicar que el método buscarTodoSoloPaginacion está siendo
+		// ejecutado.
+		System.out.println();
+		System.out.println();
+		Page<Categoria> paginacion = this.repositorio.findAll(PageRequest.of(1, 4));
+
+		for (Categoria subListaPaginada : paginacion.getContent()){
+
+			System.out.println(subListaPaginada.getId() + "" + subListaPaginada.getNombre());
+
+		}
+		System.out.println();
+		System.out.println("Total Registros en BD: " + paginacion.getTotalElements());
+		System.out.println("Registro por Página: " + paginacion.getSize());
+		System.out.println("Total Páginas: " + paginacion.getTotalPages());
+		System.out.println();
+		System.out.println();
+	}
+
+
+
+	private void buscarTodosPaginacionOrdenamineto() {
+		System.out.println("########################### .findAll(....) buscarTodosPaginacionOrdenamineto()  Registro ##############################");
+		// Esta línea imprime un mensaje en la consola para indicar que el método buscarTodosPaginacionOrdenamineto está siendo
+		// ejecutado.
+		System.out.println();
+		System.out.println();
+		Page<Categoria> paginacion = this.repositorio.findAll(PageRequest.of(1, 4, Sort.by("nombre")));
+
+		for (Categoria subListaPaginada : paginacion.getContent()){
+
+			System.out.println(subListaPaginada.getId() + "" + subListaPaginada.getNombre());
+
+		}
+		System.out.println();
+		System.out.println("Total Registros en BD: " + paginacion.getTotalElements());
+		System.out.println("Registro por Página: " + paginacion.getSize());
+		System.out.println("Total Páginas: " + paginacion.getTotalPages());
+		System.out.println();
+		System.out.println();
+
+
+	}
+
+
+
+
+
+
+
+
+
+
+
 
 
 	/*
