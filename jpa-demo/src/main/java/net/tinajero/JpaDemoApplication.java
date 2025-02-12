@@ -44,8 +44,8 @@ public class JpaDemoApplication implements CommandLineRunner {
 
 		// ****** Metodo utilizados extendiendo de la intrfaz JpaRepository ********
 		// this.buscarTodosJpa();
-		// this.borrarTodoRegistrosBloque();
-		this.buscarTodoOrdenado();
+		this.borrarTodoRegistrosBloque();
+		// this.buscarTodoOrdenado();
 	}
 
 

@@ -8,9 +8,20 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "categorias")
+/*
+ * Indica que esta clase Categoria es una entidad de JPA.
+ * Cada instancia de esta clase representa una fila en una tabla de la base de datos.
+ */
 public class Categoria {
 
 
+
+
+	/*
+	 * @GeneratedValue(strategy = GenerationType.IDENTITY): Especifica que el valor del id se generará automáticamente
+	 * utilizando la estrategia de generación IDENTITY. Esto significa que la base de datos será responsable de generar
+	 * valores únicos para el id.
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
