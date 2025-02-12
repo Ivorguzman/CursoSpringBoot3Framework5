@@ -40,12 +40,14 @@ public class JpaDemoApplication implements CommandLineRunner {
 		// this.guardarTodasInstacias();
 
 
+
+
 		// ****** Metodo utilizados extendiendo de la intrfaz JpaRepository ********
-
 		// this.buscarTodosJpa();
-		this.borrarTodoRegistrosBloque();
-
+		// this.borrarTodoRegistrosBloque();
+		this.buscarTodoOrdenado();
 	}
+
 
 
 
@@ -309,10 +311,25 @@ public class JpaDemoApplication implements CommandLineRunner {
 
 
 	private void borrarTodoRegistrosBloque() {
-		// TODO Auto-generated method stub
+		System.out.println("########################### deleteAllInBatch() borrarTodoRegistrosBloque() ##############################");
 
+		// Imprimir y eliminar registros en bloque
+		List<Categoria> categoriasJpaAntes = this.repositorio.findAll();
+		System.out.println("categoriasJpa antes ==> " + categoriasJpaAntes);
+
+		this.repositorio.deleteAllInBatch();
+
+		List<Categoria> categoriasJpaDespues = this.repositorio.findAll();
+		System.out.println("categoriasJpa después ==> " + categoriasJpaDespues);
 	}
 
+
+
+
+	private void buscarTodoOrdenado() {
+		System.out.println("###########################  () buscarTodoOrdenado() ##############################");
+
+	}
 
 
 	/*
