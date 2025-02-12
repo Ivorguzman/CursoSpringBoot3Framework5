@@ -42,7 +42,8 @@ public class JpaDemoApplication implements CommandLineRunner {
 
 		// ****** Metodo utilizados extendiendo de la intrfaz JpaRepository ********
 
-		this.buscarTodosJpa();
+		// this.buscarTodosJpa();
+		this.borrarTodoRegistrosBloque();
 
 	}
 
@@ -279,19 +280,38 @@ public class JpaDemoApplication implements CommandLineRunner {
 	// ******** Ejemplos Utilizado extendiendo de la Interfaz JpaRepository en vez de de la intefaz CrudRepository
 	// *************
 	private void buscarTodosJpa() {
+		// Este método se llama buscarTodosJpa y es privado, es decir, solo puede ser llamado dentro de la clase en la que está
+		// definido.
+
 		System.out.println("########################### .findAll() buscarTodosJpa()  Registro ##############################");
+		// Esta línea imprime un mensaje en la consola para indicar que el método buscarTodosJpa está siendo ejecutado.
 
 		List<Categoria> categoriasJpa = this.repositorio.findAll();
+		// Aquí se declara una lista de objetos de tipo Categoria y se inicializa con el resultado del método findAll() del
+		// repositorio.
+		// El repositorio es una instancia de algún objeto que gestiona las operaciones de la base de datos.
 
 		System.out.println("categoriasJpa ==>" + categoriasJpa);
-		for (Categoria categoriasJpaTemp : categoriasJpa){
-			System.out.println("categoriasJpaTemp ==>" + categoriasJpaTemp);
-			System.out.println(categoriasJpaTemp.getId() + " " + categoriasJpaTemp.getNombre());
-		}
-		;
+		// Esta línea imprime en la consola el contenido de la lista categoriasJpa.
 
+		for (Categoria categoriasJpaTemp : categoriasJpa){
+			// Este es un bucle for-each que recorre cada objeto de tipo Categoria en la lista categoriasJpa.
+
+			System.out.println("categoriasJpaTemp ==>" + categoriasJpaTemp);
+			// Imprime en la consola el objeto actual de la lista.
+
+			System.out.println(categoriasJpaTemp.getId() + " " + categoriasJpaTemp.getNombre());
+			// Imprime en la consola el id y el nombre del objeto actual. Se asume que la clase Categoria tiene métodos getId() y
+			// getNombre().
+		}
+		// El bucle for-each termina aquí.
 	}
 
+
+	private void borrarTodoRegistrosBloque() {
+		// TODO Auto-generated method stub
+
+	}
 
 
 
