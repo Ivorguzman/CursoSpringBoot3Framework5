@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
 import net.tinajero.model.Categoria;
+import net.tinajero.model.Vacante;
 import net.tinajero.repository.IR_CategoriaRepository;
 import net.tinajero.repository.IR_VacanteRepository;
 
@@ -35,7 +36,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("========================== > Ejecutando public void run(...){......} < =========================");
-		// ****** Metodo utilizados extendiendo de la intrfaz CrudRepository ********
+		// ****** Metodo utilizados extendiendo de la intrfaz CrudRepositoryen el modelo Categoria********
 		// this.guardar();
 		// this.eliminarTodos();
 		// this.guardarTodasInstacias();
@@ -49,15 +50,24 @@ public class JpaDemoApplication implements CommandLineRunner {
 		// this.existeId();
 
 
-
-
-		// ****** Metodo utilizados extendiendo de la intrfaz JpaRepository ********
+		// ****** Metodo utilizados extendiendo de la intrfaz JpaRepository modelo Categoria ********
 		// this.buscarTodosJpa();
 		// this.borrarTodoRegistrosBloqueJpa();
 		// this.buscarTodoOrdenadoJpa();
 		// this.buscarTodoSoloPaginacion();
-		this.buscarTodosPaginacionOrdenamineto();
+		// this.buscarTodosPaginacionOrdenamineto();
+		// this.buscarTodosJpa();
+
+
+		// **************************************************** //
+
+		// ****** Metodo utilizados extendiendo de la intrfaz JpaRepository modelo Vacante ********
+
+		this.buscarVacantes();
+
 	}
+
+
 
 
 
@@ -448,6 +458,24 @@ public class JpaDemoApplication implements CommandLineRunner {
 
 
 
+	private void buscarVacantes() {
+		// Imprime un mensaje en la consola para indicar que se está ejecutando el método buscarTodoRegistos.
+		System.out.println("########################### .findAll() buscarVacantes() los Registros ##############################");
+
+		// Busca todas las entidades de tipo Categoria en el repositorio.
+		List<Vacante> listVacante = this.repositorioVacante.findAll();
+
+		// Itera sobre todas las entidades encontradas y las imprime en la consola.
+		for (Vacante temporalLikstVacante : listVacante){
+			System.out.println("temporalCategoria ==> " + temporalLikstVacante);
+		}
+
+
+	}
+
+
+
+
 
 
 
@@ -477,8 +505,8 @@ public class JpaDemoApplication implements CommandLineRunner {
 	 * 
 	 * List: Se utilizan para almacenar múltiples entidades y manipularlas de manera eficiente.
 	 */
-}
 
+}
 
 
 

@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 /*
- * Indica que esta clase Categoria es una entidad de JPA.
+ * Indica que esta clase Vacante es una entidad de JPA.
  * Cada instancia de esta clase representa una fila en una tabla de la base de datos.
  */
 @Entity
@@ -29,9 +29,9 @@ public class Vacante {
 	// validaciones extremas
 	private Date fecha;
 	private Double salario;
+	private String status;
 	private String images = "no-image.png";
 	private Integer destacado;
-	private String status;
 	private String detalles;
 	private Categoria categoria;
 
