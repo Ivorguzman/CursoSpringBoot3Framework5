@@ -2,10 +2,29 @@ package net.tinajero.model;
 
 import java.util.Date;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+/*
+ * Indica que esta clase Categoria es una entidad de JPA.
+ * Cada instancia de esta clase representa una fila en una tabla de la base de datos.
+ */
+@Entity
+@Table(name = "vacantes")
 public class Vacante {
+	/*
+	 * @GeneratedValue(strategy = GenerationType.IDENTITY): Especifica que el valor del id se generará automáticamente
+	 * utilizando la estrategia de generación IDENTITY. Esto significa que la base de datos será responsable de generar
+	 * valores únicos para el id.
+	 */
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 	private String nombre;
 	private String descripcion;
-	private Integer id;
 	// @DateTimeFormat(pattern= "yyyy-MM-dd") // Para procesos sencillos sin
 	// validaciones extremas
 	private Date fecha;

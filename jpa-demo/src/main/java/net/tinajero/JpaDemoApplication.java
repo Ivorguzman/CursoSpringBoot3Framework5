@@ -14,12 +14,17 @@ import org.springframework.data.domain.Sort;
 
 import net.tinajero.model.Categoria;
 import net.tinajero.repository.IR_CategoriaRepository;
+import net.tinajero.repository.IR_VacanteRepository;
 
 @SpringBootApplication
 public class JpaDemoApplication implements CommandLineRunner {
 
 	@Autowired
-	private IR_CategoriaRepository repositorio;
+	private IR_CategoriaRepository repositorioCategoria;
+	@Autowired
+	private IR_VacanteRepository repositorioVacante;
+
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(JpaDemoApplication.class, args);
@@ -67,8 +72,8 @@ public class JpaDemoApplication implements CommandLineRunner {
 		Categoria catagoria = new Categoria();
 		catagoria.setNombre("Finanzas");
 		catagoria.setDescripcion("Trabajo de finanzas y contabilidad");
-		this.repositorio.save(catagoria);
-		System.out.println("I_CategoriaRepository repositorio ==>" + this.repositorio);
+		this.repositorioCategoria.save(catagoria);
+		System.out.println("I_CategoriaRepository repositorio ==>" + this.repositorioCategoria);
 		System.out.println("catagoria ==> " + catagoria);
 	}
 
@@ -100,7 +105,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 		 * - 'Optional<Categoria>': El resultado se almacena en un objeto 'Optional', que puede contener la categoría o estar
 		 * vacío.
 		 */
-		Optional<Categoria> optional = this.repositorio.findById(2);
+		Optional<Categoria> optional = this.repositorioCategoria.findById(2);
 
 		/*
 		 * Si el 'Optional' contiene un valor (es decir, la categoría existe), se ejecuta este bloque.
@@ -117,7 +122,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 			System.out.println("Categoria categoriaTemporal = optional.ifPresent() ==> " + categoriaTemporal);
 
 			// Guarda la categoría actualizada en el repositorio.
-			this.repositorio.save(categoriaTemporal);
+			this.repositorioCategoria.save(categoriaTemporal);
 		});
 
 
@@ -138,10 +143,10 @@ public class JpaDemoApplication implements CommandLineRunner {
 
 		// Busca una entidad de tipo Categoria en el repositorio por su ID (en este caso, el ID es 2).
 		// El método findById devuelve un Optional, que puede contener la entidad si existe, o estar vacío si no.
-		Optional<Categoria> optional = this.repositorio.findById(2);
+		Optional<Categoria> optional = this.repositorioCategoria.findById(2);
 
 		// Imprime el repositorio en la consola. Esto puede ser útil para depuración, pero no es común en producción.
-		System.out.println(" Optional<Categoria> repositorio.findById(...) ==>  " + this.repositorio);
+		System.out.println(" Optional<Categoria> repositorio.findById(...) ==>  " + this.repositorioCategoria);
 
 		// Verifica si el Optional contiene una entidad (es decir, si se encontró la categoría con el ID 2).
 		if (optional.isPresent()){
@@ -161,10 +166,10 @@ public class JpaDemoApplication implements CommandLineRunner {
 		int id = 18;
 
 		// Elimina la entidad con el ID especificado del repositorio.
-		this.repositorio.deleteById(id);
+		this.repositorioCategoria.deleteById(id);
 
 		// Imprime el repositorio en la consola. Esto puede ser útil para depuración, pero no es común en producción.
-		System.out.println("deleteById(id) ==>  " + this.repositorio);
+		System.out.println("deleteById(id) ==>  " + this.repositorioCategoria);
 	}
 
 	private void contar() {
@@ -172,7 +177,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 		System.out.println("##### .count() Registro devuelve la cantidad de entidades (registros) del tipo categorias (tablas) almacenadas en la BD #####");
 
 		// Cuenta el número total de entidades de tipo Categoria almacenadas en la base de datos.
-		long conteo = this.repositorio.count();
+		long conteo = this.repositorioCategoria.count();
 
 		// Imprime el número total de entidades en la consola.
 		System.out.println("this.repositorio.count() ==> " + conteo);
@@ -183,7 +188,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 		System.out.println("########################### deleteAll() eliminarTodos() Registro ##############################");
 
 		// Elimina todas las entidades de tipo Categoria del repositorio.
-		this.repositorio.deleteAll();
+		this.repositorioCategoria.deleteAll();
 	}
 
 	private void econtrarEstosIds() {
@@ -197,7 +202,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 		ids.add(13);
 
 		// Busca todas las entidades de tipo Categoria cuyos IDs estén en la lista proporcionada.
-		Iterable<Categoria> categoria = this.repositorio.findAllById(ids);
+		Iterable<Categoria> categoria = this.repositorioCategoria.findAllById(ids);
 
 		// Itera sobre las entidades encontradas y las imprime en la consola.
 		for (Categoria temporalCategoria : categoria){
@@ -210,7 +215,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 		System.out.println("########################### .findAll() buscarTodoRegistos() los Registros ##############################");
 
 		// Busca todas las entidades de tipo Categoria en el repositorio.
-		Iterable<Categoria> categoria = this.repositorio.findAll();
+		Iterable<Categoria> categoria = this.repositorioCategoria.findAll();
 
 		// Itera sobre todas las entidades encontradas y las imprime en la consola.
 		for (Categoria temporalCategoria : categoria){
@@ -226,7 +231,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 		Integer id = 125;
 
 		// Verifica si existe una entidad con el ID especificado en el repositorio.
-		boolean siExisteId = this.repositorio.existsById(id);
+		boolean siExisteId = this.repositorioCategoria.existsById(id);
 
 		// Si el ID existe, imprime un mensaje indicando que sí existe.
 		if (siExisteId){
@@ -298,7 +303,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 		List<Categoria> listaNuevasCategorias = this.obtenerListaCategoria();
 
 		// Guarda todas las categorías de la lista en el repositorio.
-		this.repositorio.saveAll(listaNuevasCategorias);
+		this.repositorioCategoria.saveAll(listaNuevasCategorias);
 	}
 
 
@@ -314,7 +319,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 		System.out.println("########################### .findAll() buscarTodosJpa()  Registro ##############################");
 		// Esta línea imprime un mensaje en la consola para indicar que el método buscarTodosJpa está siendo ejecutado.
 
-		List<Categoria> categoriasJpa = this.repositorio.findAll();
+		List<Categoria> categoriasJpa = this.repositorioCategoria.findAll();
 		// Aquí se declara una lista de objetos de tipo Categoria y se inicializa con el resultado del método findAll() del
 		// repositorio.
 		// El repositorio es una instancia de algún objeto que gestiona las operaciones de la base de datos.
@@ -342,12 +347,12 @@ public class JpaDemoApplication implements CommandLineRunner {
 		// ejecutado.
 
 		// Imprimir y eliminar registros en bloque
-		List<Categoria> categoriasJpaAntes = this.repositorio.findAll();
+		List<Categoria> categoriasJpaAntes = this.repositorioCategoria.findAll();
 		System.out.println("categoriasJpa antes ==> " + categoriasJpaAntes);
 
-		this.repositorio.deleteAllInBatch();
+		this.repositorioCategoria.deleteAllInBatch();
 
-		List<Categoria> categoriasJpaDespues = this.repositorio.findAll();
+		List<Categoria> categoriasJpaDespues = this.repositorioCategoria.findAll();
 		System.out.println("categoriasJpa después ==> " + categoriasJpaDespues);
 	}
 
@@ -360,7 +365,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 		System.out.println("########################### .findAll(....) buscarTodoOrdenadoJpa()  Registro ##############################");
 		// Esta línea imprime un mensaje en la consola para indicar que el método buscarTodoOrdenadoJpa está siendo ejecutado.
 
-		List<Categoria> categoriasJpa = this.repositorio.findAll(); // ordenadas acendentemente por Ids
+		List<Categoria> categoriasJpa = this.repositorioCategoria.findAll(); // ordenadas acendentemente por Ids
 		// List<Categoria> categoriasJpa = this.repositorio.findAll(Sort.by("nombre")); // ordenadas acendentemente por Nombre
 		// List<Categoria> categoriasJpa = this.repositorio.findAll(Sort.by("nombre").descending()); // ordenadas
 		// decendentemente por Nombre
@@ -397,7 +402,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 		// ejecutado.
 		System.out.println();
 		System.out.println();
-		Page<Categoria> paginacion = this.repositorio.findAll(PageRequest.of(1, 6));
+		Page<Categoria> paginacion = this.repositorioCategoria.findAll(PageRequest.of(1, 6));
 
 		for (Categoria subListaPaginada : paginacion.getContent()){
 
@@ -422,7 +427,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 		System.out.println();
 		// Page<Categoria> paginacion = this.repositorio.findAll(PageRequest.of(1, 4, Sort.by("nombre")));
 		// ordenadas decendentemente por Nombre
-		Page<Categoria> paginacion = this.repositorio.findAll(PageRequest.of(1, 6, Sort.by("nombre").descending()));
+		Page<Categoria> paginacion = this.repositorioCategoria.findAll(PageRequest.of(1, 6, Sort.by("nombre").descending()));
 		for (Categoria subListaPaginada : paginacion.getContent()){
 
 			System.out.println(subListaPaginada.getId() + "" + subListaPaginada.getNombre());
