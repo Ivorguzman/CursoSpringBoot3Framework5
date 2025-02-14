@@ -41,7 +41,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 		// this.eliminarTodos();
 		// this.guardarTodasInstacias();
 		// this.buscarPorId();
-		// this.obtenerListaCategoria();
+		this.obtenerListaCategoria();
 		// this.modificar();
 		// this.eliminar();
 		// this.contar();
@@ -464,12 +464,15 @@ public class JpaDemoApplication implements CommandLineRunner {
 
 		// Busca todas las entidades de tipo Categoria en el repositorio.
 		List<Vacante> listVacante = this.repositorioVacante.findAll();
-
+		System.out.println();
+		System.out.println();
 		// Itera sobre todas las entidades encontradas y las imprime en la consola.
 		for (Vacante temporalLikstVacante : listVacante){
-			System.out.println("temporalCategoria ==> " + temporalLikstVacante);
+			// System.out.println("temporalCategoria ==> " + temporalLikstVacante);
 			System.out.println(temporalLikstVacante.getId() + " " + temporalLikstVacante.getNombre());
 		}
+		System.out.println();
+		System.out.println();
 
 
 	}

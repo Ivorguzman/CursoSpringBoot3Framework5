@@ -30,7 +30,7 @@ public class Vacante {
 	// validaciones extremas
 	private Date fecha;
 	private Double salario;
-	private String status;
+	private String estatus;
 	private String imagen = "no-image.png";
 	private Integer destacado;
 	private String detalles;
@@ -45,7 +45,7 @@ public class Vacante {
 
 	// ************* Getters ************
 	public String getStatus() {
-		return this.status;
+		return this.estatus;
 	}
 
 
@@ -96,7 +96,7 @@ public class Vacante {
 
 	// ************** Setters *************
 	public void setStatus(String status) {
-		this.status = status;
+		this.estatus = status;
 	}
 
 
@@ -145,7 +145,7 @@ public class Vacante {
 	@Override
 	public String toString() {
 		return "Vacante [nombre=" + this.nombre + ", descripcion=" + this.descripcion + ", id=" + this.id + ", fecha=" + this.fecha + ", salario=" + this.salario
-				+ ", images=" + this.imagen + ", destacado=" + this.destacado + ", status=" + this.status + ", detalles=" + this.detalles + ", categoria=" + this.categoria
+				+ ", images=" + this.imagen + ", destacado=" + this.destacado + ", status=" + this.estatus + ", detalles=" + this.detalles + ", categoria=" + this.categoria
 				+ "]";
 	}
 
