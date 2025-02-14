@@ -468,6 +468,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 		// Itera sobre todas las entidades encontradas y las imprime en la consola.
 		for (Vacante temporalLikstVacante : listVacante){
 			System.out.println("temporalCategoria ==> " + temporalLikstVacante);
+			System.out.println(temporalLikstVacante.getId() + " " + temporalLikstVacante.getNombre());
 		}
 
 

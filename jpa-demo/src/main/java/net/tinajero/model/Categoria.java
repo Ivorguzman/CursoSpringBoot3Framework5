@@ -13,10 +13,6 @@ import jakarta.persistence.Table;
  * Cada instancia de esta clase representa una fila en una tabla de la base de datos.
  */
 public class Categoria {
-
-
-
-
 	/*
 	 * @GeneratedValue(strategy = GenerationType.IDENTITY): Especifica que el valor del id se generará automáticamente
 	 * utilizando la estrategia de generación IDENTITY. Esto significa que la base de datos será responsable de generar

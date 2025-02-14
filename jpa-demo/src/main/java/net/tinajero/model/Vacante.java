@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 /*
  * Indica que esta clase Vacante es una entidad de JPA.
@@ -30,9 +31,10 @@ public class Vacante {
 	private Date fecha;
 	private Double salario;
 	private String status;
-	private String images = "no-image.png";
+	private String imagen = "no-image.png";
 	private Integer destacado;
 	private String detalles;
+	@Transient
 	private Categoria categoria;
 
 
@@ -85,7 +87,7 @@ public class Vacante {
 
 
 	public String getImages() {
-		return this.images;
+		return this.imagen;
 	}
 
 
@@ -136,14 +138,14 @@ public class Vacante {
 
 	public void setImages(String images) {
 		System.out.println("Propiedad  images de la Clase Vacante =" + images);
-		this.images = images;
+		this.imagen = images;
 	}
 
 
 	@Override
 	public String toString() {
 		return "Vacante [nombre=" + this.nombre + ", descripcion=" + this.descripcion + ", id=" + this.id + ", fecha=" + this.fecha + ", salario=" + this.salario
-				+ ", images=" + this.images + ", destacado=" + this.destacado + ", status=" + this.status + ", detalles=" + this.detalles + ", categoria=" + this.categoria
+				+ ", images=" + this.imagen + ", destacado=" + this.destacado + ", status=" + this.status + ", detalles=" + this.detalles + ", categoria=" + this.categoria
 				+ "]";
 	}
 
