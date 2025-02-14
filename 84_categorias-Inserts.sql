@@ -1,0 +1,15 @@
+INSERT INTO Categorias (id, nombre, descripcion) VALUES (1, 'Arquitectura', 'Habilidades para diseñar, dirigir y supervisar proyectos de construcción.');
+INSERT INTO Categorias (id, nombre, descripcion) VALUES (2, 'Contabilidad/Finanzas', 'Actividades para mantener o analizar los estados financieros de una empresa.');
+INSERT INTO Categorias (id, nombre, descripcion) VALUES (3, 'Computacion/TI', 'Trabajos de capturistas, manejo de sistemas informáticos y soporte técnico.');
+INSERT INTO Categorias (id, nombre, descripcion) VALUES (4, 'Ingenieria electronica', 'Trabajos con aplicación en sistemas electrónicos y de telecomunicaciones.');
+INSERT INTO Categorias (id, nombre, descripcion) VALUES (5, 'Recursos Humanos', 'Administración de nóminas, pagos y gestión del personal.');
+INSERT INTO Categorias (id, nombre, descripcion) VALUES (6, 'Servicio y atención al cliente', 'Actividades relacionadas con la atención y soporte a clientes.');
+INSERT INTO Categorias (id, nombre, descripcion) VALUES (7, 'Logística/transportes', 'Trabajos relacionados con la planificación y gestión de transporte y almacenamiento.');
+INSERT INTO Categorias (id, nombre, descripcion) VALUES (8, 'Desarrollo de software', 'Profesionistas capaces de diseñar y desarrollar aplicaciones y sistemas informáticos.');
+INSERT INTO Categorias (id, nombre, descripcion) VALUES (9, 'Diseño', 'Crear conceptos visuales para publicidad, medios impresos y digitales.');
+INSERT INTO Categorias (id, nombre, descripcion) VALUES (10, 'Comunicaciones', 'Profesionales que se encargan de gestionar la comunicación interna y externa de una empresa.');
+INSERT INTO Categorias (id, nombre, descripcion) VALUES (11, 'Mercadotecnia', 'Investigación de mercados, programas de promoción y estrategias de ventas.');
+INSERT INTO Categorias (id, nombre, descripcion) VALUES (12, 'Ventas', 'Habilidades para supervisar y dirigir la fuerza de ventas y estrategias comerciales.');
+INSERT INTO Categorias (id, nombre, descripcion) VALUES (13, 'Publicidad', 'Habilidades para planificar, dirigir y ejecutar campañas publicitarias.');
+INSERT INTO Categorias (id, nombre, descripcion) VALUES (14, 'Gerencia/Administracion', 'Profesionistas capaces de dirigir y administrar organizaciones.');
+INSERT INTO Categorias (id, nombre, descripcion) VALUES (15, 'Educación', 'Funciones de doceencia de carácter profesional y académico.');
