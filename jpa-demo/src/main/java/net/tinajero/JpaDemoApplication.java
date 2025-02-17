@@ -1,5 +1,6 @@
 package net.tinajero;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -41,7 +42,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 		// this.eliminarTodos();
 		// this.guardarTodasInstacias();
 		// this.buscarPorId();
-		this.obtenerListaCategoria();
+		// this.obtenerListaCategoria();
 		// this.modificar();
 		// this.eliminar();
 		// this.contar();
@@ -65,12 +66,10 @@ public class JpaDemoApplication implements CommandLineRunner {
 
 		this.buscarVacantes();
 
+		// this.crearVacante();
+		// this.guardarVacante();
+
 	}
-
-
-
-
-
 
 
 
@@ -173,13 +172,17 @@ public class JpaDemoApplication implements CommandLineRunner {
 		System.out.println("########################### deleteById(...) eliminar() Registro ##############################");
 
 		// Define el ID de la entidad que se desea eliminar (en este caso, el ID es 18).
-		int id = 18;
+		int id = 16;
 
-		// Elimina la entidad con el ID especificado del repositorio.
-		this.repositorioCategoria.deleteById(id);
+		// Elimina la entidad con el ID especificado del repositorio repositorioCategoria.
+		// this.repositorioCategoria.deleteById(id);
+
+
+		// Elimina la entidad con el ID especificado del repositorio repositorioVacante.
+		this.repositorioVacante.deleteById(id);
 
 		// Imprime el repositorio en la consola. Esto puede ser útil para depuración, pero no es común en producción.
-		System.out.println("deleteById(id) ==>  " + this.repositorioCategoria);
+		System.out.println("deleteById(id) ==>  " + this.repositorioVacante);
 	}
 
 	private void contar() {
@@ -428,7 +431,6 @@ public class JpaDemoApplication implements CommandLineRunner {
 	}
 
 
-
 	private void buscarTodosPaginacionOrdenamineto() {
 		System.out.println("########################### .findAll(....) buscarTodosPaginacionOrdenamineto()  Registro ##############################");
 		// Esta línea imprime un mensaje en la consola para indicar que el método buscarTodosPaginacionOrdenamineto está siendo
@@ -449,8 +451,6 @@ public class JpaDemoApplication implements CommandLineRunner {
 		System.out.println("Total Páginas: " + paginacion.getTotalPages());
 		System.out.println();
 		System.out.println();
-
-
 	}
 
 
@@ -458,27 +458,77 @@ public class JpaDemoApplication implements CommandLineRunner {
 
 
 
+	// Declaración del método privado llamado buscarVacantes que no devuelve ningún valor
+	// Declaración del método privado llamado buscarVacantes que no devuelve ningún valor
 	private void buscarVacantes() {
-		// Imprime un mensaje en la consola para indicar que se está ejecutando el método buscarTodoRegistos.
+		// Imprime un mensaje en la consola para indicar que se está ejecutando el método buscarVacantes
 		System.out.println("########################### .findAll() buscarVacantes() los Registros ##############################");
 
-		// Busca todas las entidades de tipo Categoria en el repositorio.
+		// Busca todas las entidades de tipo Vacante en el repositorio
+		System.out.println(); // Imprime una línea vacía en la consola
+		System.out.println(); // Imprime otra línea vacía en la consola
+
+		// Declara una lista de objetos de tipo Vacante y la inicializa con el resultado de findAll() del repositorio
 		List<Vacante> listVacante = this.repositorioVacante.findAll();
-		System.out.println();
-		System.out.println();
-		// Itera sobre todas las entidades encontradas y las imprime en la consola.
+		System.out.println(); // Imprime una línea vacía en la consola
+		System.out.println(); // Imprime otra línea vacía en la consola
+
+		// Inicia un bucle for para iterar sobre cada objeto de tipo Vacante en la lista
 		for (Vacante temporalLikstVacante : listVacante){
+			// Comentado: ejemplo de cómo imprimir toda la información del objeto
 			// System.out.println("temporalCategoria ==> " + temporalLikstVacante);
-			System.out.println(temporalLikstVacante.getId() + " " + temporalLikstVacante.getNombre());
+
+			// Imprime el ID, el nombre de la vacante y el nombre de la categoría de cada objeto Vacante
+			System.out.println(temporalLikstVacante.getId() + " " + temporalLikstVacante.getNombre() + "--> " + temporalLikstVacante.getCategoria().getNombre());
 		}
+		// Fin del bucle for
+		System.out.println(); // Imprime una línea vacía en la consola
+		System.out.println(); // Imprime otra línea vacía en la consola
+		// Fin del método buscarVacantes
+	}
+
+	private void crearVacante() {
+		// Imprime un mensaje en la consola para indicar que se está ejecutando el método crearVacantes()
+		System.out.println("########################### . save() crearVacantes() ##############################");
+
+		// Imprime una línea vacía en la consola
 		System.out.println();
+		// Imprime otra línea vacía en la consola
 		System.out.println();
 
-
+		// Crea una nueva instancia de la clase Vacante
+		Vacante vacante = new Vacante();
+		// Establece el nombre de la vacante como "Programador SQL"
+		vacante.setNombre("Programador SQL");
+		// Establece la descripción de la vacante
+		vacante.setDescripcion("Desarrollador de consulta especializadas en SqL");
+		// Establece la fecha actual como la fecha de la vacante
+		vacante.setFecha(new Date());
+		// Establece el salario de la vacante como 8500.0
+		vacante.setSalario(8500.0);
+		// Establece el estado de la vacante como "Aprobada"
+		vacante.setStatus("Aprobada");
+		// Establece el campo destacado de la vacante como 0 (no destacado)
+		vacante.setDestacado(0);
+		// Establece la imagen de la vacante como "escuela.png"
+		vacante.setImages("escuela.png");
+		// Crea una nueva instancia de la clase Categoria
+		Categoria categoria = new Categoria();
+		// Establece el ID de la categoría como 8
+		categoria.setId(8);
+		// Establece la categoría de la vacante
+		vacante.setCategoria(categoria);
+		// Establece El detalle de la vacante
+		vacante.setDetalles("<h1> los  requisitos  para el desarrollador SqL</h1>");
+		// Guarda la vacante en el repositorio
+		this.repositorioVacante.save(vacante);
 	}
 
 
+	private void guardarVacante() {
+		this.crearVacante();
 
+	}
 
 
 
