@@ -498,28 +498,40 @@ public class JpaDemoApplication implements CommandLineRunner {
 
 		// Crea una nueva instancia de la clase Vacante
 		Vacante vacante = new Vacante();
+
 		// Establece el nombre de la vacante como "Programador SQL"
 		vacante.setNombre("Programador SQL");
+
 		// Establece la descripción de la vacante
 		vacante.setDescripcion("Desarrollador de consulta especializadas en SqL");
+
 		// Establece la fecha actual como la fecha de la vacante
 		vacante.setFecha(new Date());
+
 		// Establece el salario de la vacante como 8500.0
 		vacante.setSalario(8500.0);
+
 		// Establece el estado de la vacante como "Aprobada"
 		vacante.setStatus("Aprobada");
+
 		// Establece el campo destacado de la vacante como 0 (no destacado)
 		vacante.setDestacado(0);
+
 		// Establece la imagen de la vacante como "escuela.png"
 		vacante.setImages("escuela.png");
-		// Crea una nueva instancia de la clase Categoria
-		Categoria categoria = new Categoria();
-		// Establece el ID de la categoría como 8
-		categoria.setId(8);
-		// Establece la categoría de la vacante
-		vacante.setCategoria(categoria);
+
 		// Establece El detalle de la vacante
 		vacante.setDetalles("<h1> los  requisitos  para el desarrollador SqL</h1>");
+
+		// Crea una nueva instancia de la clase Categoria
+		Categoria categoria = new Categoria();
+
+		// Establece el ID de la categoría como 8
+		categoria.setId(8);
+
+		// Establece la categoría de la vacante
+		vacante.setCategoria(categoria);
+
 		// Guarda la vacante en el repositorio
 		this.repositorioVacante.save(vacante);
 	}
