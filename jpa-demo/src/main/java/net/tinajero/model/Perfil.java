@@ -19,8 +19,8 @@ public class Perfil {
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int id;
-	String perfil;
+	private int id;
+	private String perfil;
 
 
 
