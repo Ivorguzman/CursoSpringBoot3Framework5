@@ -16,6 +16,8 @@ import org.springframework.data.domain.Sort;
 import net.tinajero.model.Categoria;
 import net.tinajero.model.Vacante;
 import net.tinajero.repository.IR_CategoriaRepository;
+import net.tinajero.repository.IR_PerfilesRepository;
+import net.tinajero.repository.IR_UsuariosRepository;
 import net.tinajero.repository.IR_VacanteRepository;
 
 @SpringBootApplication
@@ -26,9 +28,9 @@ public class JpaDemoApplication implements CommandLineRunner {
 	@Autowired
 	private IR_VacanteRepository repositorioVacante;
 	@Autowired
-	private IR_VacanteRepository repositorioPerfiles;
+	private IR_PerfilesRepository repositorioPerfiles;
 	@Autowired
-	private IR_VacanteRepository repositorioUsuarios;
+	private IR_UsuariosRepository repositorioUsuarios;
 
 
 
@@ -202,7 +204,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 
 	private void eliminarTodos() {
 		// Imprime un mensaje en la consola para indicar que se está ejecutando el método eliminarTodos.
-		System.out.println("########################### deleteAll() eliminarTodos() Registro ##############################");
+		System.out.println("########################### .deleteAll() eliminarTodos() Registro ##############################");
 
 		// Elimina todas las entidades de tipo Categoria del repositorio.
 		this.repositorioCategoria.deleteAll();
@@ -548,12 +550,6 @@ public class JpaDemoApplication implements CommandLineRunner {
 		this.crearVacante();
 
 	}
-
-
-
-
-
-
 
 
 	/*
