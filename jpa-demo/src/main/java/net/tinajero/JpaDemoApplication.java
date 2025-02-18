@@ -25,6 +25,10 @@ public class JpaDemoApplication implements CommandLineRunner {
 	private IR_CategoriaRepository repositorioCategoria;
 	@Autowired
 	private IR_VacanteRepository repositorioVacante;
+	@Autowired
+	private IR_VacanteRepository repositorioPerfiles;
+	@Autowired
+	private IR_VacanteRepository repositorioUsuarios;
 
 
 
