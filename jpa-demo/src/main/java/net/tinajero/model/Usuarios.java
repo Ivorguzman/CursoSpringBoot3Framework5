@@ -30,6 +30,7 @@ public class Usuarios {
 	String passWord;
 	int estatus;
 	Date fechaDeRegistro;
+	Perfil perfil;
 
 
 

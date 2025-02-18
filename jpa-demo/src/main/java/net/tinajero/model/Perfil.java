@@ -8,7 +8,7 @@ import jakarta.persistence.Table;
 
 @Entity // Anotación que marca la clase como una entidad para JPA
 @Table(name = "perfiles") // Especifica el nombre de la tabla en la base de datos
-public class Perfiles {
+public class Perfil {
 
 	/*
 	 * @Id: Marca el campo 'id' como clave primaria.

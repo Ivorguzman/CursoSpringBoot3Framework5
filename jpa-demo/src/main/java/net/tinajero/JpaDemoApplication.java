@@ -14,6 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
 import net.tinajero.model.Categoria;
+import net.tinajero.model.Perfil;
 import net.tinajero.model.Vacante;
 import net.tinajero.repository.IR_CategoriaRepository;
 import net.tinajero.repository.IR_PerfilesRepository;
@@ -50,7 +51,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 		// this.buscarPorId();
 		// this.obtenerListaCategoria();
 		// this.modificar();
-		this.eliminar();
+		// this.eliminar();
 		// this.contar();
 		// this.econtrarEstosIds();
 		// this.buscarTodoRegistos();
@@ -70,12 +71,14 @@ public class JpaDemoApplication implements CommandLineRunner {
 
 		// ****** Metodo utilizados extendiendo de la intrfaz JpaRepository modelo Vacante ********
 
-		this.crearVacante();
-		this.buscarVacantes();
-
+		// this.crearVacante();
+		// this.buscarVacantes();
 		// this.guardarVacante();
+		this.crearPerfilesAplicacion();
 
 	}
+
+
 
 
 
@@ -550,6 +553,49 @@ public class JpaDemoApplication implements CommandLineRunner {
 		this.crearVacante();
 
 	}
+
+	private void crearPerfilesAplicacion() {
+
+		System.out.println("########################### .save(?) crearPerfilesAplicacion() Registro ##############################");
+		this.repositorioPerfiles.saveAll(this.getPerfilesAplicacion());
+		System.out.println("IR_PerfilesRepository ==>" + this.repositorioPerfiles);
+
+
+	}
+
+	private List<Perfil> getPerfilesAplicacion() {
+		List<Perfil> listaPerfiles = new LinkedList<>();
+
+		Perfil perfil1 = new Perfil();
+		perfil1.setPerfil("SUPERVISOR");
+
+		Perfil perfil2 = new Perfil();
+		perfil2.setPerfil("ADMINISTRADOR");
+
+		Perfil perfil3 = new Perfil();
+		perfil3.setPerfil("USUARIO");
+
+		listaPerfiles.add(perfil1);
+		listaPerfiles.add(perfil2);
+		listaPerfiles.add(perfil3);
+
+
+
+		System.out.println(listaPerfiles);
+		return listaPerfiles;
+
+
+	}
+
+
+
+
+
+
+
+
+
+
 
 
 	/*
