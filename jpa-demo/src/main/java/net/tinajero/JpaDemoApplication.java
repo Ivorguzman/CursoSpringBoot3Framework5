@@ -44,7 +44,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 		// this.buscarPorId();
 		// this.obtenerListaCategoria();
 		// this.modificar();
-		// this.eliminar();
+		this.eliminar();
 		// this.contar();
 		// this.econtrarEstosIds();
 		// this.buscarTodoRegistos();
@@ -64,9 +64,9 @@ public class JpaDemoApplication implements CommandLineRunner {
 
 		// ****** Metodo utilizados extendiendo de la intrfaz JpaRepository modelo Vacante ********
 
+		this.crearVacante();
 		this.buscarVacantes();
 
-		// this.crearVacante();
 		// this.guardarVacante();
 
 	}
@@ -172,7 +172,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 		System.out.println("########################### deleteById(...) eliminar() Registro ##############################");
 
 		// Define el ID de la entidad que se desea eliminar (en este caso, el ID es 18).
-		int id = 16;
+		int id = 18;
 
 		// Elimina la entidad con el ID especificado del repositorio repositorioCategoria.
 		// this.repositorioCategoria.deleteById(id);
@@ -500,10 +500,10 @@ public class JpaDemoApplication implements CommandLineRunner {
 		Vacante vacante = new Vacante();
 
 		// Establece el nombre de la vacante como "Programador SQL"
-		vacante.setNombre("Programador SQL");
+		vacante.setNombre("Programador Php (Laravel)");
 
 		// Establece la descripción de la vacante
-		vacante.setDescripcion("Desarrollador de consulta especializadas en SqL");
+		vacante.setDescripcion("Desarrollador BackEnd Php laravel");
 
 		// Establece la fecha actual como la fecha de la vacante
 		vacante.setFecha(new Date());
@@ -521,10 +521,13 @@ public class JpaDemoApplication implements CommandLineRunner {
 		vacante.setImages("escuela.png");
 
 		// Establece El detalle de la vacante
-		vacante.setDetalles("<h1> los  requisitos  para el desarrollador SqL</h1>");
+		vacante.setDetalles("<h1> los  requisitos  para el desarrollador Php (Laravel) </h1>");
+
+
 
 		// Crea una nueva instancia de la clase Categoria
 		Categoria categoria = new Categoria();
+		System.out.println("categoria ==> " + categoria);
 
 		// Establece el ID de la categoría como 8
 		categoria.setId(8);
