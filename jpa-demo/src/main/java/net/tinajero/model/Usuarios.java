@@ -55,18 +55,25 @@ public class Usuarios {
 
 
 	/*
-	 * @JoinTable es otra anotación que se utiliza para definir la tabla intermedia que se usará en la base de datos para
-	 * representar la relación de muchos a muchos.
+	 * @JoinTable: Esta anotación se usa para definir la tabla intermedia en una relación de muchos a muchos. Incluye dos
+	 * atributos principales:
 	 * 
 	 * name = "usuarioperfil" especifica el nombre de la tabla intermedia que se creará en la base de datos. En este caso,
 	 * la tabla se llamará "usuarioperfil".
 	 * 
+	 *
 	 * joinColumns = @JoinColumn(name = "idUsuario")
-	 * joinColumns especifica las columnas que se usarán para unirse a la tabla principal (en este caso, la tabla que
-	 * representa a los usuarios).
 	 * 
-	 * @JoinColumn(name = "idUsuario") define el nombre de la columna en la tabla intermedia que se usará para almacenar los
-	 * identificadores de los usuarios. Aquí, la columna se llamará "idUsuario".
+	 * joinColumns -> Este el parámetro que especifica las columnas que se usarán para unirse a la tabla principal (en este
+	 * caso, la tabla que representa a los usuarios).Puedes ponerle el nombre que desees, siempre y cuando siga ciertas
+	 * reglas y sea consistente con el esquema de tu base de datos.
+	 * 
+	 * 
+	 * 
+	 * @JoinColumn(name = "idUsuario") Esta Anotacionn define el nombre de la columna en la tabla intermedia que se usará
+	 * para almacenar los identificadores de los usuarios. Name dentro de la anotación @JoinColumn es un parámetro, y puedes
+	 * ponerle el nombre que desees. Este parámetro especifica el nombre de la columna en la tabla que se usará para la
+	 * unión
 	 *
 	 */
 	@JoinTable(name = "usuarioperfil", joinColumns = @JoinColumn(name = "idUsuario"))
