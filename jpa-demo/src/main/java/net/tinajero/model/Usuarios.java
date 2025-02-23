@@ -62,25 +62,49 @@ public class Usuarios {
 	 * la tabla se llamará "usuarioperfil".
 	 * 
 	 *
+	 *
+	 *
 	 * joinColumns = @JoinColumn(name = "idUsuario")
 	 * 
 	 * joinColumns -> Este el parámetro que especifica las columnas que se usarán para unirse a la tabla principal (en este
 	 * caso, la tabla que representa a los usuarios).Puedes ponerle el nombre que desees, siempre y cuando siga ciertas
 	 * reglas y sea consistente con el esquema de tu base de datos.
 	 * 
-	 * 
-	 * 
 	 * @JoinColumn(name = "idUsuario") Esta Anotacionn define el nombre de la columna en la tabla intermedia que se usará
 	 * para almacenar los identificadores de los usuarios. Name dentro de la anotación @JoinColumn es un parámetro, y puedes
 	 * ponerle el nombre que desees. Este parámetro especifica el nombre de la columna en la tabla que se usará para la
 	 * unión
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * inverseJoinColumns = @JoinColumn(name = "idPerfil"):
+	 * 
+	 * Propósito: inverseJoinColumns define las columnas que se utilizarán para la unión desde la tabla de unión hacia la
+	 * otra entidad involucrada en la relación.
+	 * 
+	 * @JoinColumn(name = "idPerfil"): Dentro de inverseJoinColumns, especificamos una columna de la tabla de unión. name =
+	 * "idPerfil" indica que esta columna se llamará "idPerfil" y que almacenará los identificadores (llaves primarias) de
+	 * la entidad relacionada. Name dentro de la anotación @JoinColumn es un parámetro, y puedes
+	 * ponerle el nombre que desees
+	 * 
 	 *
 	 */
-	@JoinTable(name = "usuarioperfil", joinColumns = @JoinColumn(name = "idUsuario"))
+	// Anotación que especifica la tabla de unión para la relación many-to-many entre 'Usuario' y 'Perfil'
+	@JoinTable(name = "usuarioperfil", // Nombre de la tabla de unión
+			joinColumns = @JoinColumn(name = "idUsuario"), // Columna que hace referencia a la clave primaria en la tabla de 'Usuario'
+			inverseJoinColumns = @JoinColumn(name = "idPerfil") // Columna que hace referencia a la clave primaria en la tabla de 'Perfil'
+	)
+
+	// Declaración de una lista de objetos 'Perfil' que representa los perfiles asociados a un usuario
 	private List<Perfil> perfiles;
 
 
+	public void agregarPerfil(Perfil temporalPerfil) {
 
+
+	}
 
 	// ************* Getters ************
 	public List<Perfil> getPerfiles() {
