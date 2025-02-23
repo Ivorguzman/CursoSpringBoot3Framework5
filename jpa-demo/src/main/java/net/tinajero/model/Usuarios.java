@@ -1,6 +1,7 @@
 package net.tinajero.model;
 
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -51,7 +52,10 @@ public class Usuarios {
 	 * Nota importante: Este tipo de carga puede consumir más memoria y recursos, porque todas las entidades relacionadas se
 	 * cargan al mismo tiempo.
 	 */
-	@ManyToMany(fetch = FetchType.EAGER)
+	// Anotación que especifica una relación many-to-many entre la clase actual y la clase 'Perfil'
+	@ManyToMany(fetch = FetchType.EAGER) // Especifica el tipo de carga (fetch) para esta relación como 'EAGER', lo que significa que las entidades relacionadas
+										 // serán cargadas de forma inmediata
+
 
 
 	/*
@@ -100,11 +104,19 @@ public class Usuarios {
 	// Declaración de una lista de objetos 'Perfil' que representa los perfiles asociados a un usuario
 	private List<Perfil> perfiles;
 
-
 	public void agregarPerfil(Perfil temporalPerfil) {
-
-
+		/*
+		 * Inicialización segura: Asegurarse de que la lista esté inicializada antes de agregar elementos evita errores como
+		 * NullPointerException, práctica de segura programación.
+		 */
+		if (this.perfiles == null){
+			this.perfiles = new LinkedList<>(); // Inicializa la lista de perfiles si es nula
+		}
+		this.perfiles.add(temporalPerfil); // Agrega el perfil temporal a la lista de perfiles
 	}
+
+
+
 
 	// ************* Getters ************
 	public List<Perfil> getPerfiles() {

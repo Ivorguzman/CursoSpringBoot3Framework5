@@ -51,7 +51,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 		// this.buscarPorId();
 		// this.obtenerListaCategoria();
 		// this.modificar();
-		// this.eliminar();
+		this.eliminar();
 		// this.contar();
 		// this.econtrarEstosIds();
 		// this.buscarTodoRegistos();
@@ -74,9 +74,11 @@ public class JpaDemoApplication implements CommandLineRunner {
 		// this.crearVacante();
 		// this.buscarVacantes();
 		// this.guardarVacante();
-		this.crearPerfilesAplicacion();
+		// this.crearPerfilesAplicacion();
+		// crearUsuarioConUnPerfil();
 
 	}
+
 
 
 
@@ -188,10 +190,21 @@ public class JpaDemoApplication implements CommandLineRunner {
 
 
 		// Elimina la entidad con el ID especificado del repositorio repositorioVacante.
-		this.repositorioVacante.deleteById(id);
+		// this.repositorioVacante.deleteById(id);
+
+
+		// Elimina la entidad con el ID especificado del repositorio repositorioPerfiles.
+		// this.repositorioPerfiles.deleteById(id);
+
 
 		// Imprime el repositorio en la consola. Esto puede ser útil para depuración, pero no es común en producción.
-		System.out.println("deleteById(id) ==>  " + this.repositorioVacante);
+		// System.out.println("deleteById(id) ==> Categoria " + this.repositorioCategoria);
+
+		// Imprime el repositorio en la consola. Esto puede ser útil para depuración, pero no es común en producción.
+		// System.out.println("deleteById(id) ==> Vacante " + this.repositorioVacante);
+
+		// Imprime el repositorio en la consola. Esto puede ser útil para depuración, pero no es común en producción.
+		System.out.println("deleteById(id) Perfiles. ==>  " + this.repositorioPerfiles);
 	}
 
 	private void contar() {
@@ -587,39 +600,13 @@ public class JpaDemoApplication implements CommandLineRunner {
 
 	}
 
+	// Perfil Supervisor
+	private void crearsuarioConUnPerfil() {
 
 
 
+	}
 
-
-
-
-
-
-
-
-	/*
-	 * Explicación General:
-	 * Repositorio (repositorio): Es una interfaz que proporciona métodos para interactuar con la base de datos, como
-	 * findById, deleteById, count, saveAll, etc.
-	 * 
-	 * Optional: Es una clase contenedora que puede o no contener un valor no nulo. Se utiliza para evitar
-	 * NullPointerException.
-	 * 
-	 * Iterable: Es una interfaz que permite iterar sobre una colección de elementos.
-	 * 
-	 * LinkedList: Es una implementación de la interfaz List que almacena elementos en una lista enlazada.
-	 * 
-	 * ¿Por qué se hace cada cosa?
-	 * Impresiones en consola: Se utilizan para depuración y seguimiento del flujo del programa.
-	 * 
-	 * Métodos del repositorio: Se utilizan para realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) en la base de
-	 * datos.
-	 * 
-	 * Optional: Se utiliza para manejar casos en los que una entidad puede no existir en la base de datos.
-	 * 
-	 * List: Se utilizan para almacenar múltiples entidades y manipularlas de manera eficiente.
-	 */
 
 }
 
