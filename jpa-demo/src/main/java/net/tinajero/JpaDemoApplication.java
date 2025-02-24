@@ -15,6 +15,7 @@ import org.springframework.data.domain.Sort;
 
 import net.tinajero.model.Categoria;
 import net.tinajero.model.Perfil;
+import net.tinajero.model.Usuarios;
 import net.tinajero.model.Vacante;
 import net.tinajero.repository.IR_CategoriaRepository;
 import net.tinajero.repository.IR_PerfilesRepository;
@@ -51,7 +52,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 		// this.buscarPorId();
 		// this.obtenerListaCategoria();
 		// this.modificar();
-		this.eliminar();
+		// this.eliminar();
 		// this.contar();
 		// this.econtrarEstosIds();
 		// this.buscarTodoRegistos();
@@ -75,7 +76,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 		// this.buscarVacantes();
 		// this.guardarVacante();
 		// this.crearPerfilesAplicacion();
-		// crearUsuarioConUnPerfil();
+		this.crearUsuarioConUnPerfil();
 
 	}
 
@@ -601,7 +602,31 @@ public class JpaDemoApplication implements CommandLineRunner {
 	}
 
 	// Perfil Supervisor
-	private void crearsuarioConUnPerfil() {
+	private void crearUsuarioConUnPerfil() {
+		Usuarios perfilUsuario = new Usuarios();
+
+
+		perfilUsuario.setNombre("Ivor Guzmán");
+		perfilUsuario.setEmail("ivorguzman@gmail.com");
+		perfilUsuario.setFechaDeRegistro(new Date());
+		perfilUsuario.setUserName("ivor");
+		perfilUsuario.setPassWord("123");
+		perfilUsuario.setEstatus(1);
+
+
+		System.out.println();
+		System.out.println("########################### .  crearUsuarioConUnPerfil()  ##############################");
+		System.out.println("perfilUsuario.getNombre() ==> " + perfilUsuario.getNombre());
+		System.out.println("perfilUsuario.getEmail() ==> " + perfilUsuario.getEmail());
+		System.out.println("perfilUsuario.getFechaDeRegistro() ==> " + perfilUsuario.getFechaDeRegistro());
+		System.out.println("perfilUsuario.getUserName() ==> " + perfilUsuario.getUserName());
+		System.out.println("perfilUsuario.getPassWord() ==> " + perfilUsuario.getPassWord());
+		System.out.println("perfilUsuario.getEstatus() ==> " + perfilUsuario.getEstatus());
+		System.out.println();
+		System.out.println();
+
+
+
 
 
 
