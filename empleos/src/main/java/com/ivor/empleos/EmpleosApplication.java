@@ -32,5 +32,22 @@ public class EmpleosApplication { // Declaramos la clase pública "EmpleosApplic
 		// - args → Pasamos los argumentos recibidos al iniciar la aplicación.
 		SpringApplication.run(EmpleosApplication.class, args);
 	}
+
+
+	/*
+	 * 📌 Explicación detallada
+	 * ✅ @SpringBootApplication → Indica que esta es la clase principal de una aplicación Spring Boot. Spring gestiona
+	 * automáticamente su configuración. ✅ public static void main(String[] args) → Método de entrada en Java, ejecuta la
+	 * aplicación cuando se inicia. ✅ SpringApplication.run(EmpleosApplication.class, args); →
+	 * 
+	 * Arranca el servidor embebido (Tomcat, Jetty, etc.).
+	 * 
+	 * Inicializa los componentes de Spring.
+	 * 
+	 * Carga la configuración automática.
+	 * 
+	 * Ejecuta la aplicación en un entorno Spring Boot.
+	 */
+
 }
 
