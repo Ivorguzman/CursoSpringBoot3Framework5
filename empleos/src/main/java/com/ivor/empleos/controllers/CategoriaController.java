@@ -77,7 +77,9 @@ public class CategoriaController { // Declaramos la clase pública `CategoriaCon
 	// - Define que este método maneja **solicitudes GET** a la URL `/categorias/index`.
 	// - Cuando un usuario acceda a `/categorias/index`, se ejecutará `mostrarIndex()`.
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String mostrarIndex(Model model) { // Método que maneja la visualización de categorías
+	public String mostrarIndex(Model model) { // Método que maneja la visualización de categorías objeto. (Model model)es un objeto permite enviar datos desde el
+												 // controlador
+												 // hacia la vista.
 
 		// this.categoriaService.buscarTodas();
 		// - Llama al servicio `categoriaService` para obtener todas las categorías de la base de datos.
