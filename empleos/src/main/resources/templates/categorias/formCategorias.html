@@ -17,51 +17,78 @@
 >
   </script> -->
 </head>
-<body class="d-flex flex-column min-vh-100">
-  <!-- Navegación -->
-  <!-- <header th:insert="/fragments/menu :: menu-principal "></header>  (sintaxis de fragmento desactualizada) se eliminará en futuras versiones de Thymeleaf -->
+<!-- Establece el cuerpo como un contenedor flexible en columna y con altura mínima del 100% de la pantalla -->
+<body class="d-flex flex-column min-vh-100"> 
+
+  <!-- Inserción de la barra de navegación usando Thymeleaf 
+  th:insert → Es un atributo de Thymeleaf que permite incluir otro fragmento dentro de la página actual.
+
+= → Indica la asignación del valor al atributo.
+
+"~{...}" → El símbolo ~{} indica la referencia a una ruta dentro del proyecto.
+
+/fragments/menu → Es la ruta donde se encuentra el fragmento. En este caso,
+ el archivo está dentro de la carpeta fragments y se llama menu.html.
+
+:: → Es el operador de referencia a fragmentos. Con ::,
+ le decimos a Thymeleaf que queremos un fragmento específico dentro de la plantilla.
+
+menu-principal → Es el nombre del fragmento dentro de menu.html.
+ Es el identificador del bloque que queremos insertar en nuestra página actual.
+  
+  -->
   <header th:insert="~{/fragments/menu :: menu-principal}"></header>
-  <!-- Ancho del 100% -->
+
+  <!-- Contenedor principal con ancho completo -->
   <div class="container mt-5" style="width: 100%;">
-    <!--     <div class="row justify-content-center"> -->
+    <!-- Contenedor interno con ancho reducido para mejor presentación -->
     <div class="container mt-5" style="width: 60%;">
+      
+      <!-- Creación de una tarjeta que encierra el formulario -->
       <div class="card">
-        <div class="card-body p-4">
+        <div class="card-body p-4"> <!-- Añade un padding interno para espaciar los elementos -->
+          
+          <!-- Encabezado de la tarjeta con título -->
           <div class="card-header">
-            <h3 class="text-primary">Datos de la Categoría</h3>
+            <h3 class="text-primary">Datos de la Categoría</h3> <!-- Título en color azul -->
           </div>
-          <!-- Formulario -->
+
+          <!-- Inicio del formulario -->
           <form th:action="@{/categorias/save}" method="post" th:object="${categoria}">
-            <!-- Sección para mostrar los errores -->
+            <!-- Muestra errores de validación si existen -->
             <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger mt-3">
               <h5>Error:</h5>
               <h6>Por favor corrija los siguientes errores:</h6>
             </div>
-            <!-- Fin de la sección de errores -->
+
+            <!-- Campo de entrada para el nombre -->
             <div class="form-row">
               <div class="form-group col-md-6">
-                <label for="nombre">Nombre</label> <input type="text" class="form-control" id="nombre" name="nombre"
-                  placeholder="Ingresa el nombre"
-                >
+                <label for="nombre">Nombre</label> 
+                <input type="text" class="form-control" id="nombre" name="nombre"
+                  placeholder="Ingresa el nombre">
+                <!-- Sección para mostrar errores en el campo 'nombre' -->
                 <div th:if="${#fields.hasErrors('nombre')}" class="alert alert-danger mt-2">
                   <p th:text="${#fields.errors('nombre')}"></p>
                 </div>
               </div>
             </div>
-              <!-- Modificación comienza aquí -->
+
+            <!-- Campo de texto para la descripción con ajuste dinámico de tamaño -->
             <div class="form-row d-flex align-items-stretch">
-             <div class="form-group col-md-9 d-flex flex-column">   
+              <div class="form-group col-md-9 d-flex flex-column">   
                 <label for="descripcion">Descripción</label>
                 <textarea class="form-control flex-grow-1" id="descripcion" name="descripcion" rows="3"
-                  placeholder="Ingresa la descripción"
-                ></textarea>
+                  placeholder="Ingresa la descripción"></textarea>
+                <!-- Sección para mostrar errores en el campo 'descripcion' -->
                 <div th:if="${#fields.hasErrors('descripcion')}" class="alert alert-danger mt-2">
                   <p th:text="${#fields.errors('descripcion')}"></p>
                 </div>
               </div>
             </div>
-<!--             <button type="submit" th:href="@{/categorias/save}" class="btn btn-primary">Guardar &raquo</button> -->
-            <button type="submit"  class="btn btn-primary">Guardar &raquo</button>
+
+            <!-- Botón de envío del formulario -->
+            <button type="submit" class="btn btn-primary">Guardar &raquo;</button>
           </form>
         </div>
       </div>
@@ -144,4 +171,21 @@
   <script src="/js/all.min.js"></script>
   <script src="/tiniymce/tinymce.min.js"></script> 
 </body>
+<!--
+¿Qué hace este código?
+Estructura básica de la página con HTML5, definiendo encabezado (<head>) y cuerpo (<body>).
+
+Carga la barra de navegación con th:insert, lo que permite reutilizar el fragmento Thymeleaf.
+
+Usa Bootstrap para darle estilo y estructura al diseño del formulario.
+
+Muestra errores de validación usando #fields.hasErrors(), lo que permite que Thymeleaf gestione los errores automáticamente.
+
+Crea un formulario con datos dinámicos usando th:object="${categoria}" para interactuar con los datos desde el backend.
+
+Tiene un botón para enviar los datos, que activará el proceso de guardado en el backend de Spring Boot.
+
+Este código modular te permite gestionar dinámicamente datos de categorías mientras aplicas buenas prácticas de diseño con Bootstrap y validaciones en Thymeleaf.
+
+-->
 </html>
