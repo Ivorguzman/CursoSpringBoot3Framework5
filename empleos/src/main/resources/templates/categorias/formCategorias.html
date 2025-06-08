@@ -55,8 +55,8 @@ menu-principal → Es el nombre del fragmento dentro de menu.html.
 
           <!-- Inicio del formulario -->
           <form th:action="@{/categorias/save}" method="post" th:object="${categoria}">
-            <!-- Muestra errores de validación si existen
-
+          
+            <!-- Muestra errores de validación si existen.
 th:if → Es un atributo condicional en Thymeleaf.
 Si la expresión dentro de th:if es true, el elemento se muestra; si es false, el elemento no se renderiza.
 
@@ -69,9 +69,8 @@ si algún campo del formulario tiene errores.
 
 #fields → Es un objeto especial de Thymeleaf que maneja errores en formularios.
 
-.hasErrors('*') → Verifica si hay algún error en cualquier campo del formulario ('*' significa "todos los campos").
-             -->
-            <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger mt-3">
+.hasErrors('*') → Verifica si hay algún error en cualquier campo del formulario ('*' significa "todos los campos").-->
+              <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger mt-3">
               <h5>Error:</h5>
               <h6>Por favor corrija los siguientes errores:</h6>
             </div>

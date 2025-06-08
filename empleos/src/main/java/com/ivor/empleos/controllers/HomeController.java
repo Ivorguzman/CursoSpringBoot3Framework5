@@ -167,5 +167,5 @@ public class HomeController { // Declaramos la clase pública `HomeController`
 	 * 🚀 Conclusión
 	 * Este controlador administra la presentación de vacantes y listas de empleos en la aplicación.
 	 */
-	*/
+
 }
