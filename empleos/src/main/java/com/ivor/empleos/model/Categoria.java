@@ -28,10 +28,10 @@ public class Categoria {
 	// será la descripción por defecto.
 	private String descripcion = "En desarrollo";
 
-	// ****************** CONSTRUCTOR ******************
+	// ****************** CONSTRUCTOR ******************             
 
 	// public Categoria()
-	// - Constructor vacío de la clase `Categoria`.
+	// - Constructor vacío de la clase `Categoria`.  
 	// - Se usa para inicializar un objeto `Categoria` sin necesidad de asignarle valores iniciales.
 	public Categoria( ) {
 	}

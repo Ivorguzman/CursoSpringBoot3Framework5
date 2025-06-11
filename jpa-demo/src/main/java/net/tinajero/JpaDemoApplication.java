@@ -1,49 +1,87 @@
-package net.tinajero;
+// Define el paquete al que pertenece esta clase.
+package net.tinajero; // Organización del código en un paquete llamado "net.tinajero".
 
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
+// Importaciones de clases necesarias de Java.
+import java.util.Date; // Clase para manejar fechas.
+import java.util.LinkedList; // Implementación de la interfaz List con una estructura de lista enlazada.
+import java.util.List; // Interfaz que define listas de elementos.
+import java.util.Optional; // Clase contenedora que puede representar un valor presente o ausente.
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
+// Importaciones de Spring Boot.
+import org.springframework.beans.factory.annotation.Autowired; // Anotación para la inyección automática de dependencias.
+import org.springframework.boot.CommandLineRunner; // Interfaz que permite ejecutar código al iniciar la aplicación.
+import org.springframework.boot.SpringApplication; // Clase principal para iniciar una aplicación Spring Boot.
+import org.springframework.boot.autoconfigure.SpringBootApplication; // Indica que esta es una aplicación Spring Boot con configuración automática.
+// Importaciones relacionadas con la paginación y ordenamiento de datos en consultas.
+import org.springframework.data.domain.Page; // Representa una página de datos obtenidos de la base de datos.
+import org.springframework.data.domain.PageRequest; // Permite solicitar páginas con un tamaño específico.
+import org.springframework.data.domain.Sort; // Define criterios de ordenamiento de datos.
 
-import net.tinajero.model.Categoria;
-import net.tinajero.model.Perfil;
-import net.tinajero.model.Usuarios;
-import net.tinajero.model.Vacante;
-import net.tinajero.repository.IR_CategoriaRepository;
-import net.tinajero.repository.IR_PerfilesRepository;
-import net.tinajero.repository.IR_UsuariosRepository;
-import net.tinajero.repository.IR_VacanteRepository;
+// Importaciones de los modelos que representan entidades de la base de datos.
+import net.tinajero.model.Categoria; // Clase que representa una categoría.
+import net.tinajero.model.Perfil; // Clase que representa un perfil.
+import net.tinajero.model.Usuarios; // Clase que representa un usuario.
+import net.tinajero.model.Vacante; // Clase que representa una vacante.
+// Importaciones de los repositorios que gestionan la persistencia de datos.
+import net.tinajero.repository.IR_CategoriaRepository; // Repositorio para la entidad Categoria.
+import net.tinajero.repository.IR_PerfilesRepository; // Repositorio para la entidad Perfil.
+import net.tinajero.repository.IR_UsuariosRepository; // Repositorio para la entidad Usuarios.
+import net.tinajero.repository.IR_VacanteRepository; // Repositorio para la entidad Vacante.
 
+// Anotación que marca esta clase como una aplicación Spring Boot con configuración automática.
 @SpringBootApplication
-public class JpaDemoApplication implements CommandLineRunner {
+public class JpaDemoApplication implements CommandLineRunner { // Implementa CommandLineRunner para ejecutar código al inicio.
 
-	@Autowired
-	private IR_CategoriaRepository repositorioCategoria;
-	@Autowired
-	private IR_VacanteRepository repositorioVacante;
-	@Autowired
-	private IR_PerfilesRepository repositorioPerfiles;
-	@Autowired
-	private IR_UsuariosRepository repositorioUsuarios;
+	// Inyección automática de dependencias: Spring Boot inicializa estas instancias de repositorios.
+	// Importamos la anotación @Autowired, que permite la inyección automática de dependencias en Spring Boot.
+	import org.springframework.beans.factory.annotation.Autowired;
 
+	// La anotación @Autowired permite que Spring Boot inicialice automáticamente las instancias de los repositorios.
+	// En lugar de crear manualmente los objetos con 'new', Spring Boot se encarga de proporcionar las instancias correctas.
 
+	// 🔹 Inyección de dependencia para el repositorio que gestiona las categorías.
+	@Autowired // Spring busca un bean que coincida con esta interfaz y lo asigna automáticamente a la variable.
+	private IR_CategoriaRepository repositorioCategoria; // Instancia del repositorio para gestionar datos de 'Categoria' en la base de datos.
 
+	// 🔹 Inyección de dependencia para el repositorio que gestiona las vacantes.
+	@Autowired // Spring inyecta una instancia del repositorio de vacantes, permitiendo acceder y modificar los datos de la entidad 'Vacante'.
+	private IR_VacanteRepository repositorioVacante; // Se usa para realizar operaciones CRUD (Create, Read, Update, Delete) sobre 'Vacante'.
+
+	// 🔹 Inyección de dependencia para el repositorio que gestiona los perfiles.
+	@Autowired // Con esta anotación, Spring Boot asigna automáticamente el repositorio adecuado para gestionar 'Perfil'.
+	private IR_PerfilesRepository repositorioPerfiles; // Permite acceder a los registros de perfiles almacenados en la base de datos.
+
+	// 🔹 Inyección de dependencia para el repositorio que gestiona los usuarios.
+	@Autowired // Indica a Spring Boot que debe inyectar una instancia válida del repositorio de usuarios.
+	private IR_UsuariosRepository repositorioUsuarios; // Se usa para consultar y modificar datos de usuarios.
+	/*
+	 * 📌 ¿Cómo funciona la inyección de dependencias con @Autowired?
+1️⃣ Spring Boot analiza las clases al arrancar la aplicación
+2️⃣ Detecta las anotaciones @Autowired y busca un Bean (objeto) adecuado en el contexto
+3️⃣ Si encuentra un Bean que coincide con la interfaz del repositorio, lo asigna automáticamente a la variable
+4️⃣ Después de la inyección, puedes usar los repositorios sin necesidad de inicializarlos manualmente
+
+📌 ¿Por qué se usa este enfoque?
+🔹 Reduce la cantidad de código repetitivo, ya que no tienes que instanciar objetos manualmente
+🔹 Asegura una mejor gestión de dependencias, dejando que Spring controle el ciclo de vida de los objetos
+🔹 Hace que el código sea más modular y reutilizable, permitiendo cambiar la implementación del repositorio sin afectar otras partes del código
+🔹 Facilita la escritura de pruebas, ya que puedes reemplazar los repositorios con versiones simuladas fácilmente
+ */
+	
+	
+	
+	
+
+	// Método principal que inicia la aplicación Spring Boot.
 	public static void main(String[] args) {
-		SpringApplication.run(JpaDemoApplication.class, args);
-
-
+		SpringApplication.run(JpaDemoApplication.class, args); // Ejecuta la aplicación Spring Boot.
 	}
 
+	// Método que se ejecuta automáticamente después de que Spring Boot ha inicializado la aplicación.
 	@Override
 	public void run(String... args) throws Exception {
+		// Aquí se pueden escribir acciones que se ejecuten al iniciar la aplicación,
+		// como insertar datos en la base de datos o realizar consultas iniciales.
 		System.out.println("========================== > Ejecutando public void run(...){......} < =========================");
 		// ****** Metodo utilizados extendiendo de la intrfaz CrudRepositoryen el modelo Categoria********
 		// this.guardar();
@@ -76,7 +114,7 @@ public class JpaDemoApplication implements CommandLineRunner {
 		// this.buscarVacantes();
 		// this.guardarVacante();
 		// this.crearPerfilesAplicacion();
-		this.crearUsuarioConUnPerfil();
+		// this.crearUsuarioConUnPerfil();
 
 	}
 
