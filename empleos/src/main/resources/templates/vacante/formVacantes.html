@@ -51,7 +51,8 @@
                 Data binding: este campo se vincula con la propiedad 'nombre' del objeto 'Vacante'
                 El atributo th:field en Thymeleaf sirve para establecer una relación directa entre los campos del formulario
                 HTML y los atributos del objeto del modelo en el backend. Y esto sucede de manera implícita (Tras Babalinas):
-                 -->
+                  el asterisco (*) en th:field="*{categoria.id} Indica que el atributo en este caso (categoria.id)
+                  está vinculado al objeto del modelo que se ha definido en el formulario mediante th:object.(th:object="${vacante}") -->
                 <input type="text" class="form-control" th:field="*{nombre}" name="nombre"
                   placeholder="Título de la oferta de trabajo"
                 >
@@ -64,7 +65,7 @@
                 <!-- Data binding: este campo se vincula con la propiedad 'categoria' del objeto 'Vacante' -->
                 <!-- <select class="form-control" id="categoria"> -->
                 <select class="form-control" id="categoria" th:field="*{categoria.id}">
-                  <option th:each="_categoria: ${categorias}" th:value="${_categoria.id}" th:text="${_categoria.nombre}">
+                  <option th:each="temp_categorias: ${categorias}" th:value="${temp_categorias.id}" th:text="${temp_categorias.nombre}">
                   </option>
                 </select>
                 <div th:if="${#fields.hasErrors('categoria')}" class="alert alert-danger mt-2">

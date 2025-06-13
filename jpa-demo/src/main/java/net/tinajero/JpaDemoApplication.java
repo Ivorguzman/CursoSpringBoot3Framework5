@@ -110,18 +110,34 @@ public class JpaDemoApplication implements CommandLineRunner {
 
 
 	/*
-	 * private void modificar() {
-	 * System.out.println("########################### modificar() Registro ##############################");
-	 * Optional<Categoria> optional = this.repositorio.findById(2);
-	 * if (!optional.isEmpty()){
-	 * Categoria categoriaTemporal = optional.get();
-	 * System.out.println("Categoria categoriaTemporal = optional.get() ==> " + categoriaTemporal);
-	 * } else{
-	 * System.out.println("optional.isEmpty() Id no exixte ==> " + optional.isEmpty());
-	 * }
+	 * private void modificar() { // Declara un método llamado "modificar", accesible solo dentro de la misma clase
+	 * (private), que no devuelve ningún
+	 * // valor (void).
 	 * 
+	 * System.out.println("########################### modificar() Registro ##############################");
+	 * // Imprime un mensaje en la consola para señalar el inicio de la ejecución del método.
+	 * 
+	 * Optional<Categoria> optional = this.repositorio.findById(2);
+	 * // Se busca en el repositorio una categoría con ID 2. "Optional" se usa para manejar la posibilidad de que no exista.
+	 * 
+	 * if (!optional.isEmpty()){
+	 * // Verifica si el objeto "optional" no está vacío, lo que significa que la categoría con ID 2 existe.
+	 * 
+	 * Categoria categoriaTemporal = optional.get();
+	 * // Obtiene la instancia de "Categoria" desde el Optional y la almacena en "categoriaTemporal".
+	 * 
+	 * System.out.println("Categoria categoriaTemporal = optional.get() ==> " + categoriaTemporal);
+	 * // Imprime la categoría obtenida para verificar sus datos en la consola.
+	 * 
+	 * } else{
+	 * // Si "optional" está vacío, significa que la categoría con ID 2 no existe en la base de datos.
+	 * 
+	 * System.out.println("optional.isEmpty() Id no existe ==> " + optional.isEmpty());
+	 * // Muestra un mensaje indicando que la categoría no fue encontrada.
+	 * }
 	 * }
 	 */
+
 
 
 	// Definición del método 'modificar'. Es privado y no devuelve ningún valor (void).

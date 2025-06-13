@@ -264,19 +264,38 @@ public class VacanteController {
 
 	// **** /vacantes/viewdetalles/X (parametro enviadado via http con
 	// @PathVariable("id")) ****
-	/**
-	 * @param idVacante
-	 * @param modelo
-	 * @return
-	 */
+
 	@GetMapping("/viewdetalles/{id}")
+	// Esta anotación indica que este método manejará solicitudes HTTP GET
+	// dirigidas a la ruta "/viewdetalles/{id}". El "{id}" es un parámetro dinámico
+	// que se extraerá de la URL y se pasará al método como argumento.
+
+
 	public String verDetalleVacante(@PathVariable("id") int idVacante, Model modelo) {
+		// Define un método público que devuelve un String, el cual representa el nombre
+		// de la vista que se debe renderizar. El parámetro "@PathVariable("id")" indica
+		// que el valor del parámetro "id" en la URL será asignado a la variable "idVacante".
+		// El parámetro "Model modelo" se utiliza para pasar datos desde el controlador
+		// a la vista.
 
 		Vacante vacante = this.serviceVacantes.buscarVarPorIdVacante(idVacante);
+		// Se llama al método "buscarVarPorIdVacante" del servicio "serviceVacantes"
+		// para buscar una vacante específica en base al "idVacante" proporcionado.
+		// El resultado se almacena en la variable "vacante".
+
 		System.out.println("Detalle de vacante: " + vacante);
+		// Imprime en la consola el detalle de la vacante obtenida, lo que es útil
+		// para depuración y verificar que se obtuvo correctamente la información
 
 		modelo.addAttribute("vacante", vacante);
+		// Se agrega la vacante obtenida al objeto "modelo" con el nombre "vacante".
+		// Esto permite que la información de la vacante esté disponible en la vista
+		// que se renderizará.
+
 		return "/vacante/detalleVacantes";
+		// Se agrega la vacante obtenida al objeto "modelo" con el nombre "vacante".
+		// Esto permite que la información de la vacante esté disponible en la vista
+		// que se renderizará.
 	}
 
 
