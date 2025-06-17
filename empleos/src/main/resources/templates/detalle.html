@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,63 +10,85 @@
     <!-- Enlace al CSS de la CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
+
 <body class="d-flex flex-column min-vh-100">
 
-<!-- Navegación -->
-<header th:insert="/fragments/menu :: menu-principal "></header>
+    <!-- Navegación -->
+    <header th:insert="/fragments/menu :: menu-principal "></header>
 
-<div class="container mt-5 flex-grow-1 d-flex justify-content-center align-items-center" style="width:80%;"> <!-- Ancho del 60% -->
-    <div class="card">
-      <div class="card-body p-4">
-        <!-- Añadido padding interno a card-body -->
-        <div class="row">
-          <div class="col-md-10">
-            <div class="row">
-              <div class="col-md-4 text-center">
-                <img th:src="@{/images/{img} (img=${vacante.images})}" alt="Travels ProWorld Logo" class="img-fluid">
-                <h6>Cargo: [[${vacante.nombre}]] | Salario: [[${vacante.salario}]]</h6>
-              </div>
-              <div class="col-md-8">
-                <div class="card">
-                  <div class="card-header bg-primary text-white">
-                    Aplicar para <strong>[[${vacante.nombre}]]</strong>
-                  </div>
-                  <div class="card-body">
-                    <h5 class="card-title">Categoría: Nombre de la categoría</h5>
-                    <p>
-                      <strong>Nombre: [[${vacante.nombre}]]</strong>
-                    </p>
-                    <p class="card-text">
-                      <strong>Salario Ofrecido: [[${vacante.salario}]]</strong>
-                    </p>
-                    <p class="card-text">La descripción corta de la oferta de trabajo: [[${vacante.descripcion}]]</p>
-                    <h6>Detalles de la oferta de trabajo</h6>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                      been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                      galley of type and scrambled it to make a type specimen book.</p>
-                    <div class="text-right">
-                      <a href="#" class="btn btn-primary">Aplicar</a>
+    <div class="container mt-5 flex-grow-1 d-flex justify-content-center align-items-center" style="width:80%;">
+        <!-- Ancho del 60% -->
+        <div class="card">
+            <div class="card-body p-4">
+                <!-- Añadido padding interno a card-body -->
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-4 text-center">
+                <!-- 
+                El atributo th:src="@{/images/{img} (img=${vacante.images})}" 
+                en Thymeleaf genera dinámicamente la URL de la imagen utilizando
+                el valor de la propiedad images del objeto vacante.
+
+                Explicación:
+                @{/images/{img} (img=${vacante.images})}:
+                La expresión Thymeleaf construye una URL dinámica.
+                {img} es un marcador de posición que será reemplazado por el valor de vacante.images.
+                img=${vacante.images} indica que el valor de vacante.images se asignará al marcador {img}.
+                
+                Uso:
+                Si vacante.images contiene, por ejemplo, "logo.png", la URL generada será /images/logo.png.
+                -->
+                                <img th:src="@{/images/{img} (img=${vacante.images})}" alt="Imagen de la vacante"
+                                    class="img-fluid" th:if="${vacante.images != null}">
+                                   <!-- Esto evita errores si vacante.images no tiene un valor -->.
+                                <h6>Cargo: [[${vacante.nombre}]] | Salario: [[${vacante.salario}]]</h6>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card">
+                                    <div class="card-header bg-primary text-white">
+                                        Aplicar para <strong>[[${vacante.nombre}]]</strong>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Categoría: Nombre de la categoría</h5>
+                                        <p>
+                                            <strong>Nombre: [[${vacante.nombre}]]</strong>
+                                        </p>
+                                        <p class="card-text">
+                                            <strong>Salario Ofrecido: [[${vacante.salario}]]</strong>
+                                        </p>
+                                        <p class="card-text">La descripción corta de la oferta de trabajo:
+                                            [[${vacante.descripcion}]]</p>
+                                        <h6>Detalles de la oferta de trabajo</h6>
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                            Lorem Ipsum has
+                                            been the industry's standard dummy text ever since the 1500s, when an
+                                            unknown printer took a
+                                            galley of type and scrambled it to make a type specimen book.</p>
+                                        <div class="text-right">
+                                            <a href="#" class="btn btn-primary">Aplicar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 
-     <!-- Footer -->
-  <footer th:insert="/fragments/footer :: pie-pagina" ></footer>
-  
-<!-- Enlace a archivos de la CDN -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Footer -->
+    <footer th:insert="/fragments/footer :: pie-pagina"></footer>
 
-<!-- Enlace a archivos local -->
-<script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
+    <!-- Enlace a archivos de la CDN -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Enlace a archivos local -->
+    <script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>
