@@ -136,16 +136,24 @@ public class VacantesServiceImpl implements I_VacanteService {
 		return null;  // Si no se encuentra ninguna vacante con ese ID, retornamos null
 	}
 
-	// Método para agregar una nueva vacante a la lista
+
+	// Método para agregar una nueva vacante a la lista.
+	// Este método implementa la funcionalidad de guardar una nueva vacante en la lista de vacantes.
+
+	// Parámetros:
+	// - Vacante vacante: Representa el objeto de tipo Vacante que se desea agregar a la lista.
+
+	// Funcionalidad:
+	// - Agrega el objeto vacante recibido como parámetro a la lista listaVacantes.
+	// - Imprime el estado actualizado de la lista en la consola para depuración.
+
 	@Override
 	public void guardar(Vacante vacante) {
 		this.listaVacantes.add(vacante);  // Se agrega la nueva vacante a la lista
 		System.out.println("lista_MetodoGuardar() = " + this.listaVacantes);  // Se imprime la lista actualizada
 	}
+
 }
-
-
-
 /*
  * 📌 Concepto General
  * Este código en Java implementa un servicio para gestionar vacantes de empleo. Utiliza una lista (LinkedList<Vacante>)

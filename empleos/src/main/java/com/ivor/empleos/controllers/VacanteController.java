@@ -174,14 +174,28 @@ public class VacanteController {
 
 
 	// **************** /vacantes/create **********
+
+	// Maneja solicitudes GET para la ruta "/create".
+	// Este método prepara el modelo para la vista "formVacantes".
+	// Se utiliza para mostrar un formulario para crear una nueva vacante.
+
+	// Parámetros:
+	// - Vacante vacante: Un objeto vacío que será llenado con los datos del formulario.
+	// - Model model: Objeto utilizado para pasar datos desde el controlador a la vista.
+
+	// Funcionalidad:
+	// - Obtiene la lista de categorías mediante el servicio `serviceCategoria.buscarTodas()`.
+	// - Imprime la lista de categorías en la consola para depuración.
+	// - Añade la lista de categorías al modelo con el nombre "categorias".
+	// - Devuelve la vista "vacante/formVacantes" para mostrar el formulario.
 	@GetMapping("/create")
 	public String crear(Vacante vacante, Model model) {
-		// "(/create) VacanteController [ this.serviceCategoria.buscarTodas()] - formVacantes.html ==> "
 		System.out.println("(/create) VacanteController [buscarTodas()] - formVacantes.html ==> " + this.serviceCategoria.buscarTodas());
 		System.out.println();
 		model.addAttribute("categorias", this.serviceCategoria.buscarTodas());
 		return "vacante/formVacantes";
 	}
+
 
 
 	// Aquí se realiza el data binding:
@@ -192,13 +206,44 @@ public class VacanteController {
 	// **************** /vacantes/save **********
 	@PostMapping("/save")
 	/*
-	 * @RequestParam es una anotación de Spring que se utiliza para extraer
-	 * parámetros de una solicitud HTTP.
+	 * Vacante vacante
+	 * Es un parámetro del método. Representa un objeto de tipo Vacante que contiene los datos de la vacante que se desea
+	 * guardar. Spring MVC vincula automáticamente los datos del formulario HTML a este objeto.
+	 *
+	 * BindingResult result
+	 * Es un objeto que contiene los resultados de la validación del objeto Vacante. Si hay errores en la validación, estos
+	 * se almacenan en este objeto.
+	 *
+	 * RedirectAttributes atributoRedirec
+	 * Es un objeto que permite agregar atributos que se envían en una redirección HTTP. Se utiliza para pasar mensajes o
+	 * datos entre solicitudes.
+	 * 
+	 * @RequestParam("ArchivoImagen") MultipartFile multiPart
+	 *
+	 * @RequestParam: Es una anotación que indica que el parámetro multiPart se extrae de la solicitud HTTP.
+	 * "ArchivoImagen": Es el nombre del parámetro en la solicitud HTTP que contiene el archivo subido.
+	 * MultipartFile: Es una interfaz de Spring que representa un archivo subido. Permite acceder al contenido del archivo y
+	 * realizar operaciones como guardarlo en el sistema de archivos.
+	 * 
+	 * 
+	 * Funcionamiento del método:
+	 * Recepción de datos:
+	 * El objeto Vacante recibe los datos del formulario HTML.
+	 * El archivo subido se recibe como un objeto MultipartFile.
+	 * Validación:
+	 * Se verifica si el objeto Vacante tiene errores de validación utilizando BindingResult.
+	 * Si hay errores, se imprimen en la consola y se retorna la vista del formulario para corregirlos.
+	 * Procesamiento del archivo:
+	 * Si el archivo subido no está vacío (!multiPart.isEmpty()), se guarda en el sistema de archivos utilizando una
+	 * utilidad (Utileria.guardarArchivo).
+	 * El nombre del archivo se asigna al atributo images del objeto Vacante.
+	 * Guardado de la vacante:
+	 * Se utiliza el servicio serviceVacantes para guardar el objeto Vacante en la base de datos.
+	 * Redirección:
+	 * Se agrega un mensaje de éxito a los atributos de redirección (atributoRedirec.addFlashAttribute).
+	 * Se redirige a la vista /vacantes/index.
 	 */
 	public String guardar(Vacante vacante, BindingResult result, RedirectAttributes atributoRedirec, @RequestParam("ArchivoImagen") MultipartFile multiPart) {
-
-		// Modificación comienza aquí
-		// Verifica si hay errores en la validación del objeto 'Vacante'
 		if (result.hasErrors()){
 
 			if (result.hasGlobalErrors()){
@@ -217,7 +262,12 @@ public class VacanteController {
 			}
 
 			return "vacante/formVacantes"; // Si hay errores, vuelve al formulario para formVacantes
+
 		}
+
+
+
+
 
 
 

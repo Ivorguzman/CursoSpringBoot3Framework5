@@ -106,4 +106,59 @@
   <script src="/js/all.min.js"></script>
   <script src="/tiniymce/tinymce.min.js"></script> 
 </body>
+
+  <!--
+    Comentarios sobre el uso de Thymeleaf:
+Integración de fragmentos:
+<header th:insert="~{/fragments/menu :: menu-principal}"></header>
+Utiliza la sintaxis th:insert para incluir un fragmento llamado menu-principal 
+desde el archivo ubicado en /fragments/menu.
+Esto permite reutilizar componentes comunes como menús o encabezados en varias vistas.
+
+Condicionales:
+<div th:if="${registroGuardado}" class="alert alert-success">
+Muestra un mensaje de éxito solo si la variable registroGuardado
+está presente en el modelo. Esto se utiliza para mostrar mensajes 
+dinámicos basados en el estado de la aplicación.
+
+Interpolación de datos:
+<h3 role='alert' class='text-center text-success' th:text="${registroGuardado}"></h3>
+Inserta el valor de la variable registroGuardado en el contenido del elemento <h3>.
+ Esto permite mostrar mensajes personalizados en la vista.
+
+Enlaces dinámicos:
+<a th:href="@{/vacantes/create}" class="btn btn-primary">Nueva &raquo;</a>
+Genera un enlace dinámico a la ruta /vacantes/create.
+La sintaxis @{} permite construir URLs basadas en las rutas definidas en el controlador.
+
+Iteración de datos:
+<tr th:each="_vacante : ${_vacantes}">
+Itera sobre la colección _vacantes proporcionada por el modelo. 
+Por cada elemento de la lista, genera una fila <tr> en la tabla.
+
+Condicionales dentro de iteraciones:
+<span th:if="${_vacante.destacado == 1}" class="badge badge-success">Si</span>
+Muestra un badge con el texto "Si" si el atributo destacado de la vacante es igual a 1.
+<span th:unless="${_vacante.destacado == 1}" class="badge badge-danger">No</span>
+Muestra un badge con el texto "No" si el atributo destacado no es igual a 1.
+
+Fragmentos en el pie de página:
+<footer th:fragment="pie-pagina" class="footer mt-auto py-3 footer-dark bg-dark">
+Define un fragmento llamado pie-pagina que puede ser reutilizado en otras vistas.
+
+
+Cómo lo hace:
+Thymeleaf utiliza atributos prefijados con th: para vincular datos del modelo 
+proporcionado por el controlador a los elementos HTML.
+Los datos dinámicos se interpolan directamente en el HTML, lo que permite generar
+contenido basado en el estado de la aplicación.
+Las condicionales (th:if, th:unless) y las iteraciones (th:each)
+permiten mostrar contenido dinámico dependiendo de los datos del modelo.
+Los fragmentos (th:insert, th:fragment) facilitan la reutilización 
+de componentes comunes en múltiples vistas.
+Este enfoque permite mantener las vistas HTML limpias y dinámicas, 
+integrándose perfectamente con aplicaciones basadas en Spring Boot. 
+   
+   -->
+
 </html>
