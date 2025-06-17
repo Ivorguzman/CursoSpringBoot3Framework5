@@ -110,4 +110,61 @@
   <script src="/js/all.min.js"></script>
   <!--   <script src="/tiniymce/tinymce.min.js"></script>  -->
 </body>
+
+  <!-- 
+Este archivo HTML utiliza Thymeleaf como motor de plantillas para integrar dinámicamente datos del modelo en la vista. Aquí está el análisis de lo que hace y cómo lo hace en relación con Thymeleaf:
+
+Lo que hace:
+Integración de fragmentos:
+<header th:insert="~{/fragments/menu :: menu-principal}"></header>
+Inserta un fragmento llamado menu-principal desde el archivo ubicado en 
+/fragments/menu. Esto permite reutilizar componentes comunes como menús en varias vistas.
+
+Mostrar mensajes dinámicos:
+<div th:if="${registroGuardado}" class="alert alert-success">
+Muestra un mensaje de éxito si la variable registroGuardado está presente en el modelo.
+Esto se utiliza para mostrar mensajes dinámicos basados en el estado de la aplicación.
+
+Enlaces dinámicos:
+<a th:href="@{/categorias/create}" class="btn btn-primary">Nueva &raquo;</a>
+Genera un enlace dinámico a la ruta /categorias/create.
+La sintaxis @{} permite construir URLs basadas en las rutas definidas en el controlador.
+
+Formulario dinámico:
+<form th:action="@{/categorias/save}" method="post" th:object="${categoria}">
+Vincula el formulario con el objeto categoria del modelo.
+Los datos ingresados en el formulario se envían a la URL /categorias/save.
+
+Iteración de datos:
+<tr th:each="_categoria : ${_categorias}">
+Itera sobre la colección _categorias proporcionada por el modelo.
+Por cada elemento de la lista, genera una fila <tr> en la tabla.
+
+Data binding:
+<td th:text="${_categoria.id}"></td>
+Inserta dinámicamente el valor de la propiedad id del objeto _categoria en la celda de la tabla.
+
+Botones de acción:
+Botones para editar y borrar categorías con íconos de Font Awesome (<i class="fas fa-pencil-alt"></i> y <i class="fas fa-trash-alt"></i>).
+Fragmentos en el pie de página:
+<footer th:fragment="pie-pagina" class="footer mt-auto py-3 footer-dark bg-dark">
+Define un fragmento llamado pie-pagina que puede ser reutilizado en otras vistas.
+
+Cómo lo hace:
+Atributos Thymeleaf (th:):
+Utiliza atributos como th:insert, th:if, th:href, th:action, th:object, th:each y th:text
+ para vincular datos del modelo con elementos HTML, generar contenido dinámico y reutilizar fragmentos.
+
+Data binding:
+Los campos del formulario están vinculados directamente a las propiedades
+del objeto categoria mediante th:object. Esto permite que Spring MVC 
+realice automáticamente el enlace de datos entre el formulario y el modelo.
+
+Iteración:
+Genera dinámicamente filas en la tabla utilizando th:each para recorrer la lista _categorias.
+
+Condicionales:
+Utiliza th:if para mostrar contenido dinámico basado en el estado del modelo.
+
+  -->
 </html>
