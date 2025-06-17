@@ -63,7 +63,7 @@
               <div class="form-group col-md-6">
                 <label for="categoria">Categoría</label>
                 <!-- Data binding: este campo se vincula con la propiedad 'categoria' del objeto 'Vacante' -->
-                <!-- <select class="form-control" id="categoria"> -->
+                <!--  categoria.id se refiere a la propiedad id del objeto categoria dentro de la instancia vacante. -->
                 <select class="form-control" id="categoria" th:field="*{categoria.id}">
                   <option th:each="temp_categorias: ${categorias}" th:value="${temp_categorias.id}" th:text="${temp_categorias.nombre}">
                   </option>

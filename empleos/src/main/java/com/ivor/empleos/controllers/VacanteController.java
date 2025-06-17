@@ -51,8 +51,13 @@ public class VacanteController {
 	 * _____ Todos los pasos Ahorrados _______
 	 * CategoriaServiceImp serviceInyectar= new CategoriaServiceImp ();
 	 * private I_CategoriaService serviceVacantes= this.serviceInyectar;
+	 * 
+	 * Se utiliza la anotación @Autowired para inyectar una dependencia de la interfaz I_VacanteService en el controlador
+	 * VacanteController. Esto significa que Spring automáticamente proporcionará una implementación de esta interfaz (como
+	 * VacanteServiceImpl) al atributo serviceVacantes en tiempo de ejecución. Esto elimina la necesidad de crear
+	 * manualmente una instancia de la clase de servicio.
 	 */
-	@Autowired // this.serviceVacantes = new VacanteServiceImpl();
+	@Autowired
 	private I_VacanteService serviceVacantes;
 
 

@@ -25,8 +25,11 @@ public class VacantesServiceImpl implements I_VacanteService {
 
 	// ****************** ATRIBUTOS ******************
 
-	// Declaramos una lista para almacenar objetos de tipo Vacante
+
+	// Declara una lista para almacenar objetos de tipo Vacante.
+	// Inicialmente, la lista está vacía (null) y se debe inicializar antes de usarla.
 	private List<Vacante> listaVacantes = null;
+
 
 	// ****************** CONSTRUCTOR ******************
 
@@ -34,11 +37,18 @@ public class VacantesServiceImpl implements I_VacanteService {
 	 * Este constructor inicializa la lista de vacantes y agrega algunas vacantes de ejemplo.
 	 */
 	public VacantesServiceImpl( ) {
-		// Creamos un formato de fecha para convertir texto en objetos de tipo Date (día-mes-año)
+
+		// Crea un objeto SimpleDateFormat para manejar fechas en el formato "día-mes-año".
+		// Este formato se utiliza para convertir cadenas de texto en objetos Date y viceversa.
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
-		// Inicializamos listaVacantes como una LinkedList
+
+
+
+		// Inicializamos la lista listaVacantes como una LinkedList.
+		// LinkedList es una implementación de la interfaz List que permite almacenar elementos de forma enlazada.
 		this.listaVacantes = new LinkedList<Vacante>();
+
 
 		try{
 			// ****************** CREACIÓN DE VACANTES ******************
@@ -89,6 +99,13 @@ public class VacantesServiceImpl implements I_VacanteService {
 			this.listaVacantes.add(vacante2);
 			this.listaVacantes.add(vacante3);
 			this.listaVacantes.add(vacante4);
+
+			// Imprime el estado actual de la lista de vacantes en la consola.
+			// Esto es útil para verificar qué objetos están almacenados en la lista en ese momento.
+			// La salida mostrará una representación en cadena de los objetos contenidos en la lista.
+			System.out.println("listaVacantes => : " + this.listaVacantes);
+
+			System.out.println("listaVacantes => : " + this.listaVacantes);
 
 		} catch(ParseException ex){
 			// En caso de error al convertir una fecha, imprimimos un mensaje en la consola
