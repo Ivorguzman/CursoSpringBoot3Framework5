@@ -75,7 +75,7 @@ public class HomeController { // Declaramos la clase pública `HomeController`
 
 		// Imprime en la consola las vacantes recuperadas (para depuración).
 		System.out.println();
-		System.out.println("(/) HomeController [buscarTodasVacante()] - home.html ==> List<Vacante> lista " + lista);
+		System.out.println(" HomeController => (/) mostrarHome(Model modelo) => [buscarTodasVacante()] - return home.html ==> List<Vacante> lista " + lista);
 		System.out.println();
 
 		// Agrega la lista de vacantes al modelo para que la vista pueda mostrarla.
