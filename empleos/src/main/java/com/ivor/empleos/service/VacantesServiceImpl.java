@@ -105,7 +105,7 @@ public class VacantesServiceImpl implements I_VacanteService {
 			// La salida mostrará una representación en cadena de los objetos contenidos en la lista.
 			System.out.println("listaVacantes => : " + this.listaVacantes);
 
-			System.out.println("listaVacantes => : " + this.listaVacantes);
+
 
 		} catch(ParseException ex){
 			// En caso de error al convertir una fecha, imprimimos un mensaje en la consola
