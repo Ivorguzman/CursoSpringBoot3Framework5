@@ -260,4 +260,71 @@
   });
   </script>
 </body>
+
+ <!-- 
+ Este archivo HTML utiliza Thymeleaf como motor de plantillas para integrar 
+ dinámicamente datos del modelo en la vista. Aquí está el análisis de lo que hace y cómo lo hace en relación con Thymeleaf:
+
+Lo que hace:
+Integración de fragmentos:
+<header th:insert="~{/fragments/menu :: menu-principal}"></header>
+Inserta un fragmento llamado menu-principal desde el archivo ubicado en /fragments/menu. Esto permite reutilizar componentes comunes como menús en varias vistas.
+
+Formulario dinámico:
+<form th:action="@{/vacantes/save}" method="post" th:object="${vacante}" enctype="multipart/form-data">
+Vincula el formulario con el objeto vacante del modelo. Los datos ingresados en el formulario se envían a la URL /vacantes/save.
+
+Validación de errores:
+<div th:if="${#fields.hasErrors('*')}" class="alert alert-danger mt-3">
+Muestra un mensaje de error si hay problemas de validación en cualquier campo del formulario.
+<div th:if="${#fields.hasErrors('nombre')}" class="alert alert-danger mt-2">
+Muestra errores específicos para el campo nombre.
+
+Data binding:
+<input type="text" class="form-control" th:field="*{nombre}" name="nombre">
+Vincula el campo del formulario con la propiedad nombre del objeto vacante.
+El atributo th:field establece una relación directa entre el campo HTML y el atributo del modelo.
+
+Iteración de datos:
+<option th:each="temp_categorias: ${categorias}" th:value="${temp_categorias.id}" th:text="${temp_categorias.nombre}">
+Itera sobre la lista categorias del modelo para generar opciones dinámicas en el campo de selección.
+
+Condicionales:
+<div th:if="${#fields.hasErrors('categoria')}" class="alert alert-danger mt-2">
+Muestra un mensaje de error si el campo categoria tiene problemas de validación.
+
+Fragmentos en el pie de página:
+<footer class="mt-auto" th:insert="~{/fragments/footer :: pie-pagina}"></footer>
+Inserta un fragmento llamado pie-pagina desde el archivo ubicado en /fragments/footer.
+
+Script para formatear fecha:
+Incluye un script en JavaScript que formatea la fecha ingresada en 
+el campo fecha-publicacion y actualiza otro campo con el formato deseado.
+
+Editor de texto enriquecido (TinyMCE):
+Inicializa el editor TinyMCE en el campo detalles con configuraciones
+específicas como plugins y barra de herramientas.
+ 
+Cómo lo hace:
+Atributos Thymeleaf (th:):
+Utiliza atributos como th:field, th:action, th:each, th:if y th:insert para vincular
+datos del modelo con elementos HTML, generar contenido dinámico y reutilizar fragmentos.
+
+Data binding:
+Los campos del formulario están vinculados directamente a las propiedades del 
+objeto vacante mediante th:field. Esto permite que Spring MVC realice automáticamente 
+el enlace de datos entre el formulario y el modelo.
+
+Validación:
+Thymeleaf utiliza expresiones como #fields.hasErrors y #fields.errors 
+para mostrar mensajes de error en los campos que no cumplen con las
+reglas de validación definidas en el backend.
+
+Iteración:
+Genera dinámicamente opciones en el campo de selección utilizando th:each para recorrer la lista categorias.
+
+Fragmentos:
+Reutiliza componentes comunes como el menú y el pie de página mediante th:insert.
+ 
+ -->
 </html>
